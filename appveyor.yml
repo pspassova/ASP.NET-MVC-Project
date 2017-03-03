@@ -3,9 +3,9 @@ branches:
   only:
   - master
 before_build:
-- cmd: nuget restore ./Visions/Visions.sln
+- cmd: nuget restore ./Visions.sln
 build:
-  project: ./Visions/Visions.sln
+  project: ./Visions.sln
   publish_nuget: true
   include_nuget_references: true
   verbosity: minimal
