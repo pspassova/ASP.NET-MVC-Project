@@ -1,0 +1,1 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/dw42kk0gsy5ge4ap/branch/master?svg=true)](https://ci.appveyor.com/project/petya/asp-net-mvc-project/branch/master)
