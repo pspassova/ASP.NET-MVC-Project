@@ -74,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IGenericRepository.cs" />
     <Compile Include="Contracts\IUnitOfWork.cs" />
     <Compile Include="Contracts\IVisionsDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -86,10 +87,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Visions.Auth\Visions.Auth.csproj">
-      <Project>{fd72a3f2-eeb5-4323-a455-eb8744fc94c1}</Project>
-      <Name>Visions.Auth</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Visions.Models\Visions.Models.csproj">
       <Project>{4CFD0108-767A-4A85-A475-A5E1AFC1254F}</Project>
       <Name>Visions.Models</Name>

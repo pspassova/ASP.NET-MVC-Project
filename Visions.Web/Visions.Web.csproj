@@ -372,6 +372,10 @@
       <Project>{D53AE12F-0D3B-4688-B6C3-0A2B6FDE3B65}</Project>
       <Name>Visions.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Visions.Models\Visions.Models.csproj">
+      <Project>{4cfd0108-767a-4a85-a475-a5e1afc1254f}</Project>
+      <Name>Visions.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

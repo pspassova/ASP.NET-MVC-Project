@@ -97,9 +97,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="ApplicationSignInManager.cs" />
-    <Compile Include="ApplicationUser.cs" />
     <Compile Include="ApplicationUserManager.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,6 +107,16 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Visions.Data\Visions.Data.csproj">
+      <Project>{d53ae12f-0d3b-4688-b6c3-0a2b6fde3b65}</Project>
+      <Name>Visions.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Visions.Models\Visions.Models.csproj">
+      <Project>{4CFD0108-767A-4A85-A475-A5E1AFC1254F}</Project>
+      <Name>Visions.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
