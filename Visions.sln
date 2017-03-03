@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visions.Services", "Visions
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visions.Data", "Visions.Data\Visions.Data.csproj", "{D53AE12F-0D3B-4688-B6C3-0A2B6FDE3B65}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visions.Auth", "Visions.Auth\Visions.Auth.csproj", "{FD72A3F2-EEB5-4323-A455-EB8744FC94C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D53AE12F-0D3B-4688-B6C3-0A2B6FDE3B65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D53AE12F-0D3B-4688-B6C3-0A2B6FDE3B65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D53AE12F-0D3B-4688-B6C3-0A2B6FDE3B65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD72A3F2-EEB5-4323-A455-EB8744FC94C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD72A3F2-EEB5-4323-A455-EB8744FC94C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD72A3F2-EEB5-4323-A455-EB8744FC94C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD72A3F2-EEB5-4323-A455-EB8744FC94C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
