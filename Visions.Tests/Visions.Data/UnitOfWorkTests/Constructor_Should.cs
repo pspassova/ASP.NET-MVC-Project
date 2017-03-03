@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 using Visions.Data;
+using NUnit.Framework;
 
 namespace Visions.Tests.Visions.Data.UnitOfWorkTests
 {
