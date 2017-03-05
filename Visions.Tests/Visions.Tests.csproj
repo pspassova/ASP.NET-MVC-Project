@@ -40,6 +40,8 @@
       <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="Moq, Version=4.7.1.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.7.1\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
@@ -64,7 +66,17 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Visions.Data\GenericRepositoryTests\Add_Should.cs" />
+    <Compile Include="Visions.Data\GenericRepositoryTests\Constructor_Should.cs" />
+    <Compile Include="Visions.Data\GenericRepositoryTests\Delete_Should.cs" />
+    <Compile Include="Visions.Data\GenericRepositoryTests\GetAll_Should.cs" />
+    <Compile Include="Visions.Data\GenericRepositoryTests\GetById_Should.cs" />
+    <Compile Include="Visions.Data\GenericRepositoryTests\Update_Should.cs" />
+    <Compile Include="Visions.Data\UnitOfWorkTests\Commit_Should.cs" />
     <Compile Include="Visions.Data\UnitOfWorkTests\Constructor_Should.cs" />
+    <Compile Include="Visions.Data\VisionsDbContextTests\Constructor_Should.cs" />
+    <Compile Include="Visions.Data\VisionsDbContextTests\Create_Should.cs" />
+    <Compile Include="Visions.Data\VisionsDbContextTests\Set_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -74,7 +86,12 @@
       <Project>{D53AE12F-0D3B-4688-B6C3-0A2B6FDE3B65}</Project>
       <Name>Visions.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Visions.Models\Visions.Models.csproj">
+      <Project>{4CFD0108-767A-4A85-A475-A5E1AFC1254F}</Project>
+      <Name>Visions.Models</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

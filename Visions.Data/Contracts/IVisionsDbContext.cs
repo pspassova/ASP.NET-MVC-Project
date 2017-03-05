@@ -7,8 +7,6 @@ namespace Visions.Data.Contracts
     {
         void InitializeDb();
 
-        void InitializeIdentity();
-
         void SaveChanges();
 
         DbEntityEntry<T> Entry<T>(T entity) where T : class;

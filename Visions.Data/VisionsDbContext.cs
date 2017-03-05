@@ -12,7 +12,7 @@ namespace Visions.Data
         public VisionsDbContext()
             : base("Visions")
         {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<VisionsDbContext>());
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<VisionsDbContext>());
         }
 
         public new IDbSet<T> Set<T>() where T : class
@@ -27,53 +27,43 @@ namespace Visions.Data
 
         public void InitializeDb()
         {
-            this.InitializeIdentity();
-            this.SaveChanges();
+            //this.InitializeIdentity();
+            //this.SaveChanges();
         }
 
-        public void InitializeIdentity()
-        {
-            if (!this.Users.Any())
-            {
-                var roleStore = new RoleStore<IdentityRole>(this);
-                var roleManager = new RoleManager<IdentityRole>(roleStore);
-                var userStore = new UserStore<User>(this);
-                var userManager = new UserManager<User>(userStore);
+        //public void InitializeIdentity()
+        //{
+        //    if (!this.Users.Any())
+        //    {
+        //        var roleStore = new RoleStore<IdentityRole>(this);
+        //        var roleManager = new RoleManager<IdentityRole>(roleStore);
+        //        var userStore = new UserStore<User>(this);
+        //        var userManager = new UserManager<User>(userStore);
 
-                // Add missing roles
-                var role = roleManager.FindByName("Admin");
-                if (role == null)
-                {
-                    role = new IdentityRole("Admin");
-                    roleManager.Create(role);
-                }
+        //        // Add missing roles
+        //        var role = roleManager.FindByName("Admin");
+        //        if (role == null)
+        //        {
+        //            role = new IdentityRole("Admin");
+        //            roleManager.Create(role);
+        //        }
 
-                // Create test users
-                User user = userManager.FindByName("admin");
-                if (user == null)
-                {
-                    User newUser = new User()
-                    {
-                        UserName = "admin",
-                        Email = "xxx@xxx.com"
-                    };
+        //        // Create test users
+        //        User user = userManager.FindByName("admin");
+        //        if (user == null)
+        //        {
+        //            User newUser = new User()
+        //            {
+        //                UserName = "admin",
+        //                Email = "xxx@xxx.com"
+        //            };
 
-                    userManager.Create(newUser, "admin");
-                    userManager.SetLockoutEnabled(newUser.Id, false);
-                    userManager.AddToRole(newUser.Id, "Admin");
-                }
-            }
-        }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            //modelBuilder.Entity<IdentityRole>().ToTable("AspNetRoles");
-            //modelBuilder.Entity<IdentityUserRole>().ToTable("AspNetUserRoles");
-            //modelBuilder.Entity<IdentityUserLogin>().ToTable("AspNetUserLogins");
-            //modelBuilder.Entity<IdentityUserClaim>().ToTable("AspNetUserClaims");
-
-            base.OnModelCreating(modelBuilder);
-        }
+        //            userManager.Create(newUser, "admin");
+        //            userManager.SetLockoutEnabled(newUser.Id, false);
+        //            userManager.AddToRole(newUser.Id, "Admin");
+        //        }
+        //    }
+        //}
 
         public new void SaveChanges()
         {

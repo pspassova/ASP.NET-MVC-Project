@@ -11,7 +11,7 @@ namespace Visions.Data
     {
         public GenericRepository(IVisionsDbContext context)
         {
-            Guard.WhenArgument(context, "context").IsNull();
+            Guard.WhenArgument(context, "context").IsNull().Throw();
 
             this.Context = context;
             this.DbSet = this.Context.Set<T>();
@@ -23,24 +23,32 @@ namespace Visions.Data
 
         public void Add(T entity)
         {
+            Guard.WhenArgument(entity, "entity").IsNull().Throw();
+
             DbEntityEntry entry = this.Context.Entry(entity);
             entry.State = EntityState.Added;
         }
 
         public void Update(T entity)
         {
+            Guard.WhenArgument(entity, "entity").IsNull().Throw();
+
             DbEntityEntry entry = this.Context.Entry(entity);
             entry.State = EntityState.Modified;
         }
 
         public void Delete(T entity)
         {
+            Guard.WhenArgument(entity, "entity").IsNull().Throw();
+
             DbEntityEntry entry = this.Context.Entry(entity);
             entry.State = EntityState.Deleted;
         }
 
         public T GetById(object id)
         {
+            Guard.WhenArgument(id, "id").IsNull().Throw();
+
             return this.DbSet.Find(id);
         }
 
@@ -51,6 +59,8 @@ namespace Visions.Data
 
         private DbEntityEntry AttachIfDetached(T entity)
         {
+            Guard.WhenArgument(entity, "entity").IsNull().Throw();
+
             DbEntityEntry entry = this.Context.Entry(entity);
             if (entry.State == EntityState.Detached)
             {
