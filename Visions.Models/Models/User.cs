@@ -10,7 +10,6 @@ namespace Visions.Models.Models
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             ClaimsIdentity userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-
             return userIdentity;
         }
     }

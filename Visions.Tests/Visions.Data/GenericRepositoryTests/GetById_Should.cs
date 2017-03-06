@@ -21,7 +21,7 @@ namespace Visions.Tests.Visions.Data.GenericRepositoryTests
 
             IGenericRepository<User> repository = new GenericRepository<User>(contextMock.Object);
 
-            // Arrange, Act
+            // Act
             var exception = Assert.Throws<ArgumentNullException>(() => repository.GetById(null));
 
             // Assert

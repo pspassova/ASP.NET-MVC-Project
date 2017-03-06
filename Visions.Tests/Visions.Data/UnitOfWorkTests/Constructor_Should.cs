@@ -28,6 +28,7 @@ namespace Visions.Tests.Visions.Data.UnitOfWorkTests
             // Act
             UnitOfWork unitOfWork = new UnitOfWork(contextMock.Object);
 
+            // Assert
             Assert.That(unitOfWork, Is.Not.Null);
         }
     }

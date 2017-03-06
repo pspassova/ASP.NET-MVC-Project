@@ -1,7 +1,6 @@
 ﻿using Bytes2you.Validation;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using Visions.Data.Contracts;
 
 namespace Visions.Data
@@ -25,24 +24,24 @@ namespace Visions.Data
         {
             Guard.WhenArgument(entity, "entity").IsNull().Throw();
 
-            DbEntityEntry entry = this.Context.Entry(entity);
-            entry.State = EntityState.Added;
+            IStateful<T> entry = this.Context.GetStateful(entity);
+            entry.EntityState = EntityState.Added;
         }
 
         public void Update(T entity)
         {
             Guard.WhenArgument(entity, "entity").IsNull().Throw();
 
-            DbEntityEntry entry = this.Context.Entry(entity);
-            entry.State = EntityState.Modified;
+            IStateful<T> entry = this.Context.GetStateful(entity);
+            entry.EntityState = EntityState.Modified;
         }
 
         public void Delete(T entity)
         {
             Guard.WhenArgument(entity, "entity").IsNull().Throw();
 
-            DbEntityEntry entry = this.Context.Entry(entity);
-            entry.State = EntityState.Deleted;
+            IStateful<T> entry = this.Context.GetStateful(entity);
+            entry.EntityState = EntityState.Deleted;
         }
 
         public T GetById(object id)
@@ -57,12 +56,12 @@ namespace Visions.Data
             return this.DbSet;
         }
 
-        private DbEntityEntry AttachIfDetached(T entity)
+        private IStateful<T> AttachIfDetached(T entity)
         {
             Guard.WhenArgument(entity, "entity").IsNull().Throw();
 
-            DbEntityEntry entry = this.Context.Entry(entity);
-            if (entry.State == EntityState.Detached)
+            IStateful<T> entry = this.Context.GetStateful(entity);
+            if (entry.EntityState == EntityState.Detached)
             {
                 this.DbSet.Attach(entity);
             }

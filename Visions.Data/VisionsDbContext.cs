@@ -3,16 +3,25 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using System.Linq;
 using Visions.Data.Contracts;
+using Visions.Data.Factories;
 using Visions.Models.Models;
 
 namespace Visions.Data
 {
     public class VisionsDbContext : IdentityDbContext<User>, IVisionsDbContext
     {
+        private IStatefulFactory statefulFactory;
+
         public VisionsDbContext()
             : base("Visions")
         {
             //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<VisionsDbContext>());
+        }
+
+        public VisionsDbContext(IStatefulFactory statefulFactory)
+            : base("Visions")
+        {
+            this.statefulFactory = statefulFactory;
         }
 
         public new IDbSet<T> Set<T>() where T : class
@@ -23,6 +32,11 @@ namespace Visions.Data
         public static VisionsDbContext Create()
         {
             return new VisionsDbContext();
+        }
+
+        public IStateful<T> GetStateful<T>(T entity) where T : class
+        {
+            return this.statefulFactory.CreateStateful(base.Entry<T>(entity));
         }
 
         public void InitializeDb()

@@ -10,8 +10,11 @@ namespace Visions.Web.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using Ninject.Extensions.Factory;
+
     using Data.Contracts;
     using Data;
+    using Data.Factories;
 
     public static class NinjectWebCommon 
     {
@@ -64,6 +67,9 @@ namespace Visions.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IVisionsDbContext>().To<VisionsDbContext>();
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+            kernel.Bind<IStatefulFactory>().ToFactory().InSingletonScope();
+            kernel.Bind(typeof(IGenericRepository<>)).To(typeof(GenericRepository<>)).InRequestScope();
         }        
     }
 }
