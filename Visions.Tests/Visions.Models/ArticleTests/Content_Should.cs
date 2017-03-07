@@ -8,16 +8,30 @@ namespace Visions.Tests.Visions.Models.ArticleTests
     [TestFixture]
     public class Content_Should
     {
+        private const string PropertyName = "Content";
+
+        [Test]
+        public void BeAProperty_InArticleClass()
+        {
+            // Arrange
+            Article article = new Article();
+
+            // Act
+            var actualResult = article.GetType().GetProperty(PropertyName).Name;
+
+            // Assert
+            Assert.AreEqual(PropertyName, actualResult);
+        }
+
         [Test]
         public void Have_RequiredAttribute()
         {
             // Arrange
             Article article = new Article();
-            string property = "Content";
 
             // Act
             bool hasAttribute = article.GetType()
-                .GetProperty(property)
+                .GetProperty(PropertyName)
                 .GetCustomAttributes(false)
                 .Where(p => p.GetType() == typeof(RequiredAttribute))
                 .Any();
@@ -31,11 +45,10 @@ namespace Visions.Tests.Visions.Models.ArticleTests
         {
             // Arrange
             Article article = new Article();
-            string property = "Content";
 
             // Act
             bool hasAttribute = article.GetType()
-                .GetProperty(property)
+                .GetProperty(PropertyName)
                 .GetCustomAttributes(false)
                 .Where(p => p.GetType() == typeof(MinLengthAttribute))
                 .Any();
@@ -49,11 +62,10 @@ namespace Visions.Tests.Visions.Models.ArticleTests
         {
             // Arrange
             Article article = new Article();
-            string property = "Content";
 
             // Act
             MinLengthAttribute attribute = article.GetType()
-                .GetProperty(property)
+                .GetProperty(PropertyName)
                 .GetCustomAttributes(false)
                 .Where(p => p.GetType() == typeof(MinLengthAttribute))
                 .Select(x => (MinLengthAttribute)x)

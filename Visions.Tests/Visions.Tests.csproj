@@ -113,12 +113,26 @@
     <Compile Include="Visions.Data\VisionsDbContextTests\Create_Should.cs" />
     <Compile Include="Visions.Data\VisionsDbContextTests\Set_Should.cs" />
     <Compile Include="Visions.Models\ArticleTests\Content_Should.cs" />
+    <Compile Include="Visions.Models\ArticleTests\CreatedOn_Should.cs" />
+    <Compile Include="Visions.Models\ArticleTests\Id_Should.cs" />
+    <Compile Include="Visions.Models\ArticleTests\IsDeleted_Should.cs" />
+    <Compile Include="Visions.Models\ArticleTests\Tags_Should.cs" />
     <Compile Include="Visions.Models\ArticleTests\Title_Should.cs" />
     <Compile Include="Visions.Models\ArticleTests\UserId_Should.cs" />
+    <Compile Include="Visions.Models\ArticleTests\User_Should.cs" />
+    <Compile Include="Visions.Models\PhotoTests\CreatedOn_Should.cs" />
+    <Compile Include="Visions.Models\PhotoTests\Id_Should.cs" />
+    <Compile Include="Visions.Models\PhotoTests\IsDeleted_Should.cs" />
+    <Compile Include="Visions.Models\PhotoTests\Likes_Should.cs" />
     <Compile Include="Visions.Models\PhotoTests\Path_Should.cs" />
+    <Compile Include="Visions.Models\PhotoTests\Tags_Should.cs" />
     <Compile Include="Visions.Models\PhotoTests\UserId_Should.cs" />
+    <Compile Include="Visions.Models\PhotoTests\User_Should.cs" />
+    <Compile Include="Visions.Models\UserTests\AvatarPath_Should.cs" />
     <Compile Include="Visions.Models\UserTests\GenerateUserIdentityAsync_Should.cs" />
     <Compile Include="Visions.Models\UserTests\GenerateUserIdentity_Should.cs" />
+    <Compile Include="Visions.Models\UserTests\PinnedArticles_Should.cs" />
+    <Compile Include="Visions.Models\UserTests\PinnedPhotos_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

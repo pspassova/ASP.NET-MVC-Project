@@ -8,16 +8,30 @@ namespace Visions.Tests.Visions.Models.PhotoTests
     [TestFixture]
     public class Path_Should
     {
+        private const string PropertyName = "Path";
+
+        [Test]
+        public void BeAProperty_InPhotoClass()
+        {
+            // Arrange
+            Photo photo = new Photo();
+
+            // Act
+            var actualResult = photo.GetType().GetProperty(PropertyName).Name;
+
+            // Assert
+            Assert.AreEqual(PropertyName, actualResult);
+        }
+
         [Test]
         public void Have_RequiredAttribute()
         {
             // Arrange
-            Photo article = new Photo();
-            string property = "Path";
+            Photo photo = new Photo();
 
             // Act
-            bool hasAttribute = article.GetType()
-                .GetProperty(property)
+            bool hasAttribute = photo.GetType()
+                .GetProperty(PropertyName)
                 .GetCustomAttributes(false)
                 .Where(p => p.GetType() == typeof(RequiredAttribute))
                 .Any();
