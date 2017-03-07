@@ -1,15 +1,20 @@
 ﻿using System.Data.Entity;
+using Visions.Models.Models;
 
 namespace Visions.Data.Contracts
 {
     public interface IVisionsDbContext
     {
-        void InitializeDb();
+        IDbSet<Photo> Photos { get; }
 
-        void SaveChanges();
+        IDbSet<Article> Articles { get; }
+
+        IDbSet<T> Set<T>() where T : class;
 
         IStateful<T> GetStateful<T>(T entity) where T : class;
 
-        IDbSet<T> Set<T>() where T : class;
+        void InitializeDb();
+
+        void SaveChanges();
     }
 }

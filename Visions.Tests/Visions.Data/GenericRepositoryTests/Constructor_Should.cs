@@ -28,7 +28,7 @@ namespace Visions.Tests.Visions.Data.GenericRepositoryTests
             IGenericRepository<User> repository = new GenericRepository<User>(contextMock.Object);
 
             // Act, Assert
-            Assert.That(repository, Is.InstanceOf<GenericRepository<User>>());
+            Assert.IsInstanceOf<GenericRepository<User>>(repository);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Visions.Tests.Visions.Data.VisionsDbContextTests
             IVisionsDbContext context = new VisionsDbContext();
 
             // Act, Assert
-            Assert.That(context, Is.InstanceOf<DbContext>());
+            Assert.IsInstanceOf<DbContext>(context);
         }
 
         [Test]
@@ -25,7 +25,7 @@ namespace Visions.Tests.Visions.Data.VisionsDbContextTests
             IVisionsDbContext context = new VisionsDbContext();
 
             // Act, Assert
-            Assert.That(context, Is.InstanceOf<VisionsDbContext>());
+            Assert.IsInstanceOf<VisionsDbContext>(context);
         }
     }
 }

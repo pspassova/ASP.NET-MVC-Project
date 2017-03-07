@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using Visions.Data;
-using Visions.Data.Contracts;
 
 namespace Visions.Tests.Visions.Data.VisionsDbContextTests
 {
@@ -10,11 +9,11 @@ namespace Visions.Tests.Visions.Data.VisionsDbContextTests
         [Test]
         public void CreateAnInstanceOfVisionsDbContext()
         {
-            // Arrange
-            IVisionsDbContext context = new VisionsDbContext();
+            // Arrange, Act
+            var actualResult = VisionsDbContext.Create();
 
-            // Act, Assert
-            Assert.That(context, Is.InstanceOf<VisionsDbContext>());
+            // Assert
+            Assert.IsInstanceOf<VisionsDbContext>(actualResult);
         }
     }
 }

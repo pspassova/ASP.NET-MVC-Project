@@ -14,5 +14,7 @@ namespace Visions.Data.Contracts
         void Update(T entity);
 
         void Delete(T entity);
+
+        IStateful<T> AttachIfDetached(T entity);
     }
 }

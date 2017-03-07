@@ -67,9 +67,12 @@ namespace Visions.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IVisionsDbContext>().To<VisionsDbContext>();
-            kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
-            kernel.Bind<IStatefulFactory>().ToFactory().InSingletonScope();
+
             kernel.Bind(typeof(IGenericRepository<>)).To(typeof(GenericRepository<>)).InRequestScope();
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+
+            kernel.Bind(typeof(IStateful<>)).To(typeof(Stateful<>)).InRequestScope();
+            kernel.Bind<IStatefulFactory>().ToFactory().InSingletonScope();
         }        
     }
 }

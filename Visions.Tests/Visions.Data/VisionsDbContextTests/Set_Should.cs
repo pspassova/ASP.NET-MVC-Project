@@ -16,10 +16,10 @@ namespace Visions.Tests.Visions.Data.VisionsDbContextTests
             IVisionsDbContext context = new VisionsDbContext();
 
             // Act
-            IDbSet<User> contextSet = context.Set<User>();
+            var actualResult = context.Set<User>();
 
             // Assert
-            Assert.That(contextSet, Is.InstanceOf<DbSet<User>>());
+            Assert.IsInstanceOf<DbSet<User>>(actualResult);
         }
     }
 }

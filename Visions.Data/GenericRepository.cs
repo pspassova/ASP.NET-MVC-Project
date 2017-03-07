@@ -56,7 +56,7 @@ namespace Visions.Data
             return this.DbSet;
         }
 
-        private IStateful<T> AttachIfDetached(T entity)
+        public IStateful<T> AttachIfDetached(T entity)
         {
             Guard.WhenArgument(entity, "entity").IsNull().Throw();
 

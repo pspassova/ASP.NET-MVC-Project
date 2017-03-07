@@ -16,6 +16,7 @@ namespace Visions.Data
 
             this.entry = entry;
         }
+
         public EntityState EntityState { get; set; }
     }
 }
