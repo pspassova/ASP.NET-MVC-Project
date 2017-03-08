@@ -17,17 +17,24 @@
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand page-scroll">@Html.ActionLink("visions.", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>
+                    <a class="navbar-brand page-scroll">@Html.ActionLink("visions.", "Shared", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right homepage-nav">
+                    <ul class="nav navbar-nav navbar-right">
                         <li class="page-scroll">
-                            @Html.ActionLink("About", "About", "Home")
+                            @Html.RouteLink(this.User.Identity.Name.Substring(0, this.User.Identity.Name.IndexOf("@")), "Admin_default", new { action = "Manage", controller = "Profile" })
                         </li>
                         <li class="page-scroll">
-                            @Html.ActionLink("Shared", "Shared", "Home")
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
+                                </ul>
+                            }
                         </li>
                     </ul>
                 </div>

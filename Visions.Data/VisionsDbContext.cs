@@ -45,8 +45,8 @@ namespace Visions.Data
 
         public void InitializeDb()
         {
-            this.InitializeIdentity();
-            this.SaveChanges();
+            //this.InitializeIdentity();
+            //this.SaveChanges();
         }
 
         public void InitializeIdentity()
@@ -63,20 +63,10 @@ namespace Visions.Data
                 role = new IdentityRole("Admin");
                 roleManager.Create(role);
             }
-            this.SaveChanges();
-            // Create test users
-            User user = userManager.FindByName("admin");
-            if (user == null)
-            {
-                User newUser = new User()
-                {
-                    Email = "admin@admin.com"
-                };
 
-                userManager.Create(newUser, "admin1");
-                userManager.SetLockoutEnabled(newUser.Id, false);
-                userManager.AddToRole(newUser.Id, "Admin");
-            }
+            // Create admin
+            User user = userManager.FindByEmail("admin@mail.com");
+            userManager.AddToRole(user.Id, "Admin");
         }
 
         public new void SaveChanges()

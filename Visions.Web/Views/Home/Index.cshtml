@@ -7,12 +7,20 @@
         <div class="header-content-inner">
             <h1 id="homeHeading">visions.</h1>
             <hr>
-            <p>
-                Come for what you love.
-                <br />
-                Stay for what you discover.
-            </p>
-            <a href="/account/login" class="btn btn-primary btn-xl">Get started</a>
+
+            @if (this.User.Identity.IsAuthenticated)
+            {
+                <h1>insert photos hereee</h1>
+            }
+            else
+            {
+                <p>
+                    Come for what you love.
+                    <br />
+                    Stay for what you discover.
+                </p>
+                <a href="/account/login" class="btn btn-primary btn-xl">Get started</a>
+            }
         </div>
     </div>
 </header>
