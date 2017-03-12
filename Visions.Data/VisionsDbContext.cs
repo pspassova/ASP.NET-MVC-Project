@@ -12,12 +12,12 @@ namespace Visions.Data
         private IStatefulFactory statefulFactory;
 
         public VisionsDbContext()
-            : base("Visions")
+            : base("Visions", throwIfV1Schema: false)
         {
         }
 
         public VisionsDbContext(IStatefulFactory statefulFactory)
-            : base("Visions")
+            : base("Visions", throwIfV1Schema: false)
         {
             //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<VisionsDbContext>());
 
