@@ -323,6 +323,10 @@
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Properties\PublishProfiles\vissions - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\vissions - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\vsions - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\vsions - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\vsions - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\vsions - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\creative.js" />
     <Content Include="Scripts\creative.min.js" />

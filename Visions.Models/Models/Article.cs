@@ -18,7 +18,7 @@ namespace Visions.Models.Models
 
         public ICollection<string> Tags { get; set; }
 
-        [Required]
+        //[Required]
         public string UserId { get; set; }
 
         public virtual User User { get; set; }

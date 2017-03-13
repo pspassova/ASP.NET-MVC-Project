@@ -12,14 +12,14 @@ namespace Visions.Data
         private IStatefulFactory statefulFactory;
 
         public VisionsDbContext()
-            : base("Visions", throwIfV1Schema: false)
+            : base("Visions")
         {
         }
 
         public VisionsDbContext(IStatefulFactory statefulFactory)
-            : base("Visions", throwIfV1Schema: false)
+            : base("Visions")
         {
-            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<VisionsDbContext>());
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<VisionsDbContext>());
 
             this.statefulFactory = statefulFactory;
         }
@@ -65,7 +65,7 @@ namespace Visions.Data
             }
 
             // Create admin
-            User user = userManager.FindByEmail("admin@mail.com");
+            User user = userManager.FindByEmail("admin@admin.com");
             userManager.AddToRole(user.Id, "Admin");
         }
 
