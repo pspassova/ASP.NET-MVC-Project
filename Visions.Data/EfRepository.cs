@@ -5,10 +5,10 @@ using Visions.Data.Contracts;
 
 namespace Visions.Data
 {
-    public class GenericRepository<T> : IGenericRepository<T>
+    public class EfRepository<T> : IEfRepository<T>
         where T : class
     {
-        public GenericRepository(IVisionsDbContext context)
+        public EfRepository(IVisionsDbContext context)
         {
             Guard.WhenArgument(context, "context").IsNull().Throw();
 

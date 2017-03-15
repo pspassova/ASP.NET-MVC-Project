@@ -19,7 +19,7 @@ namespace Visions.Tests.Visions.Data.GenericRepositoryTests
             var contextMock = new Mock<IVisionsDbContext>();
             contextMock.Setup(x => x.Set<User>()).Returns(dbSetMock.Object);
 
-            IGenericRepository<User> repository = new GenericRepository<User>(contextMock.Object);
+            IEfRepository<User> repository = new EfRepository<User>(contextMock.Object);
 
             // Act
             var exception = Assert.Throws<ArgumentNullException>(() => repository.Delete(null));
@@ -39,7 +39,7 @@ namespace Visions.Tests.Visions.Data.GenericRepositoryTests
             var statefulMock = new Mock<IStateful<User>>();
             contextMock.Setup(x => x.GetStateful(It.IsAny<User>())).Returns(statefulMock.Object);
 
-            IGenericRepository<User> repository = new GenericRepository<User>(contextMock.Object);
+            IEfRepository<User> repository = new EfRepository<User>(contextMock.Object);
 
             // Act
             repository.Delete(new Mock<User>().Object);
@@ -60,7 +60,7 @@ namespace Visions.Tests.Visions.Data.GenericRepositoryTests
             statefulMock.SetupSet(x => x.EntityState = EntityState.Deleted).Verifiable();
             contextMock.Setup(x => x.GetStateful(It.IsAny<User>())).Returns(statefulMock.Object);
 
-            IGenericRepository<User> repository = new GenericRepository<User>(contextMock.Object);
+            IEfRepository<User> repository = new EfRepository<User>(contextMock.Object);
 
             // Act
             repository.Delete(new Mock<User>().Object);

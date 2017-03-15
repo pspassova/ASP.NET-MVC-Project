@@ -2,7 +2,7 @@
 
 namespace Visions.Data.Contracts
 {
-    public interface IGenericRepository<T>
+    public interface IEfRepository<T>
         where T : class
     {
         T GetById(object id);

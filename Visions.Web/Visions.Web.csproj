@@ -231,6 +231,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\VisionsNinjectModule.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ProfileController.cs" />
     <Compile Include="Areas\User\Controllers\ProfileController.cs" />
@@ -258,6 +259,7 @@
     <Compile Include="Models\Manage\ManageLoginsViewModel.cs" />
     <Compile Include="Models\Manage\SetPasswordViewModel.cs" />
     <Compile Include="Models\Manage\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="Models\PhotoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -270,6 +272,9 @@
     <Content Include="Content\vendor\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\vendor\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="favicon.ico" />
+    <Content Include="Images\gold.jpg" />
+    <Content Include="Images\rain.jpg" />
+    <Content Include="Images\sea.jpg" />
     <Content Include="Scripts\scrollreveal.js" />
     <Content Include="Scripts\scrollreveal.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -382,7 +387,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\User\Models\" />
     <Folder Include="Content\vendor\font-awesome\css\" />
@@ -406,6 +410,10 @@
     <ProjectReference Include="..\Visions.Models\Visions.Models.csproj">
       <Project>{4cfd0108-767a-4a85-a475-a5e1afc1254f}</Project>
       <Name>Visions.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Visions.Services\Visions.Services.csproj">
+      <Project>{0C4D63FD-C3E4-4F96-B707-8200B090EBC6}</Project>
+      <Name>Visions.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

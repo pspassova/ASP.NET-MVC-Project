@@ -1,5 +1,13 @@
-﻿@{
+﻿@model IEnumerable<Visions.Web.Models.PhotoViewModel>
+@{
     ViewBag.Title = "Shared dashboard ";
 }
 <h2>@ViewBag.Title.</h2>
 
+@if (this.Model.Count() > 0)
+{
+    foreach (var photo in this.Model)
+    {
+        <img src="@photo.Path" alt="Shared photo" />
+    }
+}

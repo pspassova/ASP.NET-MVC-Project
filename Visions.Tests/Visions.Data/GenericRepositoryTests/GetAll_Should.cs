@@ -23,7 +23,7 @@ namespace Visions.Tests.Visions.Data.GenericRepositoryTests
             var contextMock = new Mock<IVisionsDbContext>();
             contextMock.Setup(x => x.Set<User>()).Returns(dbSetMock.Object);
 
-            IGenericRepository<User> repository = new GenericRepository<User>(contextMock.Object);
+            IEfRepository<User> repository = new EfRepository<User>(contextMock.Object);
 
             // Act
             IEnumerable<User> returnedCollection = repository.GetAll();
@@ -47,7 +47,7 @@ namespace Visions.Tests.Visions.Data.GenericRepositoryTests
             var contextMock = new Mock<IVisionsDbContext>();
             contextMock.Setup(x => x.Set<User>()).Returns(dbSetMock.Object);
 
-            IGenericRepository<User> repository = new GenericRepository<User>(contextMock.Object);
+            IEfRepository<User> repository = new EfRepository<User>(contextMock.Object);
 
             // Act
             IEnumerable<User> returnedCollection = repository.GetAll();

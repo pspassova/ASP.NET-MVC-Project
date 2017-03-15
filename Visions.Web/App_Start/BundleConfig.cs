@@ -19,8 +19,6 @@ namespace Visions.Web
             bundles.Add(new ScriptBundle("~/bundles/scrollreveal").Include(
                         "~/Scirpts/scrollreveal.min.js"));
 
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
@@ -36,7 +34,7 @@ namespace Visions.Web
             bundles.Add(new StyleBundle("~/Content/less").Include(
                       "~/Content/less/creative.less",
                       "~/Content/less/mixins.less",
-                      "~/Convent/less/variables.less"));
+                      "~/Content/less/variables.less"));
         }
     }
 }
