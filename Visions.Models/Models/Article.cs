@@ -8,25 +8,49 @@ namespace Visions.Models.Models
     public class Article
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public Guid Id { get; set; }
+        public Guid Id
+        {
+            get; set;
+        }
 
         [Required]
         [MinLength(2)]
-        public string Title { get; set; }
+        public string Title
+        {
+            get; set;
+        }
 
         [Required]
         [MinLength(2)]
-        public string Content { get; set; }
+        public string Content
+        {
+            get; set;
+        }
 
-        public ICollection<string> Tags { get; set; }
+        public ICollection<string> Tags
+        {
+            get; set;
+        }
 
         [Required]
-        public string UserId { get; set; }
+        public string UserId
+        {
+            get; set;
+        }
 
-        public virtual User User { get; set; }
+        public virtual User User
+        {
+            get; set;
+        }
 
-        public bool IsDeleted { get; set; }
+        public bool IsDeleted
+        {
+            get; set;
+        }
 
-        public DateTime CreatedOn { get; set; }
+        public DateTime CreatedOn
+        {
+            get; set;
+        }
     }
 }

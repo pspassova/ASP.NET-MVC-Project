@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Visions.Data.Contracts;
 using Visions.Models.Models;
 using Visions.Services.Contracts;
+using System;
+using System.Linq;
 
 namespace Visions.Services
 {
@@ -20,6 +22,33 @@ namespace Visions.Services
         public IEnumerable<Photo> GetAll()
         {
             return this.repository.GetAll();
+        }
+
+        public IEnumerable<Photo> SortByTag(string tag)
+        {
+            if (tag == null)
+            {
+                tag = string.Empty;
+            }
+
+            IEnumerable<Photo> photos = this.repository.GetAll();
+
+            ICollection<Photo> matchingPhotosTags = new List<Photo>();
+            foreach (var photo in photos)
+            {
+                if (photo.Tags.Count > 0)
+                {
+                    foreach (var photoTag in photo.Tags)
+                    {
+                        if (photoTag.Text.Contains(tag))
+                        {
+                            matchingPhotosTags.Add(photo);
+                        }
+                    }
+                }
+            }
+
+            return matchingPhotosTags;
         }
     }
 }

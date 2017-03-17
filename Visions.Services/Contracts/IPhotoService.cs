@@ -6,5 +6,7 @@ namespace Visions.Services.Contracts
     public interface IPhotoService
     {
         IEnumerable<Photo> GetAll();
+
+        IEnumerable<Photo> SortByTag(string tag);
     }
 }

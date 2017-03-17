@@ -108,6 +108,7 @@
   <ItemGroup>
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Photo.cs" />
+    <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

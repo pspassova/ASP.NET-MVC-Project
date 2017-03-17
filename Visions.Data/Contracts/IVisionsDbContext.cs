@@ -5,9 +5,20 @@ namespace Visions.Data.Contracts
 {
     public interface IVisionsDbContext
     {
-        IDbSet<Photo> Photos { get; }
+        IDbSet<Article> Articles
+        {
+            get;
+        }
 
-        IDbSet<Article> Articles { get; }
+        IDbSet<Photo> Photos
+        {
+            get;
+        }
+
+        IDbSet<Tag> Tags
+        {
+            get;
+        }
 
         IDbSet<T> Set<T>() where T : class;
 

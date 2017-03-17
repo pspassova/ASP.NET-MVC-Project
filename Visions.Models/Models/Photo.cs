@@ -7,23 +7,60 @@ namespace Visions.Models.Models
 {
     public class Photo
     {
+        private ICollection<Tag> tags;
+
+        public Photo()
+        {
+            this.tags = new HashSet<Tag>();
+        }
+
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public Guid Id { get; set; }
+        public Guid Id
+        {
+            get; set;
+        }
 
         [Required]
-        public string UserId { get; set; }
+        public string UserId
+        {
+            get; set;
+        }
 
-        public virtual User User { get; set; }
+        public virtual User User
+        {
+            get; set;
+        }
 
-        [Required]
-        public string Path { get; set; }
+        public string Path
+        {
+            get; set;
+        }
 
-        public int Likes { get; set; }
+        public int Likes
+        {
+            get; set;
+        }
 
-        public ICollection<string> Tags { get; set; }
+        public bool IsDeleted
+        {
+            get; set;
+        }
 
-        public bool IsDeleted { get; set; }
+        public DateTime? CreatedOn
+        {
+            get; set;
+        }
 
-        public DateTime CreatedOn { get; set; }
+        public virtual ICollection<Tag> Tags
+        {
+            get
+            {
+                return this.tags;
+            }
+            set
+            {
+                this.tags = value;
+            }
+        }
     }
 }

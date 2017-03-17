@@ -22,22 +22,5 @@ namespace Visions.Tests.Visions.Models.PhotoTests
             // Assert
             Assert.AreEqual(PropertyName, actualResult);
         }
-
-        [Test]
-        public void Have_RequiredAttribute()
-        {
-            // Arrange
-            Photo photo = new Photo();
-
-            // Act
-            bool hasAttribute = photo.GetType()
-                .GetProperty(PropertyName)
-                .GetCustomAttributes(false)
-                .Where(p => p.GetType() == typeof(RequiredAttribute))
-                .Any();
-
-            // Assert
-            Assert.IsTrue(hasAttribute);
-        }
     }
 }

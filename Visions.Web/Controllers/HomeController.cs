@@ -15,11 +15,13 @@ namespace Visions.Web.Controllers
             this.photoService = photoService;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
 
+        [HttpGet]
         public ActionResult About()
         {
             return View();
@@ -32,7 +34,17 @@ namespace Visions.Web.Controllers
                  .AsQueryable()
                  .Select(PhotoViewModel.FromPhoto);
 
-            return View(photos);
+            return this.View(photos);
+        }
+
+       [HttpGet]
+        public ActionResult Sort(string text)
+        {
+            IEnumerable<PhotoViewModel> photos = this.photoService.SortByTag(text)
+                .AsQueryable()
+                .Select(PhotoViewModel.FromPhoto);
+
+            return this.View("Shared", photos);
         }
     }
 }

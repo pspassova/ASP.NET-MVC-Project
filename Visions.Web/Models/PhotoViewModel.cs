@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using Visions.Models.Models;
 
@@ -17,7 +18,7 @@ namespace Visions.Web.Models
                     UserId = photo.UserId,
                     Path = photo.Path,
                     Likes = photo.Likes,
-                    //Tags = photo.Tags,
+                    Tags = photo.Tags,
                     CreatedOn = photo.CreatedOn
                 };
             }
@@ -43,12 +44,12 @@ namespace Visions.Web.Models
             get; set;
         }
 
-        //public ICollection<string> Tags
-        //{
-        //    get; set;
-        //}
+        public ICollection<Tag> Tags
+        {
+            get; set;
+        }
 
-        public DateTime CreatedOn
+        public DateTime? CreatedOn
         {
             get; set;
         }

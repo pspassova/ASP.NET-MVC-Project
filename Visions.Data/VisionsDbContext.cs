@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using System.Linq;
 using Visions.Data.Contracts;
 using Visions.Data.Factories;
 using Visions.Models.Models;
@@ -21,7 +23,7 @@ namespace Visions.Data
         public VisionsDbContext(IStatefulFactory statefulFactory)
             : base("Visions")
         {
-            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<VisionsDbContext>());
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<VisionsDbContext>());
 
             this.statefulFactory = statefulFactory;
         }
@@ -32,6 +34,11 @@ namespace Visions.Data
         }
 
         public IDbSet<Photo> Photos
+        {
+            get; set;
+        }
+
+        public IDbSet<Tag> Tags
         {
             get; set;
         }
@@ -54,7 +61,9 @@ namespace Visions.Data
         public void InitializeDb()
         {
             //this.InitializeIdentity();
-            //this.SeedPhotos();
+            //this.SaveChanges();
+
+            //this.SeedTags();
             //this.SaveChanges();
         }
 
@@ -94,39 +103,53 @@ namespace Visions.Data
             userManager.AddToRole(user.Id, "Admin");
         }
 
-        private void SeedPhotos()
+        private void SeedTags()
         {
-            this.Photos.AddOrUpdate(p => p.Path,
-                new Photo
+            this.Tags.AddOrUpdate(t => t.Text,
+                new Tag()
+                {
+                    Id = Guid.NewGuid(),
+                    Text = "sunset",
+                    Photos = new List<Photo>()
+                    {
+                        new Photo
                 {
                     Id = Guid.NewGuid(),
                     Path = "/Images/sea.jpg",
-                    UserId = "e900466b-8556-414a-8e49-c8e34e9c859b",
+                    UserId = "029d907f-9fff-490f-848d-63a440f28119",
                     CreatedOn = DateTime.Now,
                     IsDeleted = false,
-                    Likes = 1,
-                    Tags = new string[] { "sea", "sunset" }
+                    Likes = 1
                 },
                 new Photo
                 {
                     Id = Guid.NewGuid(),
                     Path = "/Images/rain.jpg",
-                    UserId = "e900466b-8556-414a-8e49-c8e34e9c859b",
+                    UserId = "029d907f-9fff-490f-848d-63a440f28119",
                     CreatedOn = DateTime.Now,
                     IsDeleted = false,
-                    Likes = 4,
-                    Tags = new string[] { "sea", "rain", "woman", "happiness", "raindrops" }
+                    Likes = 4
+                }
+                    }
                 },
-                new Photo
+                new Tag()
                 {
                     Id = Guid.NewGuid(),
-                    Path = "/Images/gold.jpg",
-                    UserId = "e900466b-8556-414a-8e49-c8e34e9c859b",
+                    Text = "sea",
+                    Photos = new List<Photo>()
+                    {
+                        new Photo
+                {
+                    Id = Guid.NewGuid(),
+                    Path = "/Images/rain.jpg",
+                    UserId = "029d907f-9fff-490f-848d-63a440f28119",
                     CreatedOn = DateTime.Now,
                     IsDeleted = false,
-                    Likes = 0,
-                    Tags = new string[] { "gold", "purple", "sky" }
+                    Likes = 4
+                }
+                    }
                 });
         }
     }
 }
+
