@@ -6,26 +6,16 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using Visions.Data.Contracts;
-using Visions.Data.Factories;
 using Visions.Models.Models;
 
 namespace Visions.Data
 {
     public class VisionsDbContext : IdentityDbContext<User>, IVisionsDbContext
     {
-        private IStatefulFactory statefulFactory;
-
         public VisionsDbContext()
             : base("Visions")
         {
-        }
-
-        public VisionsDbContext(IStatefulFactory statefulFactory)
-            : base("Visions")
-        {
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<VisionsDbContext>());
-
-            this.statefulFactory = statefulFactory;
         }
 
         public IDbSet<Article> Articles
@@ -53,11 +43,6 @@ namespace Visions.Data
             return new VisionsDbContext();
         }
 
-        public IStateful<T> GetStateful<T>(T entity) where T : class
-        {
-            return this.statefulFactory.CreateStateful(base.Entry<T>(entity));
-        }
-
         public void InitializeDb()
         {
             //this.InitializeIdentity();
@@ -72,16 +57,16 @@ namespace Visions.Data
             base.SaveChanges();
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<User>().ToTable("AspNetUsers");
-            modelBuilder.Entity<IdentityRole>().ToTable("AspNetRoles");
-            modelBuilder.Entity<IdentityUserRole>().ToTable("AspNetUserRoles");
-            modelBuilder.Entity<IdentityUserLogin>().ToTable("AspNetUserLogins");
-            modelBuilder.Entity<IdentityUserClaim>().ToTable("AspNetUserClaims");
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<User>().ToTable("AspNetUsers");
+        //    modelBuilder.Entity<IdentityRole>().ToTable("AspNetRoles");
+        //    modelBuilder.Entity<IdentityUserRole>().ToTable("AspNetUserRoles");
+        //    modelBuilder.Entity<IdentityUserLogin>().ToTable("AspNetUserLogins");
+        //    modelBuilder.Entity<IdentityUserClaim>().ToTable("AspNetUserClaims");
 
-            base.OnModelCreating(modelBuilder);
-        }
+        //    base.OnModelCreating(modelBuilder);
+        //}
 
         private void InitializeIdentity()
         {

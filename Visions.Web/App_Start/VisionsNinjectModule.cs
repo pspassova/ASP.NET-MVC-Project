@@ -1,9 +1,8 @@
-﻿using Ninject.Extensions.Factory;
+﻿using Ninject.Extensions.Interception.Infrastructure.Language;
 using Ninject.Modules;
-using Ninject.Web.Common;
 using Visions.Data;
 using Visions.Data.Contracts;
-using Visions.Data.Factories;
+using Visions.Data.Interceptors;
 using Visions.Services;
 using Visions.Services.Contracts;
 
@@ -13,15 +12,14 @@ namespace Visions.Web.App_Start
     {
         public override void Load()
         {
-            this.Bind<IVisionsDbContext>().To<VisionsDbContext>();
+            this.Bind<IVisionsDbContext>().To<VisionsDbContext>().InSingletonScope();
 
-            this.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>)).InRequestScope();
-            this.Bind<IUnitOfWork>().To<UnitOfWork>();
-            
-            this.Bind(typeof(IStateful<>)).To(typeof(Stateful<>)).InRequestScope();
-            this.Bind<IStatefulFactory>().ToFactory().InSingletonScope();
-            
+            this.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>));
+
             this.Bind<IPhotoService>().To<PhotoService>();
+
+            var uploadServiceBinding = this.Bind(typeof(IUploadService<>)).To(typeof(UploadService<>));
+            uploadServiceBinding.Intercept().With<SaveChangesInterceptor>();
         }
     }
 }

@@ -28,45 +28,45 @@ namespace Visions.Tests.Visions.Data.GenericRepositoryTests
             StringAssert.IsMatch("entity", exception.ParamName);
         }
 
-        [Test]
-        public void InvokeGetStatefulMethodFromContext_Once_WhenEntityIsProvided()
-        {
-            // Arange
-            var dbSetMock = new Mock<DbSet<User>>();
-            var contextMock = new Mock<IVisionsDbContext>();
-            contextMock.Setup(x => x.Set<User>()).Returns(dbSetMock.Object);
+        //[Test]
+        //public void InvokeGetStatefulMethodFromContext_Once_WhenEntityIsProvided()
+        //{
+        //    // Arange
+        //    var dbSetMock = new Mock<DbSet<User>>();
+        //    var contextMock = new Mock<IVisionsDbContext>();
+        //    contextMock.Setup(x => x.Set<User>()).Returns(dbSetMock.Object);
 
-            var statefulMock = new Mock<IStateful<User>>();
-            contextMock.Setup(x => x.GetStateful(It.IsAny<User>())).Returns(statefulMock.Object);
+        //    var statefulMock = new Mock<IStateful<User>>();
+        //    contextMock.Setup(x => x.GetStateful(It.IsAny<User>())).Returns(statefulMock.Object);
 
-            IEfRepository<User> repository = new EfRepository<User>(contextMock.Object);
+        //    IEfRepository<User> repository = new EfRepository<User>(contextMock.Object);
 
-            // Act
-            repository.Delete(new Mock<User>().Object);
+        //    // Act
+        //    repository.Delete(new Mock<User>().Object);
 
-            // Assert
-            contextMock.Verify(x => x.GetStateful(It.IsAny<User>()), Times.Once());
-        }
+        //    // Assert
+        //    contextMock.Verify(x => x.GetStateful(It.IsAny<User>()), Times.Once());
+        //}
 
-        [Test]
-        public void ChangeEntityStateOfIStatefulAsDeleted_WhenEntityIsProvided()
-        {
-            // Arange
-            var dbSetMock = new Mock<DbSet<User>>();
-            var contextMock = new Mock<IVisionsDbContext>();
-            contextMock.Setup(x => x.Set<User>()).Returns(dbSetMock.Object);
+        //[Test]
+        //public void ChangeEntityStateOfIStatefulAsDeleted_WhenEntityIsProvided()
+        //{
+        //    // Arange
+        //    var dbSetMock = new Mock<DbSet<User>>();
+        //    var contextMock = new Mock<IVisionsDbContext>();
+        //    contextMock.Setup(x => x.Set<User>()).Returns(dbSetMock.Object);
 
-            var statefulMock = new Mock<IStateful<User>>();
-            statefulMock.SetupSet(x => x.EntityState = EntityState.Deleted).Verifiable();
-            contextMock.Setup(x => x.GetStateful(It.IsAny<User>())).Returns(statefulMock.Object);
+        //    var statefulMock = new Mock<IStateful<User>>();
+        //    statefulMock.SetupSet(x => x.EntityState = EntityState.Deleted).Verifiable();
+        //    contextMock.Setup(x => x.GetStateful(It.IsAny<User>())).Returns(statefulMock.Object);
 
-            IEfRepository<User> repository = new EfRepository<User>(contextMock.Object);
+        //    IEfRepository<User> repository = new EfRepository<User>(contextMock.Object);
 
-            // Act
-            repository.Delete(new Mock<User>().Object);
+        //    // Act
+        //    repository.Delete(new Mock<User>().Object);
 
-            // Assert
-            statefulMock.Verify();
-        }
+        //    // Assert
+        //    statefulMock.Verify();
+        //}
     }
 }

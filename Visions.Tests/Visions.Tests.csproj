@@ -75,6 +75,18 @@
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Interception, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Interception.3.2.0.0\lib\net45-full\Ninject.Extensions.Interception.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Interception.DynamicProxy, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Interception.DynamicProxy.3.2.0.0\lib\net45-full\Ninject.Extensions.Interception.DynamicProxy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.6.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.6.0\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -137,10 +149,6 @@
     <Compile Include="Visions.Data\GenericRepositoryTests\GetAll_Should.cs" />
     <Compile Include="Visions.Data\GenericRepositoryTests\GetById_Should.cs" />
     <Compile Include="Visions.Data\GenericRepositoryTests\Update_Should.cs" />
-    <Compile Include="Visions.Data\StatefulTests\Constructor_Should.cs" />
-    <Compile Include="Visions.Data\UnitOfWorkTests\Commit_Should.cs" />
-    <Compile Include="Visions.Data\UnitOfWorkTests\Constructor_Should.cs" />
-    <Compile Include="Visions.Data\UnitOfWorkTests\Dispose_Should.cs" />
     <Compile Include="Visions.Data\VisionsDbContextTests\Constructor_Should.cs" />
     <Compile Include="Visions.Data\VisionsDbContextTests\Create_Should.cs" />
     <Compile Include="Visions.Data\VisionsDbContextTests\Set_Should.cs" />
@@ -167,6 +175,7 @@
     <Compile Include="Visions.Models\UserTests\PinnedPhotos_Should.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

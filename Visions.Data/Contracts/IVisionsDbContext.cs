@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using Visions.Models.Models;
 
 namespace Visions.Data.Contracts
@@ -22,7 +23,7 @@ namespace Visions.Data.Contracts
 
         IDbSet<T> Set<T>() where T : class;
 
-        IStateful<T> GetStateful<T>(T entity) where T : class;
+        DbEntityEntry<T> Entry<T>(T entity) where T : class;
 
         void InitializeDb();
 

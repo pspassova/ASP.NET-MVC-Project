@@ -32,7 +32,7 @@ namespace Visions.Services
 
             IEnumerable<Photo> photos = this.repository.GetAll();
 
-            ICollection<Photo> matchingPhotosTags = new List<Photo>();
+            ICollection<Photo> matchingPhotos = new List<Photo>();
             foreach (var photo in photos)
             {
                 if (photo.Tags.Count > 0)
@@ -41,13 +41,13 @@ namespace Visions.Services
                     {
                         if (photoTag.Text.Contains(tag))
                         {
-                            matchingPhotosTags.Add(photo);
+                            matchingPhotos.Add(photo);
                         }
                     }
                 }
             }
 
-            return matchingPhotosTags;
+            return matchingPhotos;
         }
     }
 }
