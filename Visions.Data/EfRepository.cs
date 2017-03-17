@@ -1,6 +1,6 @@
 ﻿using Bytes2you.Validation;
-using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using Visions.Data.Contracts;
 
 namespace Visions.Data
@@ -51,7 +51,7 @@ namespace Visions.Data
             return this.DbSet.Find(id);
         }
 
-        public IEnumerable<T> GetAll()
+        public IQueryable<T> GetAll()
         {
             return this.DbSet;
         }

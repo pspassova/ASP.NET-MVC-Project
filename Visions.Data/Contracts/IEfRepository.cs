@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 
 namespace Visions.Data.Contracts
 {
@@ -7,7 +7,7 @@ namespace Visions.Data.Contracts
     {
         T GetById(object id);
 
-        IEnumerable<T> GetAll();
+        IQueryable<T> GetAll();
 
         void Add(T entity);
 

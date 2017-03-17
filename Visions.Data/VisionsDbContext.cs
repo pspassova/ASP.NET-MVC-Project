@@ -109,7 +109,7 @@ namespace Visions.Data
                 new Tag()
                 {
                     Id = Guid.NewGuid(),
-                    Text = "sunset",
+                    Text = "sea",
                     Photos = new List<Photo>()
                     {
                         new Photo
@@ -135,13 +135,13 @@ namespace Visions.Data
                 new Tag()
                 {
                     Id = Guid.NewGuid(),
-                    Text = "sea",
+                    Text = "gold",
                     Photos = new List<Photo>()
                     {
                         new Photo
                 {
                     Id = Guid.NewGuid(),
-                    Path = "/Images/rain.jpg",
+                    Path = "/Images/gold.jpg",
                     UserId = "029d907f-9fff-490f-848d-63a440f28119",
                     CreatedOn = DateTime.Now,
                     IsDeleted = false,

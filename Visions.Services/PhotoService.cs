@@ -1,10 +1,9 @@
 ﻿using Bytes2you.Validation;
 using System.Collections.Generic;
+using System.Linq;
 using Visions.Data.Contracts;
 using Visions.Models.Models;
 using Visions.Services.Contracts;
-using System;
-using System.Linq;
 
 namespace Visions.Services
 {
@@ -19,7 +18,7 @@ namespace Visions.Services
             this.repository = repository;
         }
 
-        public IEnumerable<Photo> GetAll()
+        public IQueryable<Photo> GetAll()
         {
             return this.repository.GetAll();
         }
