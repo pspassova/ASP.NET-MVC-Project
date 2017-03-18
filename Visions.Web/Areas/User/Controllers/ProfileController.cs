@@ -39,11 +39,9 @@ namespace Visions.Web.Areas.User.Controllers
         }
 
         [HttpPost]
-        public ActionResult UserDashboard(HttpPostedFileBase file, string articleTitle, string articleContent)
+        public ActionResult UserDashboard(HttpPostedFileBase file)
         {
             this.UploadPhoto(file);
-
-
             this.TempData["Success"] = "Upload successful";
 
             return this.RedirectToAction("UserDashboard");

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Visions.Web.Models.ArticleViewModel>
+@{
     ViewBag.Title = "Get started";
 }
 
@@ -10,7 +11,33 @@
 
             @if (this.User.Identity.IsAuthenticated)
             {
-                <h1>insert photos hereee</h1>
+                <h3>Got something to say?</h3>
+
+                <form action="" method="post" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-offset-1 col-md-10">
+                                <input type="text" name="articleTitle" class="form-control" placeholder="Title" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-1 col-md-10">
+                                <input type="text" name="articleContent" class="form-control" placeholder="Content" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-1 col-md-10">
+                                <input type="submit" value="Post" class="btn btn-default btn-post-article" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                @Html.Partial("_AllArticles", this.Model)
             }
             else
             {
@@ -19,7 +46,7 @@
                     <br />
                     Stay for what you discover.
                 </p>
-                <a href="/account/login" class="btn btn-primary btn-xl">Get started</a>
+                <a href="/account/login" class="btn btn-primary btn-xl">@this.ViewBag.Title</a>
             }
         </div>
     </div>

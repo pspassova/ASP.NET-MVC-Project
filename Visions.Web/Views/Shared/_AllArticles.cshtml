@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Visions.Web.Models.ArticleViewModel>
+
+@if (this.Model.Count() > 0)
+{
+    <table class="table">
+        <tbody>
+            @foreach (var article in this.Model)
+            {
+                <tr>
+                    <td>
+                        <label for="content" class="label-default">@article.Title</label>
+                        <p class="text-lowercase">@article.Content</p>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

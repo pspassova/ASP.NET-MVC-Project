@@ -23,6 +23,7 @@ namespace Visions.Web.App_Start
 
             this.Bind<IPhotoService>().To<PhotoService>();
             this.Bind<ITagService>().To<TagService>();
+            this.Bind<IArticleService>().To<ArticleService>();
 
             var uploadServiceBinding = this.Bind(typeof(IUploadService<>)).To(typeof(UploadService<>));
             uploadServiceBinding.Intercept().With<SaveChangesInterceptor>();

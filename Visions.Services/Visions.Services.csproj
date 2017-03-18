@@ -103,6 +103,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticleService.cs" />
+    <Compile Include="Contracts\IArticleService.cs" />
     <Compile Include="Contracts\IPhotoService.cs" />
     <Compile Include="Contracts\ITagService.cs" />
     <Compile Include="Contracts\IUploadService.cs" />

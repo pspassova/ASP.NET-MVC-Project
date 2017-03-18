@@ -7,6 +7,13 @@ namespace Visions.Models.Models
 {
     public class Article
     {
+        private ICollection<Tag> tags;
+
+        public Article()
+        {
+            this.tags = new HashSet<Tag>();
+        }
+
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public Guid Id
         {
@@ -27,11 +34,6 @@ namespace Visions.Models.Models
             get; set;
         }
 
-        public ICollection<string> Tags
-        {
-            get; set;
-        }
-
         [Required]
         public string UserId
         {
@@ -48,7 +50,12 @@ namespace Visions.Models.Models
             get; set;
         }
 
-        public DateTime CreatedOn
+        public DateTime? CreatedOn
+        {
+            get; set;
+        }
+
+        public ICollection<Tag> Tags
         {
             get; set;
         }

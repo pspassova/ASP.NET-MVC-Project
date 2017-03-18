@@ -15,7 +15,7 @@ namespace Visions.Data
         public VisionsDbContext()
             : base("Visions")
         {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<VisionsDbContext>());
+           //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<VisionsDbContext>());
         }
 
         public IDbSet<Article> Articles
@@ -48,8 +48,8 @@ namespace Visions.Data
             //this.InitializeIdentity();
             //this.SaveChanges();
 
-            this.SeedTags();
-            this.SaveChanges();
+            //this.SeedTags();
+            //this.SaveChanges();
         }
 
         public new void SaveChanges()
