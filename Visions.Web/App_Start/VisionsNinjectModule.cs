@@ -3,10 +3,10 @@ using Ninject.Modules;
 using Visions.Data;
 using Visions.Data.Contracts;
 using Visions.Data.Interceptors;
+using Visions.Helpers;
+using Visions.Helpers.Contracts;
 using Visions.Services;
 using Visions.Services.Contracts;
-using Visions.Web.Helpers;
-using Visions.Web.Helpers.Contracts;
 
 namespace Visions.Web.App_Start
 {

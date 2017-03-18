@@ -1,8 +1,7 @@
 ﻿@model IEnumerable<Visions.Web.Models.PhotoViewModel>
 @{
-    ViewBag.Title = "Shared dashboard";
+    ViewBag.Title = "_UserPhotos";
 }
-<h2>@ViewBag.Title</h2>
 
 @if (this.Model.Count() > 0)
 {
@@ -13,10 +12,6 @@
                 <tr>
                     <td>
                         <img src="@photo.Path" class="center-block img-responsive" />
-                        @foreach (var tag in photo.Tags)
-                        {
-                            <a class="alert-info" onclick="location.href='@Url.Action("Sort", "Dashboard", new { tag.Text })'">#@tag.Text</a>
-                        }
                     </td>
                 </tr>
             }

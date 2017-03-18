@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visions.Data", "Visions.Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visions.Auth", "Visions.Auth\Visions.Auth.csproj", "{FD72A3F2-EEB5-4323-A455-EB8744FC94C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visions.Web.Helpers", "Visions.Web.Helpers\Visions.Web.Helpers.csproj", "{4C8642FE-A865-4692-9453-DDF7C608DD63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visions.Helpers", "Visions.Helpers\Visions.Helpers.csproj", "{6AC8559E-3ACC-45F0-BFB5-538572986CEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +47,10 @@ Global
 		{FD72A3F2-EEB5-4323-A455-EB8744FC94C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD72A3F2-EEB5-4323-A455-EB8744FC94C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD72A3F2-EEB5-4323-A455-EB8744FC94C1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4C8642FE-A865-4692-9453-DDF7C608DD63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C8642FE-A865-4692-9453-DDF7C608DD63}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C8642FE-A865-4692-9453-DDF7C608DD63}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C8642FE-A865-4692-9453-DDF7C608DD63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AC8559E-3ACC-45F0-BFB5-538572986CEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AC8559E-3ACC-45F0-BFB5-538572986CEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AC8559E-3ACC-45F0-BFB5-538572986CEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AC8559E-3ACC-45F0-BFB5-538572986CEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -338,6 +338,7 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Profile\Manage.cshtml" />
+    <Content Include="Areas\User\Views\Shared\_UserPhotos.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Properties\PublishProfiles\vissions - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\vissions - Web Deploy.pubxml" />
@@ -416,6 +417,10 @@
       <Project>{D53AE12F-0D3B-4688-B6C3-0A2B6FDE3B65}</Project>
       <Name>Visions.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Visions.Helpers\Visions.Helpers.csproj">
+      <Project>{6AC8559E-3ACC-45F0-BFB5-538572986CEB}</Project>
+      <Name>Visions.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Visions.Models\Visions.Models.csproj">
       <Project>{4cfd0108-767a-4a85-a475-a5e1afc1254f}</Project>
       <Name>Visions.Models</Name>
@@ -423,10 +428,6 @@
     <ProjectReference Include="..\Visions.Services\Visions.Services.csproj">
       <Project>{0C4D63FD-C3E4-4F96-B707-8200B090EBC6}</Project>
       <Name>Visions.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Visions.Web.Helpers\Visions.Web.Helpers.csproj">
-      <Project>{4c8642fe-a865-4692-9453-ddf7c608dd63}</Project>
-      <Name>Visions.Web.Helpers</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

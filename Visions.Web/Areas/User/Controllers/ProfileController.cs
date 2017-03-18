@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNet.Identity;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Visions.Helpers.Contracts;
 using Visions.Models.Models;
 using Visions.Services.Contracts;
-using Visions.Web.Helpers.Contracts;
+using Visions.Web.Models;
 
 namespace Visions.Web.Areas.User.Controllers
 {
@@ -30,27 +32,34 @@ namespace Visions.Web.Areas.User.Controllers
         [HttpGet]
         public ActionResult UserDashboard()
         {
-            return this.View();
+            string userId = this.User.Identity.GetUserId();
+            IQueryable<PhotoViewModel> photos = this.photoService.GetAllForUser(userId).Select(PhotoViewModel.FromPhoto);
+
+            return this.View(photos);
         }
 
         [HttpPost]
-        public ActionResult UserDashboard(HttpPostedFileBase file, string tags)
+        public ActionResult UserDashboard(HttpPostedFileBase file, string articleTitle, string articleContent)
         {
-            this.UploadPhoto(file, tags);
+            this.UploadPhoto(file);
+
+
             this.TempData["Success"] = "Upload successful";
 
             return this.RedirectToAction("UserDashboard");
         }
 
         [NonAction]
-        public void UploadPhoto(HttpPostedFileBase file, string tags)
+        public void UploadPhoto(HttpPostedFileBase file)
         {
             string userId = this.User.Identity.GetUserId();
             string physicalPath = Server.MapPath("~/Images/" + userId);
             string directory = this.photoUploader.GetDirectory(file, physicalPath);
             photoUploader.Upload(file, directory);
 
-            string path = this.photoUploader.GetPathForDatabase(file, userId);
+
+            string textToCrop = "Images\\";
+            string path = "/Images/" + directory.Substring(directory.IndexOf(textToCrop) + textToCrop.Length);
             Photo photo = this.photoService.Create(userId, path);
             this.uploadPhotoService.Upload(photo);
         }

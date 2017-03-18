@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Web;
-using Visions.Web.Helpers.Contracts;
+using Visions.Helpers.Contracts;
 
-namespace Visions.Web.Helpers
+namespace Visions.Helpers
 {
     public class UploadPhotoHelper : IUploadPhoto
     {

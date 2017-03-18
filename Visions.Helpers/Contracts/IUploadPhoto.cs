@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-namespace Visions.Web.Helpers.Contracts
+namespace Visions.Helpers.Contracts
 {
     public interface IUploadPhoto
     {

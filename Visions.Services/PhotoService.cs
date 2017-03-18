@@ -37,6 +37,11 @@ namespace Visions.Services
             return this.repository.GetAll();
         }
 
+        public IQueryable<Photo> GetAllForUser(string userId)
+        {
+            return this.repository.GetAll().Where(photo => photo.UserId == userId);
+        }
+
         public IEnumerable<Photo> SortByTag(string tag)
         {
             if (tag == null)

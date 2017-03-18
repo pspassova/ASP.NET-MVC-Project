@@ -48,8 +48,8 @@ namespace Visions.Data
             //this.InitializeIdentity();
             //this.SaveChanges();
 
-            //this.SeedTags();
-            //this.SaveChanges();
+            this.SeedTags();
+            this.SaveChanges();
         }
 
         public new void SaveChanges()
@@ -100,7 +100,7 @@ namespace Visions.Data
                         new Photo
                 {
                     Id = Guid.NewGuid(),
-                    Path = "/Images/sea.jpg",
+                    Path = "\\Images\\sea.jpg",
                     UserId = "029d907f-9fff-490f-848d-63a440f28119",
                     CreatedOn = DateTime.Now,
                     IsDeleted = false,

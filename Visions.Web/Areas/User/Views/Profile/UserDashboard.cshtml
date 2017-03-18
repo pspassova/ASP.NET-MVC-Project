@@ -1,18 +1,24 @@
-﻿
+﻿@model IEnumerable<Visions.Web.Models.PhotoViewModel>
 @{
     ViewBag.Title = "Profile";
 }
 
-<h2>Profile</h2>
+<h2>Upload a photo</h2>
 
 <form action="" method="post" enctype="multipart/form-data">
-    <label for="file">Upload File:</label>
     <input type="file" name="file" id="file" />
-    <input type="submit" />
+    <div class="form-group">
+        <div class="col-md-offset-2">
+            <input type="submit" value="Post" class="btn btn-default" />
+        </div>
+    </div>
     @if (TempData["Success"] != null)
-    {
+            {
         <div class="success">
             <p>@TempData["Success"].ToString()</p>
         </div>
     }
 </form>
+
+@Html.Partial("_UserPhotos", this.Model)
+
