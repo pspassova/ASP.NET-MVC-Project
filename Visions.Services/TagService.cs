@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using Visions.Models.Models;
+using Visions.Services.Contracts;
+
+namespace Visions.Services
+{
+    public class TagService : ITagService
+    {
+        public Tag Create(string text)
+        {
+            return new Tag()
+            {
+                Id = Guid.NewGuid(),
+                Text = text
+            };
+        }
+    }
+}

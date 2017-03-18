@@ -1,4 +1,5 @@
 ﻿using Bytes2you.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Visions.Data.Contracts;
@@ -16,6 +17,19 @@ namespace Visions.Services
             Guard.WhenArgument(repository, "repository").IsNull().Throw();
 
             this.repository = repository;
+        }
+
+        public Photo Create(string userId, string path)
+        {
+            return new Photo()
+            {
+                Id = Guid.NewGuid(),
+                UserId = userId,
+                Path = path,
+                Likes = 0,
+                CreatedOn = DateTime.UtcNow,
+                Tags = new List<Tag>()
+            };
         }
 
         public IQueryable<Photo> GetAll()

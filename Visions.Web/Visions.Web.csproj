@@ -333,7 +333,7 @@
     <Content Include="Areas\User\Views\web.config" />
     <Content Include="Areas\User\Views\_ViewStart.cshtml" />
     <Content Include="Areas\User\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\User\Views\Profile\Dashboard.cshtml" />
+    <Content Include="Areas\User\Views\Profile\UserDashboard.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
@@ -423,6 +423,10 @@
     <ProjectReference Include="..\Visions.Services\Visions.Services.csproj">
       <Project>{0C4D63FD-C3E4-4F96-B707-8200B090EBC6}</Project>
       <Name>Visions.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Visions.Web.Helpers\Visions.Web.Helpers.csproj">
+      <Project>{4c8642fe-a865-4692-9453-ddf7c608dd63}</Project>
+      <Name>Visions.Web.Helpers</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -1,9 +1,9 @@
-﻿using System;
-using System.IO;
+﻿using Microsoft.AspNet.Identity;
 using System.Web;
 using System.Web.Mvc;
 using Visions.Models.Models;
 using Visions.Services.Contracts;
+using Visions.Web.Helpers.Contracts;
 
 namespace Visions.Web.Areas.User.Controllers
 {
@@ -11,48 +11,48 @@ namespace Visions.Web.Areas.User.Controllers
     public class ProfileController : Controller
     {
         private readonly IUploadService<Photo> uploadPhotoService;
+        private readonly IPhotoService photoService;
+        private readonly IUploadPhoto photoUploader;
+        private readonly IConvertTags tagsConverter;
 
-        public ProfileController(IUploadService<Photo> uploadPhotoService)
+        public ProfileController(
+            IUploadService<Photo> uploadPhotoService,
+            IPhotoService photoService,
+            IUploadPhoto photoUploader,
+            IConvertTags tagsConverter)
         {
             this.uploadPhotoService = uploadPhotoService;
+            this.photoService = photoService;
+            this.photoUploader = photoUploader;
+            this.tagsConverter = tagsConverter;
         }
 
         [HttpGet]
-        public ActionResult Dashboard()
+        public ActionResult UserDashboard()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
-        public ActionResult Dashboard(HttpPostedFileBase file)
+        public ActionResult UserDashboard(HttpPostedFileBase file, string tags)
         {
-            if (file!=null && file.ContentLength > 0)
-            {
-                string username = this.User.Identity.Name.Substring(0, this.User.Identity.Name.IndexOf("@"));
-                string directory = Server.MapPath("~/Images/" + username);
-                if (!Directory.Exists(directory))
-                {
-                    Directory.CreateDirectory(directory);
-                }
+            this.UploadPhoto(file, tags);
+            this.TempData["Success"] = "Upload successful";
 
-                string filename = Path.GetFileName(file.FileName);
-                string guid = Guid.NewGuid().ToString();
-                file.SaveAs(directory + "/" + guid + filename);
+            return this.RedirectToAction("UserDashboard");
+        }
 
-                directory = $"/Images/{username}/{guid}{filename}";
-                Photo photo = new Photo()
-                {
-                    Id = Guid.NewGuid(),
-                    UserId = "dbbedd4f-39b2-4e0d-a4d2-638f96adb1ff",
-                    Path = directory,
-                    Likes = 0
-                };
+        [NonAction]
+        public void UploadPhoto(HttpPostedFileBase file, string tags)
+        {
+            string userId = this.User.Identity.GetUserId();
+            string physicalPath = Server.MapPath("~/Images/" + userId);
+            string directory = this.photoUploader.GetDirectory(file, physicalPath);
+            photoUploader.Upload(file, directory);
 
-                this.uploadPhotoService.Upload(photo);
-                TempData["Success"] = "Upload successful";
-            }
-
-            return RedirectToAction("Dashboard");
+            string path = this.photoUploader.GetPathForDatabase(file, userId);
+            Photo photo = this.photoService.Create(userId, path);
+            this.uploadPhotoService.Upload(photo);
         }
     }
 }

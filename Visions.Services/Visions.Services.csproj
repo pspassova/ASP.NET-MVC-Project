@@ -104,9 +104,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IPhotoService.cs" />
+    <Compile Include="Contracts\ITagService.cs" />
     <Compile Include="Contracts\IUploadService.cs" />
     <Compile Include="PhotoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TagService.cs" />
     <Compile Include="UploadService.cs" />
   </ItemGroup>
   <ItemGroup>

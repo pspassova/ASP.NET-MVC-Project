@@ -24,7 +24,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="page-scroll">
-                            @Html.RouteLink(this.User.Identity.Name.Substring(0, this.User.Identity.Name.IndexOf("@")), "User_default", new { action = "Dashboard", controller = "Profile" })
+                            @Html.RouteLink(this.User.Identity.Name.Substring(0, this.User.Identity.Name.IndexOf("@")), "User_default", new { action = "UserDashboard", controller = "Profile" })
                         </li>
                         <li class="page-scroll">
                             @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
