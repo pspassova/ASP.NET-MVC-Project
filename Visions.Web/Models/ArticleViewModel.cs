@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
 using Visions.Models.Models;
 
@@ -46,11 +47,13 @@ namespace Visions.Web.Models
             get; set;
         }
 
+        //[StringLength(500, MinimumLength = 2, ErrorMessage = "Enter at least {0} characters.")]
         public string Title
         {
             get; set;
         }
 
+        //[StringLength(100, MinimumLength = 2, ErrorMessage = "Enter at least {0} characters.")]
         public string Content
         {
             get; set;

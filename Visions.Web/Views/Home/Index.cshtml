@@ -13,19 +13,19 @@
             {
                 <h3>Got something to say?</h3>
 
-                <form action="" method="post" enctype="multipart/form-data">
+                <form id="createArticleForm" action="" method="post" enctype="multipart/form-data">
                     @Html.AntiForgeryToken()
 
                     <div class="form-horizontal">
                         <div class="form-group">
                             <div class="col-md-offset-1 col-md-10">
-                                <input type="text" name="articleTitle" class="form-control" placeholder="Title" />
+                                <input id="articleTitle" type="text" name="articleTitle" class="form-control" placeholder="Title" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-offset-1 col-md-10">
-                                <input type="text" name="articleContent" class="form-control" placeholder="Content" />
+                                <input id="articleContent" type="text" name="articleContent" class="form-control" placeholder="Content" />
                             </div>
                         </div>
 
@@ -51,3 +51,23 @@
         </div>
     </div>
 </header>
+
+@section Scripts {
+    <script>
+        $("#createArticleForm").validate({
+            rules: {
+                articleTitle: {
+                    required: true,
+                    minlength: 2
+                },
+                articleContent: {
+                    required: true,
+                    minlength: 2
+                }
+            }
+        });
+
+        $.validator.messages.required = "Please enter some text."
+        $.validator.messages.minlength = "The text must be more than {0} characters long.";
+    </script>
+}
