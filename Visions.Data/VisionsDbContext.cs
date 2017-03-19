@@ -15,7 +15,7 @@ namespace Visions.Data
         public VisionsDbContext()
             : base("Visions")
         {
-           //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<VisionsDbContext>());
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<VisionsDbContext>());
         }
 
         public IDbSet<Article> Articles
@@ -101,7 +101,7 @@ namespace Visions.Data
                 {
                     Id = Guid.NewGuid(),
                     Path = "\\Images\\sea.jpg",
-                    UserId = "029d907f-9fff-490f-848d-63a440f28119",
+                    UserId = "47964424-53cb-431c-bdad-023379b4a7df",
                     CreatedOn = DateTime.Now,
                     IsDeleted = false,
                     Likes = 1
@@ -110,7 +110,7 @@ namespace Visions.Data
                 {
                     Id = Guid.NewGuid(),
                     Path = "/Images/rain.jpg",
-                    UserId = "029d907f-9fff-490f-848d-63a440f28119",
+                    UserId = "47964424-53cb-431c-bdad-023379b4a7df",
                     CreatedOn = DateTime.Now,
                     IsDeleted = false,
                     Likes = 4
@@ -127,7 +127,7 @@ namespace Visions.Data
                 {
                     Id = Guid.NewGuid(),
                     Path = "/Images/gold.jpg",
-                    UserId = "029d907f-9fff-490f-848d-63a440f28119",
+                    UserId = "47964424-53cb-431c-bdad-023379b4a7df",
                     CreatedOn = DateTime.Now,
                     IsDeleted = false,
                     Likes = 4

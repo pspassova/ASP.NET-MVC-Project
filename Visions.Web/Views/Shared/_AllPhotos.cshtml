@@ -1,0 +1,20 @@
+﻿@using PagedList;
+
+@model IPagedList<Visions.Web.Models.PhotoViewModel>
+
+<table class="table">
+    <tbody>
+        @foreach (var photo in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@photo.Path" class="center-block img-responsive" />
+                    @foreach (var tag in photo.Tags)
+                    {
+                        <a class="alert-info" onclick="location.href='@Url.Action("Sort", "Dashboard", new { tag.Text })'">#@tag.Text</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,25 +1,27 @@
-﻿@model IEnumerable<Visions.Web.Models.PhotoViewModel>
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<Visions.Web.Models.PhotoViewModel>
+
 @{
     ViewBag.Title = "Shared dashboard";
 }
+
 <h2>@ViewBag.Title</h2>
 
 @if (this.Model.Count() > 0)
 {
-    <table class="table">
-        <tbody>
-            @foreach (var photo in Model)
-            {
-                <tr>
-                    <td>
-                        <img src="@photo.Path" class="center-block img-responsive" />
-                        @foreach (var tag in photo.Tags)
-                        {
-                            <a class="alert-info" onclick="location.href='@Url.Action("Sort", "Dashboard", new { tag.Text })'">#@tag.Text</a>
-                        }
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    @Html.Partial("_AllPhotos", this.Model)
 }
+
+<div class="col-sm-10">
+        @Html.PagedListPager(this.Model, page => Url.Action("Shared",
+       new
+       {
+           page,
+           pageSize = this.Model.PageSize
+       }))
+        <p class="center-block text-info text-lowercase">
+            Showing @this.Model.FirstItemOnPage to @Model.LastItemOnPage of @this.Model.TotalItemCount photos
+        </p>
+</div>

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Visions.Services.Contracts;
 using Visions.Web.Models;
+using PagedList;
 
 namespace Visions.Web.Controllers
 {
@@ -16,19 +17,21 @@ namespace Visions.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Shared()
+        public ActionResult Shared(int page = 1, int pageSize = 2)
         {
-            IQueryable<PhotoViewModel> photos = this.photoService.GetAll().Select(PhotoViewModel.FromPhoto);
+            IQueryable<PhotoViewModel> photos = this.photoService.GetAll().Select(PhotoViewModel.FromPhoto).OrderBy(photo => photo.Tags.Count);
+            IPagedList<PhotoViewModel> pagedList = new PagedList<PhotoViewModel>(photos, page, pageSize);
 
-            return this.View(photos);
+            return this.View(pagedList);
         }
 
         [HttpGet]
-        public ActionResult Sort(string text)
+        public ActionResult Sort(string text, int page = 1, int pageSize = 2)
         {
             IEnumerable<PhotoViewModel> photos = this.photoService.SortByTag(text).AsQueryable().Select(PhotoViewModel.FromPhoto);
+            IPagedList<PhotoViewModel> pagedList = new PagedList<PhotoViewModel>(photos, page, pageSize);
 
-            return this.View("Shared", photos);
+            return this.View("Shared", pagedList);
         }
     }
 }
