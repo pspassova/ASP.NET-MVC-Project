@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using Visions.Data.Contracts;
+using System.Collections.Generic;
 
 namespace Visions.Data
 {
@@ -17,16 +18,32 @@ namespace Visions.Data
             this.DbSet = this.Context.Set<T>();
         }
 
-        public IVisionsDbContext Context { get; set; }
+        public IVisionsDbContext Context
+        {
+            get; set;
+        }
 
-        public IDbSet<T> DbSet { get; set; }
+        public IDbSet<T> DbSet
+        {
+            get; set;
+        }
 
         public void Add(T entity)
         {
             Guard.WhenArgument(entity, "entity").IsNull().Throw();
 
-            DbEntityEntry entry = AttachIfDetached(entity);
+            DbEntityEntry entry = this.AttachIfDetached(entity);
             entry.State = EntityState.Added;
+        }
+
+        public void AddMany(IEnumerable<T> entities)
+        {
+            Guard.WhenArgument(entities, "entities").IsNull().Throw();
+
+            foreach (var entity in entities)
+            {
+                this.Add(entity);
+            }
         }
 
         public void Update(T entity)

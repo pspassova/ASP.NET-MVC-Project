@@ -15,11 +15,6 @@ namespace Visions.Helpers
             this.tagService = tagService;
         }
 
-        public IEnumerable<string> SeparateTagsTexts(string tagsTexts)
-        {
-            return tagsTexts.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        }
-
         public ICollection<Tag> CreateTags(string tagsTexts)
         {
             ICollection<Tag> tags = new List<Tag>();
@@ -31,6 +26,11 @@ namespace Visions.Helpers
             }
 
             return tags;
+        }
+
+        private IEnumerable<string> SeparateTagsTexts(string tagsTexts)
+        {
+            return tagsTexts.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }

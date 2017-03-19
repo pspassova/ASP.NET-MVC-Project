@@ -3,13 +3,14 @@
     ViewBag.Title = "Profile";
 }
 
-<h2>Upload a photo</h2>
+<form id="uploadPhotoForm" action="" method="post" enctype="multipart/form-data" class="form-group col-md-6 well-lg">
+    <h2>Upload a photo</h2>
 
-<form action="" method="post" enctype="multipart/form-data">
-    <input type="file" name="file" id="file" />
+    <input id="file" type="file" name="file" />
+    <input type="text" name="tags" placeholder="Tags, separated by spaces" class="form-control" />
     <div class="form-group">
         <div class="col-md-offset-2">
-            <input type="submit" value="Post" class="btn btn-default" />
+            <input type="submit" value="Post" class="btn btn-default col-sm-offset-10" />
         </div>
     </div>
     @if (TempData["Success"] != null)
@@ -21,4 +22,18 @@
 </form>
 
 @Html.Partial("_UserPhotos", this.Model)
+
+@section Scripts {
+    <script>
+        $("#uploadPhotoForm").validate({
+            rules: {
+                file: {
+                    required: true
+                }
+            }
+        });
+
+        $.validator.messages.required = "You must choose a photo."
+    </script>
+}
 

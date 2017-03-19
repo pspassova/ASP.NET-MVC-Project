@@ -6,7 +6,7 @@ namespace Visions.Services.Contracts
 {
     public interface IPhotoService
     {
-        Photo Create(string userId, string path);
+        Photo Create(string userId, string path, ICollection<Tag> tags);
 
         IQueryable<Photo> GetAll();
 

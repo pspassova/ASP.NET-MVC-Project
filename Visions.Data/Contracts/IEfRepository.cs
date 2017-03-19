@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Visions.Data.Contracts
 {
@@ -10,6 +11,8 @@ namespace Visions.Data.Contracts
         IQueryable<T> GetAll();
 
         void Add(T entity);
+
+        void AddMany(IEnumerable<T> entities);
 
         void Update(T entity);
 

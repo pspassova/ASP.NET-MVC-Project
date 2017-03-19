@@ -18,12 +18,12 @@ namespace Visions.Helpers
             return directory;
         }
 
-        public void Upload(HttpPostedFileBase file, string directory)
+        public string GetPathForDatabase(string directory)
         {
-            if (file != null && file.ContentLength > 0)
-            {
-                file.SaveAs(directory);
-            }
+            string textToCrop = "Images\\";
+            string path = "/Images/" + directory.Substring(directory.IndexOf(textToCrop) + textToCrop.Length);
+
+            return path;
         }
 
         private string GetFileName(HttpPostedFileBase file)
@@ -32,6 +32,14 @@ namespace Visions.Helpers
             string fileName = guid + Path.GetFileName(file.FileName);
 
             return fileName;
+        }
+
+        public void Upload(HttpPostedFileBase file, string directory)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                file.SaveAs(directory);
+            }
         }
 
         private void CreateDirectoryIfNotExist(string directory)

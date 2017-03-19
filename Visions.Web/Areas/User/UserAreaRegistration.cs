@@ -2,22 +2,29 @@
 
 namespace Visions.Web.Areas.User
 {
-    public class UserAreaRegistration : AreaRegistration 
+    public class UserAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
+        public override string AreaName
         {
-            get 
+            get
             {
                 return "User";
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
+            context.Routes.LowercaseUrls = true;
+
             context.MapRoute(
                 "User_default",
                 "User/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                defaults: new
+                {
+                    controller = "Profile",
+                    action = "UserDashboard",
+                    id = UrlParameter.Optional
+                }
             );
         }
     }

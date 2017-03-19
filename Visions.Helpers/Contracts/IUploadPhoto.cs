@@ -6,6 +6,8 @@ namespace Visions.Helpers.Contracts
     {
         string GetDirectory(HttpPostedFileBase file, string physicalPath);
 
+        string GetPathForDatabase(string directory);
+
         void Upload(HttpPostedFileBase file, string directory);
     }
 }

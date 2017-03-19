@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,17 +14,20 @@ namespace Visions.Web.Areas.User.Controllers
     public class ProfileController : Controller
     {
         private readonly IUploadService<Photo> uploadPhotoService;
+        private readonly IUploadService<Tag> uploadTagService;
         private readonly IPhotoService photoService;
         private readonly IUploadPhoto photoUploader;
         private readonly IConvertTags tagsConverter;
 
         public ProfileController(
             IUploadService<Photo> uploadPhotoService,
+            IUploadService<Tag> uploadTagService,
             IPhotoService photoService,
             IUploadPhoto photoUploader,
             IConvertTags tagsConverter)
         {
             this.uploadPhotoService = uploadPhotoService;
+            this.uploadTagService = uploadTagService;
             this.photoService = photoService;
             this.photoUploader = photoUploader;
             this.tagsConverter = tagsConverter;
@@ -39,26 +43,27 @@ namespace Visions.Web.Areas.User.Controllers
         }
 
         [HttpPost]
-        public ActionResult UserDashboard(HttpPostedFileBase file)
+        public ActionResult UserDashboard(HttpPostedFileBase file, string tags)
         {
-            this.UploadPhoto(file);
+            ICollection<Tag> convertedTags = this.tagsConverter.CreateTags(tags);
+            this.uploadTagService.Upload(convertedTags);
+
+            this.AddPhotos(file, convertedTags);
             this.TempData["Success"] = "Upload successful";
 
             return this.RedirectToAction("UserDashboard");
         }
 
         [NonAction]
-        public void UploadPhoto(HttpPostedFileBase file)
+        public void AddPhotos(HttpPostedFileBase file, ICollection<Tag> tags)
         {
             string userId = this.User.Identity.GetUserId();
             string physicalPath = Server.MapPath("~/Images/" + userId);
             string directory = this.photoUploader.GetDirectory(file, physicalPath);
             photoUploader.Upload(file, directory);
 
-
-            string textToCrop = "Images\\";
-            string path = "/Images/" + directory.Substring(directory.IndexOf(textToCrop) + textToCrop.Length);
-            Photo photo = this.photoService.Create(userId, path);
+            string path = this.photoUploader.GetPathForDatabase(directory);
+            Photo photo = this.photoService.Create(userId, path, tags);
             this.uploadPhotoService.Upload(photo);
         }
     }

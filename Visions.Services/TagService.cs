@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Visions.Models.Models;
 using Visions.Services.Contracts;
 

@@ -19,7 +19,7 @@ namespace Visions.Services
             this.repository = repository;
         }
 
-        public Photo Create(string userId, string path)
+        public Photo Create(string userId, string path, ICollection<Tag> tags)
         {
             return new Photo()
             {
@@ -28,7 +28,7 @@ namespace Visions.Services
                 Path = path,
                 Likes = 0,
                 CreatedOn = DateTime.UtcNow,
-                Tags = new List<Tag>()
+                Tags = tags
             };
         }
 
