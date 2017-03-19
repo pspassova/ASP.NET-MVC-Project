@@ -17,7 +17,7 @@ namespace Visions.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Shared(int page = 1, int pageSize = 2)
+        public ActionResult Shared(int page, int pageSize)
         {
             IQueryable<PhotoViewModel> photos = this.photoService.GetAll().Select(PhotoViewModel.FromPhoto).OrderBy(photo => photo.Tags.Count);
             IPagedList<PhotoViewModel> pagedList = new PagedList<PhotoViewModel>(photos, page, pageSize);
