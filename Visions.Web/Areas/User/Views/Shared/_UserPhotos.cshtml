@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Visions.Web.Models.PhotoViewModel>
+﻿@using PagedList;
+
+@model IPagedList<Visions.Web.Models.PhotoViewModel>
 
 @if (this.Model.Count() > 0)
 {
@@ -11,7 +13,7 @@
                         <img src="@photo.Path" class="center-block img-responsive" />
                         @foreach (var tag in photo.Tags)
                     {
-                            <span class="alert-info">#@tag.Text</span>
+                            <a class="alert-info" onclick="location.href='@Url.Action("Sort", "Profile", new { tag.Text })'">#@tag.Text</a>
                         }
                     </td>
                 </tr>

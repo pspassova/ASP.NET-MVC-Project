@@ -17,14 +17,14 @@ namespace Visions.Services
             this.repository = repository;
         }
 
-        public void Upload(T item)
+        public void UploadToDatabase(T item)
         {
             Guard.WhenArgument(item, "item").IsNull().Throw();
 
             this.repository.Add(item);
         }
 
-        public void Upload(IEnumerable<T> items)
+        public void UploadManyToDatabase(IEnumerable<T> items)
         {
             Guard.WhenArgument(items, "items").IsNull().Throw();
 

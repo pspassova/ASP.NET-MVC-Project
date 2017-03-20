@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using PagedList;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,55 +17,69 @@ namespace Visions.Web.Areas.User.Controllers
         private readonly IUploadService<Photo> uploadPhotoService;
         private readonly IUploadService<Tag> uploadTagService;
         private readonly IPhotoService photoService;
-        private readonly IUploadPhoto photoUploader;
-        private readonly IConvertTags tagsConverter;
+        private readonly IPhotoUploadHelper photoUploadHelper;
+        private readonly ITagsConvertHelper tagsConvertHelper;
 
         public ProfileController(
             IUploadService<Photo> uploadPhotoService,
             IUploadService<Tag> uploadTagService,
             IPhotoService photoService,
-            IUploadPhoto photoUploader,
-            IConvertTags tagsConverter)
+            IPhotoUploadHelper photoUploader,
+            ITagsConvertHelper tagsConverter)
         {
             this.uploadPhotoService = uploadPhotoService;
             this.uploadTagService = uploadTagService;
             this.photoService = photoService;
-            this.photoUploader = photoUploader;
-            this.tagsConverter = tagsConverter;
+            this.photoUploadHelper = photoUploader;
+            this.tagsConvertHelper = tagsConverter;
         }
 
         [HttpGet]
-        public ActionResult UserDashboard()
+        public ActionResult UserDashboard(int page, int pageSize)
         {
             string userId = this.User.Identity.GetUserId();
-            IQueryable<PhotoViewModel> photos = this.photoService.GetAllForUser(userId).Select(PhotoViewModel.FromPhoto);
+            IQueryable<PhotoViewModel> photos = this.photoService.GetAllForUser(userId)
+                .Select(PhotoViewModel.FromPhoto)
+                .OrderBy(photo => photo.CreatedOn);
+            IPagedList<PhotoViewModel> photosPagedList = new PagedList<PhotoViewModel>(photos, page, pageSize);
 
-            return this.View(photos);
+            return this.View(photosPagedList);
         }
 
         [HttpPost]
         public ActionResult UserDashboard(HttpPostedFileBase file, string tags)
         {
-            ICollection<Tag> convertedTags = this.tagsConverter.CreateTags(tags);
-            this.uploadTagService.Upload(convertedTags);
+            ICollection<Tag> convertedTags = this.tagsConvertHelper.CreateTags(tags);
+            this.uploadTagService.UploadManyToDatabase(convertedTags);
 
-            this.AddPhotos(file, convertedTags);
+            this.UploadPhotos(file, convertedTags);
             this.TempData["Success"] = "Upload successful";
 
             return this.RedirectToAction("UserDashboard");
         }
 
+        [HttpGet]
+        public ActionResult Sort(string text, int page, int pageSize)
+        {
+            string userId = this.User.Identity.GetUserId();
+            IEnumerable<PhotoViewModel> photos = this.photoService.SortByTag(text, userId)
+                           .AsQueryable()
+                           .Select(PhotoViewModel.FromPhoto);
+            IPagedList<PhotoViewModel> photosPagedList = new PagedList<PhotoViewModel>(photos, page, pageSize);
+
+            return this.View("UserDashboard", photosPagedList);
+        }
+
         [NonAction]
-        public void AddPhotos(HttpPostedFileBase file, ICollection<Tag> tags)
+        public void UploadPhotos(HttpPostedFileBase file, ICollection<Tag> tags)
         {
             string userId = this.User.Identity.GetUserId();
             string physicalPath = Server.MapPath("~/Images/" + userId);
-            string directory = this.photoUploader.GetDirectory(file, physicalPath);
-            photoUploader.Upload(file, directory);
+            this.photoUploadHelper.UploadToFileSystem(file, physicalPath);
 
-            string path = this.photoUploader.GetPathForDatabase(directory);
+            string path = this.photoUploadHelper.GetPathForDatabase();
             Photo photo = this.photoService.Create(userId, path, tags);
-            this.uploadPhotoService.Upload(photo);
+            this.uploadPhotoService.UploadToDatabase(photo);
         }
     }
 }

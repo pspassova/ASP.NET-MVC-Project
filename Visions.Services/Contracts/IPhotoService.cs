@@ -12,6 +12,6 @@ namespace Visions.Services.Contracts
 
         IQueryable<Photo> GetAllForUser(string userId);
 
-        IEnumerable<Photo> SortByTag(string tag);
+        IEnumerable<Photo> SortByTag(string tag, string userId = "");
     }
 }

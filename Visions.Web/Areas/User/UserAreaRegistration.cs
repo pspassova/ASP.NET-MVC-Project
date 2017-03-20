@@ -17,8 +17,19 @@ namespace Visions.Web.Areas.User
             context.Routes.LowercaseUrls = true;
 
             context.MapRoute(
+                "UserDefaultPaging",
+                "user/{controller}/{action}/{page}/{pageSize}",
+                defaults: new
+                {
+                    controller = "Profile",
+                    action = "UserDashboard",
+                    page = 1,
+                    pageSize = 2
+                }
+            );
+            context.MapRoute(
                 "User_default",
-                "User/{controller}/{action}/{id}",
+                "user/{controller}/{action}/{id}",
                 defaults: new
                 {
                     controller = "Profile",

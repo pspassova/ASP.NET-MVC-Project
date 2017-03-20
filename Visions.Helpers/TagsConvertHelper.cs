@@ -6,7 +6,7 @@ using Visions.Services.Contracts;
 
 namespace Visions.Helpers
 {
-    public class TagsConvertHelper : IConvertTags
+    public class TagsConvertHelper : ITagsConvertHelper
     {
         private readonly ITagService tagService;
 

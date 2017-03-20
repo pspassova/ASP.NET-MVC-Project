@@ -1,4 +1,8 @@
-﻿@model IEnumerable<Visions.Web.Models.PhotoViewModel>
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<Visions.Web.Models.PhotoViewModel>
+
 @{
     ViewBag.Title = "Profile";
 }
@@ -22,6 +26,17 @@
 </form>
 
 @Html.Partial("_UserPhotos", this.Model)
+
+<div class="col-sm-10">
+    @Html.PagedListPager(this.Model, page => Url.Action("UserDashboard",
+       new
+       {
+           page,
+           pageSize = this.Model.PageSize
+       }))
+
+   @Html.ActionLink("Back to homepage", "Index", "Home", new { area = "" }, new { @class = "text-info text-lowercase" })
+</div>
 
 @section Scripts {
     <script>

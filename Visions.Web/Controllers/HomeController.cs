@@ -33,7 +33,7 @@ namespace Visions.Web.Controllers
             string userId = this.User.Identity.GetUserId();
             Article article = this.articleService.Create(articleTitle, articleContent, userId);
 
-            this.uploadArticleService.Upload(article);
+            this.uploadArticleService.UploadToDatabase(article);
             this.TempData["Success"] = "Upload successful";
 
             return RedirectToAction("Index");

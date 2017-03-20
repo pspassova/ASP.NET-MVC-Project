@@ -3,7 +3,7 @@ using Visions.Models.Models;
 
 namespace Visions.Helpers.Contracts
 {
-    public interface IConvertTags
+    public interface ITagsConvertHelper
     {
         ICollection<Tag> CreateTags(string tagsTexts);
     }

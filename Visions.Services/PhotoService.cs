@@ -37,19 +37,28 @@ namespace Visions.Services
             return this.repository.GetAll();
         }
 
+        // fix this
         public IQueryable<Photo> GetAllForUser(string userId)
         {
             return this.repository.GetAll().Where(photo => photo.UserId == userId);
         }
 
-        public IEnumerable<Photo> SortByTag(string tag)
+        public IEnumerable<Photo> SortByTag(string tag, string userId = "")
         {
             if (tag == null)
             {
                 tag = string.Empty;
             }
 
-            IEnumerable<Photo> photos = this.repository.GetAll();
+            IEnumerable<Photo> photos = new List<Photo>();
+            if (userId == "")
+            {
+                photos = this.repository.GetAll();
+            }
+            else
+            {
+                photos = this.GetAllForUser(userId);
+            }
 
             ICollection<Photo> matchingPhotos = new List<Photo>();
             foreach (var photo in photos)

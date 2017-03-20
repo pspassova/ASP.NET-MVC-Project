@@ -18,8 +18,8 @@ namespace Visions.Web.App_Start
 
             this.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>));
 
-            this.Bind<IUploadPhoto>().To<UploadPhotoHelper>();
-            this.Bind<IConvertTags>().To<TagsConvertHelper>();
+            this.Bind<IPhotoUploadHelper>().To<PhotoUploadHelper>();
+            this.Bind<ITagsConvertHelper>().To<TagsConvertHelper>();
 
             this.Bind<IPhotoService>().To<PhotoService>();
             this.Bind<ITagService>().To<TagService>();

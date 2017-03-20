@@ -5,8 +5,8 @@ namespace Visions.Services.Contracts
     public interface IUploadService<T> 
         where T : class
     {
-        void Upload(T item);
+        void UploadToDatabase(T item);
 
-        void Upload(IEnumerable<T> items);
+        void UploadManyToDatabase(IEnumerable<T> items);
     }
 }

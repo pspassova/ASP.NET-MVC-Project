@@ -41,11 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IConvertTags.cs" />
-    <Compile Include="Contracts\IUploadPhoto.cs" />
+    <Compile Include="Contracts\ITagsConvertHelper.cs" />
+    <Compile Include="Contracts\IPhotoUploadHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TagsConvertHelper.cs" />
-    <Compile Include="UploadPhotoHelper.cs" />
+    <Compile Include="PhotoUploadHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Visions.Models\Visions.Models.csproj">

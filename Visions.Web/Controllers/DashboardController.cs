@@ -19,19 +19,23 @@ namespace Visions.Web.Controllers
         [HttpGet]
         public ActionResult Shared(int page, int pageSize)
         {
-            IQueryable<PhotoViewModel> photos = this.photoService.GetAll().Select(PhotoViewModel.FromPhoto).OrderBy(photo => photo.Tags.Count);
-            IPagedList<PhotoViewModel> pagedList = new PagedList<PhotoViewModel>(photos, page, pageSize);
+            IQueryable<PhotoViewModel> photos = this.photoService.GetAll()
+                .Select(PhotoViewModel.FromPhoto)
+                .OrderBy(photo => photo.CreatedOn);
+            IPagedList<PhotoViewModel> photosPagedList = new PagedList<PhotoViewModel>(photos, page, pageSize);
 
-            return this.View(pagedList);
+            return this.View(photosPagedList);
         }
 
         [HttpGet]
-        public ActionResult Sort(string text, int page = 1, int pageSize = 2)
+        public ActionResult Sort(string text, int page, int pageSize)
         {
-            IEnumerable<PhotoViewModel> photos = this.photoService.SortByTag(text).AsQueryable().Select(PhotoViewModel.FromPhoto);
-            IPagedList<PhotoViewModel> pagedList = new PagedList<PhotoViewModel>(photos, page, pageSize);
+            IEnumerable<PhotoViewModel> photos = this.photoService.SortByTag(text)
+                .AsQueryable()
+                .Select(PhotoViewModel.FromPhoto);
+            IPagedList<PhotoViewModel> photosPagedList = new PagedList<PhotoViewModel>(photos, page, pageSize);
 
-            return this.View("Shared", pagedList);
+            return this.View("Shared", photosPagedList);
         }
     }
 }
