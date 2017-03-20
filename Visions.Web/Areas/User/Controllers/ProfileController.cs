@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Visions.Helpers.Contracts;
 using Visions.Models.Models;
 using Visions.Services.Contracts;
+using Visions.Services.Enumerations;
 using Visions.Web.Models;
 
 namespace Visions.Web.Areas.User.Controllers
@@ -24,23 +25,22 @@ namespace Visions.Web.Areas.User.Controllers
             IUploadService<Photo> uploadPhotoService,
             IUploadService<Tag> uploadTagService,
             IPhotoService photoService,
-            IPhotoUploadHelper photoUploader,
-            ITagsConvertHelper tagsConverter)
+            IPhotoUploadHelper photoUploaderHelper,
+            ITagsConvertHelper tagsConverterHelper)
         {
             this.uploadPhotoService = uploadPhotoService;
             this.uploadTagService = uploadTagService;
             this.photoService = photoService;
-            this.photoUploadHelper = photoUploader;
-            this.tagsConvertHelper = tagsConverter;
+            this.photoUploadHelper = photoUploaderHelper;
+            this.tagsConvertHelper = tagsConverterHelper;
         }
 
         [HttpGet]
         public ActionResult UserDashboard(int page, int pageSize)
         {
             string userId = this.User.Identity.GetUserId();
-            IQueryable<PhotoViewModel> photos = this.photoService.GetAllForUser(userId)
-                .Select(PhotoViewModel.FromPhoto)
-                .OrderBy(photo => photo.CreatedOn);
+            IEnumerable<PhotoViewModel> photos = this.photoService.GetAll(userId, photo => photo.CreatedOn, OrderBy.Descending, PhotoViewModel.FromPhoto);
+
             IPagedList<PhotoViewModel> photosPagedList = new PagedList<PhotoViewModel>(photos, page, pageSize);
 
             return this.View(photosPagedList);

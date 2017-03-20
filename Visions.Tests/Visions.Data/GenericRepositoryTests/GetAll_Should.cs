@@ -16,12 +16,15 @@ namespace Visions.Tests.Visions.Data.GenericRepositoryTests
         public void ReturnCorrectCountOfItems_IfThereAreNone(int itemsCount)
         {
             // Arrange
+            IQueryable<User> data = new List<User>(itemsCount).AsQueryable();
             var dbSetMock = new Mock<DbSet<User>>();
-            IEnumerable<User> data = new List<User>(itemsCount);
-            dbSetMock.As<IDbSet<User>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator());
-
             var contextMock = new Mock<IVisionsDbContext>();
+
             contextMock.Setup(x => x.Set<User>()).Returns(dbSetMock.Object);
+            dbSetMock.As<IQueryable<User>>().Setup(x => x.Provider).Returns(data.Provider);
+            dbSetMock.As<IQueryable<User>>().Setup(x => x.Expression).Returns(data.Expression);
+            dbSetMock.As<IQueryable<User>>().Setup(x => x.ElementType).Returns(data.ElementType);
+            dbSetMock.As<IQueryable<User>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator());
 
             IEfRepository<User> repository = new EfRepository<User>(contextMock.Object);
 
@@ -36,16 +39,19 @@ namespace Visions.Tests.Visions.Data.GenericRepositoryTests
         public void ReturnCorrectCountOfItems_IfThereAreAny(int itemsCount)
         {
             // Arrange
-            var dbSetMock = new Mock<DbSet<User>>();
-            IEnumerable<User> data = new List<User>(itemsCount)
+            IQueryable<User> data = new List<User>(itemsCount)
             {
-                new Mock<User>().Object,
-                new Mock<User>().Object
-            };
-            dbSetMock.As<IDbSet<User>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator());
-
+                new User(),
+                new User()
+            }.AsQueryable();
+            var dbSetMock = new Mock<DbSet<User>>();
             var contextMock = new Mock<IVisionsDbContext>();
+
             contextMock.Setup(x => x.Set<User>()).Returns(dbSetMock.Object);
+            dbSetMock.As<IQueryable<User>>().Setup(x => x.Provider).Returns(data.Provider);
+            dbSetMock.As<IQueryable<User>>().Setup(x => x.Expression).Returns(data.Expression);
+            dbSetMock.As<IQueryable<User>>().Setup(x => x.ElementType).Returns(data.ElementType);
+            dbSetMock.As<IQueryable<User>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator());
 
             IEfRepository<User> repository = new EfRepository<User>(contextMock.Object);
 

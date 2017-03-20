@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNet.Identity;
-using System.Linq;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using Visions.Models.Models;
 using Visions.Services.Contracts;
+using Visions.Services.Enumerations;
 using Visions.Web.Models;
 
 namespace Visions.Web.Controllers
@@ -21,7 +22,7 @@ namespace Visions.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            IQueryable<ArticleViewModel> articles = this.articleService.GetAll().Select(ArticleViewModel.FromArticle);
+            IEnumerable<ArticleViewModel> articles = this.articleService.GetAll(article => article.CreatedOn, OrderBy.Descending, ArticleViewModel.FromArticle);
 
             return this.View(articles);
         }

@@ -18,12 +18,13 @@
         </div>
     </div>
     @if (TempData["Success"] != null)
-            {
+        {
         <div class="success">
             <p>@TempData["Success"].ToString()</p>
         </div>
     }
 </form>
+
 
 @Html.Partial("_UserPhotos", this.Model)
 
@@ -35,11 +36,14 @@
            pageSize = this.Model.PageSize
        }))
 
-   @Html.ActionLink("Back to homepage", "Index", "Home", new { area = "" }, new { @class = "text-info text-lowercase" })
+    <div id="backToHomepageLink">
+        @Html.ActionLink("Back to homepage", "Index", "Home", new { area = "" }, new { @class = "text-info text-lowercase" })
+    </div>
 </div>
 
 @section Scripts {
     <script>
+        $.validator.messages.required = "You must choose a photo."
         $("#uploadPhotoForm").validate({
             rules: {
                 file: {
@@ -47,8 +51,6 @@
                 }
             }
         });
-
-        $.validator.messages.required = "You must choose a photo."
     </script>
 }
 

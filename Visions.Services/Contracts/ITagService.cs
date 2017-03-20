@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Visions.Models.Models;
+﻿using Visions.Models.Models;
 
 namespace Visions.Services.Contracts
 {

@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Visions.Services.Contracts;
 using Visions.Web.Models;
 using PagedList;
+using Visions.Services.Enumerations;
 
 namespace Visions.Web.Controllers
 {
@@ -19,9 +20,7 @@ namespace Visions.Web.Controllers
         [HttpGet]
         public ActionResult Shared(int page, int pageSize)
         {
-            IQueryable<PhotoViewModel> photos = this.photoService.GetAll()
-                .Select(PhotoViewModel.FromPhoto)
-                .OrderBy(photo => photo.CreatedOn);
+            IEnumerable<PhotoViewModel> photos = this.photoService.GetAll(null, photo => photo.Tags.Count, OrderBy.Descending, PhotoViewModel.FromPhoto);
             IPagedList<PhotoViewModel> photosPagedList = new PagedList<PhotoViewModel>(photos, page, pageSize);
 
             return this.View(photosPagedList);

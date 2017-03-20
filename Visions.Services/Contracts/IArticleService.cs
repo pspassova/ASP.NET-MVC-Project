@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using Visions.Models.Models;
+using Visions.Services.Enumerations;
 
 namespace Visions.Services.Contracts
 {
@@ -7,6 +10,8 @@ namespace Visions.Services.Contracts
     {
         Article Create(string title, string content, string userId);
 
-        IQueryable<Article> GetAll();
+        IEnumerable<Article> GetAll();
+
+        IEnumerable<T1> GetAll<T, T1>(Expression<Func<Article, T>> orderByProperty, OrderBy? order, Expression<Func<Article, T1>> selectAs);
     }
 }

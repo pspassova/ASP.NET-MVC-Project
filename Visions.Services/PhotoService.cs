@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Visions.Data.Contracts;
 using Visions.Models.Models;
 using Visions.Services.Contracts;
+using Visions.Services.Enumerations;
 
 namespace Visions.Services
 {
@@ -32,15 +34,52 @@ namespace Visions.Services
             };
         }
 
-        public IQueryable<Photo> GetAll()
+        public IEnumerable<Photo> GetAll()
         {
-            return this.repository.GetAll();
+            return this.GetAll(null);
         }
 
-        // fix this
-        public IQueryable<Photo> GetAllForUser(string userId)
+        public IEnumerable<Photo> GetAll(string userId)
         {
-            return this.repository.GetAll().Where(photo => photo.UserId == userId);
+            if (userId == null)
+            {
+                return this.repository.GetAll();
+            }
+            else
+            {
+                return this.repository.GetAll(photo => photo.UserId == userId);
+            }
+        }
+
+        public IEnumerable<T1> GetAll<T, T1>(string userId, Expression<Func<Photo, T>> orderByProperty, OrderBy? order, Expression<Func<Photo, T1>> selectAs)
+        {
+            IQueryable<Photo> result = this.repository.All;
+
+            if (userId != null)
+            {
+                result = result.Where(photo => photo.UserId == userId);
+            }
+
+            if (orderByProperty != null)
+            {
+                if (order == OrderBy.Ascending || order == null)
+                {
+                    result = result.OrderBy(orderByProperty);
+                }
+                else if (order == OrderBy.Descending)
+                {
+                    result = result.OrderByDescending(orderByProperty);
+                }
+            }
+
+            if (selectAs != null)
+            {
+                return result.Select(selectAs).ToList();
+            }
+            else
+            {
+                return result.OfType<T1>().ToList();
+            }
         }
 
         public IEnumerable<Photo> SortByTag(string tag, string userId = "")
@@ -57,7 +96,7 @@ namespace Visions.Services
             }
             else
             {
-                photos = this.GetAllForUser(userId);
+                photos = this.GetAll(userId);
             }
 
             ICollection<Photo> matchingPhotos = new List<Photo>();
