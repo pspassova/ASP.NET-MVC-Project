@@ -27,6 +27,12 @@ namespace Visions.Web.App_Start
 
             var uploadServiceBinding = this.Bind(typeof(IUploadService<>)).To(typeof(UploadService<>));
             uploadServiceBinding.Intercept().With<SaveChangesInterceptor>();
+
+            var modifyServiceBinding = this.Bind(typeof(IModifyService<>)).To(typeof(ModifyService<>));
+            modifyServiceBinding.Intercept().With<SaveChangesInterceptor>();
+
+            var deleteServiceBinding = this.Bind(typeof(IDeleteService<>)).To(typeof(DeleteService<>));
+            deleteServiceBinding.Intercept().With<SaveChangesInterceptor>();
         }
     }
 }

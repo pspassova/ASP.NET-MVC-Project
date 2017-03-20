@@ -34,6 +34,11 @@ namespace Visions.Services
             };
         }
 
+        public Photo GetById(Guid id)
+        {
+            return this.repository.GetById(id);
+        }
+
         public IEnumerable<Photo> GetAll()
         {
             return this.GetAll(null);

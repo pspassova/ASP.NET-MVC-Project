@@ -347,8 +347,11 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Profile\Manage.cshtml" />
     <Content Include="Areas\User\Views\Shared\_UserPhotos.cshtml" />
+    <Content Include="Areas\Admin\Views\Profile\Manage.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_DeletePhoto.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_EditPhoto.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_PhotoDetails.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Properties\PublishProfiles\vissions - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\vissions - Web Deploy.pubxml" />
@@ -410,7 +413,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\User\Models\" />
     <Folder Include="Content\vendor\font-awesome\css\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,91 @@
-﻿
+﻿@model IEnumerable<Visions.Web.Models.PhotoViewModel>
+
 @{
     ViewBag.Title = "Manage";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Manage</h2>
+<p>
+    @Ajax.ActionLink("Upload photo", "Upload", new AjaxOptions()
+{
+    HttpMethod = "GET",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "upload-photo"
+})
+</p>
 
+<form id="uploadPhotoForm" action="" method="post" enctype="multipart/form-data" class="form-group col-md-6 well-lg">
+        <h2>Upload a photo</h2>
+
+        <input id="file" type="file" name="file" />
+        <input type="text" name="tags" placeholder="Tags, separated by spaces" class="form-control" />
+        <div class="form-group">
+            <div class="col-md-offset-2">
+                <input type="submit" value="Post" class="btn btn-default col-sm-offset-10" />
+            </div>
+        </div>
+        @if (TempData["Success"] != null)
+        {
+            <div class="success">
+                <p>@TempData["Success"].ToString()</p>
+            </div>
+        }
+    </form>
+
+<table class="table table-bordered table-striped">
+    @if (this.Model.Count() > 0)
+    {
+        foreach (var photo in this.Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => photo.CreatedOn)
+                </td>
+                <td class="col-sm-5">
+                    <img src="@photo.Path" class="img-responsive center-block"/>
+                </td>
+                <td>
+                    @foreach (var tag in photo.Tags)
+                    {
+                        <span>@Html.DisplayFor(model => tag.Text)</span>
+                    }
+                </td>
+                <td>
+                    @Ajax.ActionLink("Edit", "Edit", new
+               {
+                   id = photo.Id
+               }, new AjaxOptions()
+               {
+                   HttpMethod = "GET",
+                   InsertionMode = InsertionMode.Replace,
+                   UpdateTargetId = "edit-photo"
+               }) |
+                    @Ajax.ActionLink("Details", "Details", new
+               {
+                   id = photo.Id
+               }, new AjaxOptions()
+               {
+                   HttpMethod = "GET",
+                   InsertionMode = InsertionMode.Replace,
+                   UpdateTargetId = "details-photo"
+               }) |
+                    @Ajax.ActionLink("Delete", "Delete", new
+               {
+                   id = photo.Id
+               }, new AjaxOptions()
+               {
+                   HttpMethod = "GET",
+                   InsertionMode = InsertionMode.Replace,
+                   UpdateTargetId = "delete-photo"
+               })
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+
+<div id="upload-photo"> </div>
+<div id="edit-photo"> </div>
+<div id="details-photo"> </div>
+<div id="delete-photo"> </div>

@@ -10,6 +10,8 @@ namespace Visions.Services.Contracts
     {
         Photo Create(string userId, string path, ICollection<Tag> tags);
 
+        Photo GetById(Guid id);
+
         IEnumerable<Photo> GetAll();
 
         IEnumerable<Photo> GetAll(string userId);

@@ -47,6 +47,7 @@ namespace Visions.Web.Areas.User.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult UserDashboard(HttpPostedFileBase file, string tags)
         {
             ICollection<Tag> convertedTags = this.tagsConvertHelper.CreateTags(tags);
@@ -72,6 +73,7 @@ namespace Visions.Web.Areas.User.Controllers
             return this.View("UserDashboard", photosPagedList);
         }
 
+        // TODO: take this to another class
         [NonAction]
         public void UploadPhotos(HttpPostedFileBase file, ICollection<Tag> tags)
         {

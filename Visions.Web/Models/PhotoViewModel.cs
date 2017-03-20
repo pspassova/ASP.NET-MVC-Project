@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
 using Visions.Models.Models;
 
@@ -18,7 +19,8 @@ namespace Visions.Web.Models
                     Path = photo.Path,
                     Likes = photo.Likes,
                     Tags = photo.Tags,
-                    CreatedOn = photo.CreatedOn
+                    CreatedOn = photo.CreatedOn,
+                    IsDeleted = photo.IsDeleted
                 };
             }
         }
@@ -33,6 +35,7 @@ namespace Visions.Web.Models
             get; set;
         }
 
+        [Required]
         public string Path
         {
             get; set;
@@ -51,6 +54,25 @@ namespace Visions.Web.Models
         public DateTime? CreatedOn
         {
             get; set;
+        }
+
+        public bool IsDeleted
+        {
+            get; set;
+        }
+
+        public static PhotoViewModel ConvertPhotoToViewModel(Photo photo)
+        {
+            return new PhotoViewModel
+            {
+                Id = photo.Id,
+                UserId = photo.UserId,
+                Path = photo.Path,
+                Likes = photo.Likes,
+                Tags = photo.Tags,
+                CreatedOn = photo.CreatedOn,
+                IsDeleted = photo.IsDeleted
+            };
         }
     }
 }
