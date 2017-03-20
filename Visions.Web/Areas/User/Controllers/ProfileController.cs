@@ -25,14 +25,14 @@ namespace Visions.Web.Areas.User.Controllers
             IUploadService<Photo> uploadPhotoService,
             IUploadService<Tag> uploadTagService,
             IPhotoService photoService,
-            IPhotoUploadHelper photoUploaderHelper,
-            ITagsConvertHelper tagsConverterHelper)
+            IPhotoUploadHelper photoUploadHelper,
+            ITagsConvertHelper tagsConvertHelper)
         {
             this.uploadPhotoService = uploadPhotoService;
             this.uploadTagService = uploadTagService;
             this.photoService = photoService;
-            this.photoUploadHelper = photoUploaderHelper;
-            this.tagsConvertHelper = tagsConverterHelper;
+            this.photoUploadHelper = photoUploadHelper;
+            this.tagsConvertHelper = tagsConvertHelper;
         }
 
         [HttpGet]
@@ -61,6 +61,8 @@ namespace Visions.Web.Areas.User.Controllers
         [HttpGet]
         public ActionResult Sort(string text, int page, int pageSize)
         {
+            this.ViewBag.SelectedTag = text;
+
             string userId = this.User.Identity.GetUserId();
             IEnumerable<PhotoViewModel> photos = this.photoService.SortByTag(text, userId)
                            .AsQueryable()

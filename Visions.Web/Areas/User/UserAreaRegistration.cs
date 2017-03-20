@@ -24,7 +24,7 @@ namespace Visions.Web.Areas.User
                     controller = "Profile",
                     action = "UserDashboard",
                     page = 1,
-                    pageSize = 2
+                    pageSize = 4
                 }
             );
             context.MapRoute(

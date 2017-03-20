@@ -29,6 +29,8 @@ namespace Visions.Web.Controllers
         [HttpGet]
         public ActionResult Sort(string text, int page, int pageSize)
         {
+            this.ViewBag.SelectedTag = text;
+
             IEnumerable<PhotoViewModel> photos = this.photoService.SortByTag(text)
                 .AsQueryable()
                 .Select(PhotoViewModel.FromPhoto);

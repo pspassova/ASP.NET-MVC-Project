@@ -11,6 +11,8 @@
                     <img src="@photo.Path" class="center-block img-responsive" />
                     @foreach (var tag in photo.Tags)
                     {
+                        this.ViewBag.SelectedTag = tag.Text;
+
                         <a class="alert-info" onclick="location.href='@Url.Action("Sort", "Dashboard", new { tag.Text })'">#@tag.Text</a>
                     }
                 </td>

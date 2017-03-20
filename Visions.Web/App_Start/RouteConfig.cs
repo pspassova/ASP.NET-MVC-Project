@@ -19,7 +19,7 @@ namespace Visions.Web
                     controller = "Dashboard",
                     action = "Shared",
                     page = 1,
-                    pageSize = 2
+                    pageSize = 4
                 }
             );
             routes.MapRoute(

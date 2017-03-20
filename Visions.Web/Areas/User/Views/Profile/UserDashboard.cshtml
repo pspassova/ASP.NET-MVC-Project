@@ -25,13 +25,16 @@
     }
 </form>
 
-
-@Html.Partial("_UserPhotos", this.Model)
+@if (this.Model.Count() > 0)
+{
+    @Html.Partial("_UserPhotos", this.Model)
+}
 
 <div class="col-sm-10">
-    @Html.PagedListPager(this.Model, page => Url.Action("UserDashboard",
+    @Html.PagedListPager(this.Model, page => Url.Action("Sort",
        new
        {
+           text = this.ViewBag.SelectedTag,
            page,
            pageSize = this.Model.PageSize
        }))
