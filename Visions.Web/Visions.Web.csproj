@@ -352,7 +352,9 @@
     <Content Include="Areas\Admin\Views\Shared\_EditPhoto.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_PhotoDetails.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
+    <None Include="Properties\PublishProfiles\vsions - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\vsions - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\vsions - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\vsions - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\creative.js" />
