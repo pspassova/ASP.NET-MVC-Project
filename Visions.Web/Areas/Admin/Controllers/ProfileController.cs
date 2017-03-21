@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Visions.Helpers.Contracts;
 using Visions.Models.Models;
 using Visions.Services.Contracts;
 using Visions.Services.Enumerations;
+using Visions.Web.Helpers.Contracts;
 using Visions.Web.Models;
 
 namespace Visions.Web.Areas.Admin.Controllers
@@ -15,29 +15,26 @@ namespace Visions.Web.Areas.Admin.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
-        private readonly IUploadService<Photo> uploadPhotoService;
         private readonly IUploadService<Tag> uploadTagService;
         private readonly IModifyService<Photo> modifyPhotoService;
         private readonly IDeleteService<Photo> deletePhotoService;
         private readonly IPhotoService photoService;
-        private readonly IPhotoUploadHelper photoUploadHelper;
-        private readonly ITagsConvertHelper tagsConvertHelper;
+        private readonly IPhotoUploader photoUploader;
+        private readonly ITagsHelper tagsConvertHelper;
 
         public ProfileController(
-            IUploadService<Photo> uploadPhotoService,
             IUploadService<Tag> uploadTagService,
-             IModifyService<Photo> modifyPhotoService,
-             IDeleteService<Photo> deletePhotoService,
+            IModifyService<Photo> modifyPhotoService,
+            IDeleteService<Photo> deletePhotoService,
             IPhotoService photoService,
-            IPhotoUploadHelper photoUploadHelper,
-            ITagsConvertHelper tagsConvertHelper)
+            IPhotoUploader photoUploader,
+            ITagsHelper tagsConvertHelper)
         {
-            this.uploadPhotoService = uploadPhotoService;
             this.uploadTagService = uploadTagService;
             this.modifyPhotoService = modifyPhotoService;
             this.deletePhotoService = deletePhotoService;
             this.photoService = photoService;
-            this.photoUploadHelper = photoUploadHelper;
+            this.photoUploader = photoUploader;
             this.tagsConvertHelper = tagsConvertHelper;
         }
 
@@ -50,13 +47,22 @@ namespace Visions.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Manage(HttpPostedFileBase file, string tags)
         {
+            if (file == null)
+            {
+                this.TempData["Success"] = "Upload failed";
+
+                return this.RedirectToAction("Manage");
+            }
+
             ICollection<Tag> convertedTags = this.tagsConvertHelper.CreateTags(tags);
             this.uploadTagService.UploadManyToDatabase(convertedTags);
 
-            this.UploadPhotos(file, convertedTags);
+            string userId = this.User.Identity.GetUserId();
+            string physicalPath = Server.MapPath("~/Images/" + userId);
+
+            this.photoUploader.UploadPhotos(userId, file, physicalPath, convertedTags);
             this.TempData["Success"] = "Upload successful";
 
             return this.RedirectToAction("Manage");
@@ -90,7 +96,7 @@ namespace Visions.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind (Include ="Id")] PhotoViewModel photoViewModel)
+        public ActionResult Edit([Bind(Include = "Id")] PhotoViewModel photoViewModel)
         {
             Photo photo = this.photoService.GetById(photoViewModel.Id);
             if (photo == null)
@@ -125,19 +131,6 @@ namespace Visions.Web.Areas.Admin.Controllers
             this.deletePhotoService.Delete(photo);
 
             return RedirectToAction("Manage");
-        }
-
-        // TODO: take this to another class
-        [NonAction]
-        public void UploadPhotos(HttpPostedFileBase file, ICollection<Tag> tags)
-        {
-            string userId = this.User.Identity.GetUserId();
-            string physicalPath = Server.MapPath("~/Images/" + userId);
-            this.photoUploadHelper.UploadToFileSystem(file, physicalPath);
-
-            string path = this.photoUploadHelper.GetPathForDatabase();
-            Photo photo = this.photoService.Create(userId, path, tags);
-            this.uploadPhotoService.UploadToDatabase(photo);
         }
     }
 }

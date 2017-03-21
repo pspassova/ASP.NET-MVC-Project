@@ -250,6 +250,8 @@
     <Compile Include="App_Start\VisionsNinjectModule.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ProfileController.cs" />
+    <Compile Include="Helpers\Contracts\IPhotoUploader.cs" />
+    <Compile Include="Helpers\PhotoUploader.cs" />
     <Compile Include="Areas\User\Controllers\ProfileController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -284,6 +286,7 @@
     <Content Include="Content\css\creative.css" />
     <Content Include="Content\css\creative.min.css" />
     <Content Include="Content\img\header.jpg" />
+    <Content Include="Content\img\upload.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap.css" />
@@ -410,6 +413,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_AllArticles.cshtml" />
     <Content Include="Views\Shared\_AllPhotos.cshtml" />
+    <Content Include="Views\Shared\_UploadPhoto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

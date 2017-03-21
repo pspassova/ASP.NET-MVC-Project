@@ -7,6 +7,8 @@ using Visions.Helpers;
 using Visions.Helpers.Contracts;
 using Visions.Services;
 using Visions.Services.Contracts;
+using Visions.Web.Helpers;
+using Visions.Web.Helpers.Contracts;
 
 namespace Visions.Web.App_Start
 {
@@ -18,8 +20,10 @@ namespace Visions.Web.App_Start
 
             this.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>));
 
-            this.Bind<IPhotoUploadHelper>().To<PhotoUploadHelper>();
-            this.Bind<ITagsConvertHelper>().To<TagsConvertHelper>();
+            this.Bind<IPhotoHelper>().To<PhotoHelper>();
+            this.Bind<ITagsHelper>().To<TagsHelper>();
+
+            this.Bind<IPhotoUploader>().To<PhotoUploader>();
 
             this.Bind<IPhotoService>().To<PhotoService>();
             this.Bind<ITagService>().To<TagService>();

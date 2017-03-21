@@ -8,6 +8,7 @@ using Visions.Helpers.Contracts;
 using Visions.Models.Models;
 using Visions.Services.Contracts;
 using Visions.Services.Enumerations;
+using Visions.Web.Helpers.Contracts;
 using Visions.Web.Models;
 
 namespace Visions.Web.Areas.User.Controllers
@@ -18,20 +19,20 @@ namespace Visions.Web.Areas.User.Controllers
         private readonly IUploadService<Photo> uploadPhotoService;
         private readonly IUploadService<Tag> uploadTagService;
         private readonly IPhotoService photoService;
-        private readonly IPhotoUploadHelper photoUploadHelper;
-        private readonly ITagsConvertHelper tagsConvertHelper;
+        private readonly IPhotoUploader photoUploader;
+        private readonly ITagsHelper tagsConvertHelper;
 
         public ProfileController(
             IUploadService<Photo> uploadPhotoService,
             IUploadService<Tag> uploadTagService,
             IPhotoService photoService,
-            IPhotoUploadHelper photoUploadHelper,
-            ITagsConvertHelper tagsConvertHelper)
+            IPhotoUploader photoUploader,
+            ITagsHelper tagsConvertHelper)
         {
             this.uploadPhotoService = uploadPhotoService;
             this.uploadTagService = uploadTagService;
             this.photoService = photoService;
-            this.photoUploadHelper = photoUploadHelper;
+            this.photoUploader = photoUploader;
             this.tagsConvertHelper = tagsConvertHelper;
         }
 
@@ -47,13 +48,22 @@ namespace Visions.Web.Areas.User.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult UserDashboard(HttpPostedFileBase file, string tags)
         {
+            if (file == null)
+            {
+                this.TempData["Success"] = "Upload failed";
+
+                return this.RedirectToAction("UserDashboard");
+            }
+
             ICollection<Tag> convertedTags = this.tagsConvertHelper.CreateTags(tags);
             this.uploadTagService.UploadManyToDatabase(convertedTags);
 
-            this.UploadPhotos(file, convertedTags);
+            string userId = this.User.Identity.GetUserId();
+            string physicalPath = Server.MapPath("~/Images/" + userId);
+
+            this.photoUploader.UploadPhotos(userId, file, physicalPath, convertedTags);
             this.TempData["Success"] = "Upload successful";
 
             return this.RedirectToAction("UserDashboard");
@@ -71,19 +81,6 @@ namespace Visions.Web.Areas.User.Controllers
             IPagedList<PhotoViewModel> photosPagedList = new PagedList<PhotoViewModel>(photos, page, pageSize);
 
             return this.View("UserDashboard", photosPagedList);
-        }
-
-        // TODO: take this to another class
-        [NonAction]
-        public void UploadPhotos(HttpPostedFileBase file, ICollection<Tag> tags)
-        {
-            string userId = this.User.Identity.GetUserId();
-            string physicalPath = Server.MapPath("~/Images/" + userId);
-            this.photoUploadHelper.UploadToFileSystem(file, physicalPath);
-
-            string path = this.photoUploadHelper.GetPathForDatabase();
-            Photo photo = this.photoService.Create(userId, path, tags);
-            this.uploadPhotoService.UploadToDatabase(photo);
         }
     }
 }

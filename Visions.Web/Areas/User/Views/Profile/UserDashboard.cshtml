@@ -7,25 +7,9 @@
     ViewBag.Title = "Profile";
 }
 
-<form id="uploadPhotoForm" action="" method="post" enctype="multipart/form-data" class="form-group col-md-6 well-lg">
-    <h2>Upload a photo</h2>
+<hr />
 
-    @Html.AntiForgeryToken()
-
-    <input id="file" type="file" name="file" />
-    <input type="text" name="tags" placeholder="Tags, separated by spaces" class="form-control" />
-    <div class="form-group">
-        <div class="col-md-offset-2">
-            <input type="submit" value="Post" class="btn btn-default col-sm-offset-10" />
-        </div>
-    </div>
-    @if (TempData["Success"] != null)
-        {
-        <div class="success">
-            <p>@TempData["Success"].ToString()</p>
-        </div>
-    }
-</form>
+@Html.Partial("_UploadPhoto")
 
 @if (this.Model.Count() > 0)
 {
@@ -42,20 +26,12 @@
        }))
 
     <div id="backToHomepageLink">
-        @Html.ActionLink("Back to homepage", "Index", "Home", new { area = "" }, new { @class = "text-info text-lowercase" })
+        @Html.ActionLink("Back to homepage", "Index", "Home", new
+   {
+       area = ""
+   }, new
+   {
+       @class = "text-info text-lowercase"
+   })
     </div>
 </div>
-
-@section Scripts {
-    <script>
-        $.validator.messages.required = "You must choose a photo."
-        $("#uploadPhotoForm").validate({
-            rules: {
-                file: {
-                    required: true
-                }
-            }
-        });
-    </script>
-}
-

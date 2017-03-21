@@ -2,7 +2,7 @@
 
 namespace Visions.Helpers.Contracts
 {
-    public interface IPhotoUploadHelper
+    public interface IPhotoHelper
     {
         string GetPathForDatabase();
 

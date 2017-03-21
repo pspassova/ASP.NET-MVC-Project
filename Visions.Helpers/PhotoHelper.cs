@@ -5,7 +5,7 @@ using Visions.Helpers.Contracts;
 
 namespace Visions.Helpers
 {
-    public class PhotoUploadHelper : IPhotoUploadHelper
+    public class PhotoHelper : IPhotoHelper
     {
         private static string directory;
 

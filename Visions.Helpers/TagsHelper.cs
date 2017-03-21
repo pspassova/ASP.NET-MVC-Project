@@ -6,11 +6,11 @@ using Visions.Services.Contracts;
 
 namespace Visions.Helpers
 {
-    public class TagsConvertHelper : ITagsConvertHelper
+    public class TagsHelper : ITagsHelper
     {
         private readonly ITagService tagService;
 
-        public TagsConvertHelper(ITagService tagService)
+        public TagsHelper(ITagService tagService)
         {
             this.tagService = tagService;
         }
