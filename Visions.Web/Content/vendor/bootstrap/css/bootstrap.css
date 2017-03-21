@@ -1452,7 +1452,7 @@ img {
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
     display: block;
-    max-width: 70%;
+    max-width: 60%;
     height: auto;
 }
 
@@ -3222,8 +3222,8 @@ output {
 
 .form-control {
     z-index: 1;
-    display: block;
-    width: 100%;
+    display: inline-block;
+    width: 80%;
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
@@ -3238,7 +3238,7 @@ output {
     -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    opacity: 0.4;
+    opacity: 0.8;
 }
 
     .form-control:focus {
@@ -4907,15 +4907,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
             padding: 10px 15px;
         }
 
-        .nav > li > form > ul > li > a {
-            padding: 15px 30px;
-        }
-
-        .nav > li > a:hover,
-        .nav > li > a:focus {
-            text-decoration: none;
-            background-color: #eee;
-        }
+            .nav > li > a:hover,
+            .nav > li > a:focus {
+                text-decoration: none;
+                background-color: #eee;
+            }
 
         .nav > li.disabled > a {
             color: #777;
@@ -5076,6 +5072,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
         top: auto;
         left: auto;
     }
+
+
+.nav > li > form > ul > li > a {
+    margin: 0 15px;
+}
 
 @media (min-width: 768px) {
     .nav-justified > li {

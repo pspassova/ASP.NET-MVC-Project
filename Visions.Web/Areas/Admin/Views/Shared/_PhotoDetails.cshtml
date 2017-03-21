@@ -1,15 +1,14 @@
 ﻿@model Visions.Web.Models.PhotoViewModel
 
 @{
-    ViewBag.Title = "_PhotoDetails";
+    ViewBag.Title = "Photo details";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>_PhotoDetails</h2>
-
 <div>
-    <h4>PhotoViewModel</h4>
+    <h2>Details</h2>
     <hr />
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.UserId)
@@ -25,6 +24,17 @@
 
         <dd>
             @Html.DisplayFor(model => model.Path)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tags)
+        </dt>
+
+        <dd>
+            @foreach (var tag in this.Model.Tags)
+            {
+                <span>@Html.DisplayFor(model => tag.Text)</span>
+            }
         </dd>
 
         <dt>

@@ -10,6 +10,8 @@
 <form id="uploadPhotoForm" action="" method="post" enctype="multipart/form-data" class="form-group col-md-6 well-lg">
     <h2>Upload a photo</h2>
 
+    @Html.AntiForgeryToken()
+
     <input id="file" type="file" name="file" />
     <input type="text" name="tags" placeholder="Tags, separated by spaces" class="form-control" />
     <div class="form-group">

@@ -18,7 +18,7 @@
     <label class="text-info text-lowercase">
         Showing @this.Model.FirstItemOnPage - @Model.LastItemOnPage out of @this.Model.TotalItemCount photos
     </label>
-    @Html.PagedListPager(this.Model, page => Url.Action("Sort",
+    @Html.PagedListPager(this.Model, page => Url.Action("Shared",
        new
        {
            text = this.ViewBag.SelectedTag,

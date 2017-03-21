@@ -13,7 +13,7 @@
                     {
                         this.ViewBag.SelectedTag = tag.Text;
 
-                        <a class="alert-info" onclick="location.href='@Url.Action("Sort", "Dashboard", new { tag.Text })'">#@tag.Text</a>
+                        <a class="alert-info" onclick="location.href='@Url.Action("Shared", "Dashboard", new { tag.Text })'">#@tag.Text</a>
                     }
                 </td>
             </tr>

@@ -91,35 +91,44 @@ namespace Visions.Services
         {
             if (tag == null)
             {
-                tag = string.Empty;
-            }
-
-            IEnumerable<Photo> photos = new List<Photo>();
-            if (userId == "")
-            {
-                photos = this.repository.GetAll();
+                if (userId == string.Empty)
+                {
+                    return this.GetAll();
+                }
+                else
+                {
+                    return this.GetAll(userId);
+                }
             }
             else
             {
-                photos = this.GetAll(userId);
-            }
-
-            ICollection<Photo> matchingPhotos = new List<Photo>();
-            foreach (var photo in photos)
-            {
-                if (photo.Tags.Count > 0)
+                IEnumerable<Photo> photos = new List<Photo>();
+                if (userId == string.Empty)
                 {
-                    foreach (var photoTag in photo.Tags)
+                    photos = this.GetAll();
+                }
+                else
+                {
+                    photos = this.GetAll(userId);
+                }
+
+                ICollection<Photo> matchingPhotos = new List<Photo>();
+                foreach (var photo in photos)
+                {
+                    if (photo.Tags.Count > 0)
                     {
-                        if (photoTag.Text.Contains(tag))
+                        foreach (var photoTag in photo.Tags)
                         {
-                            matchingPhotos.Add(photo);
+                            if (photoTag.Text.Contains(tag))
+                            {
+                                matchingPhotos.Add(photo);
+                            }
                         }
                     }
                 }
-            }
 
-            return matchingPhotos;
+                return matchingPhotos;
+            }
         }
     }
 }

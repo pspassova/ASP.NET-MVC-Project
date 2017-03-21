@@ -17,17 +17,17 @@ namespace Visions.Web.Controllers
             this.photoService = photoService;
         }
 
-        [HttpGet]
-        public ActionResult Shared(int page, int pageSize)
-        {
-            IEnumerable<PhotoViewModel> photos = this.photoService.GetAll(null, photo => photo.Tags.Count, OrderBy.Descending, PhotoViewModel.FromPhoto);
-            IPagedList<PhotoViewModel> photosPagedList = new PagedList<PhotoViewModel>(photos, page, pageSize);
+        //[HttpGet]
+        //public ActionResult Shared(int page, int pageSize)
+        //{
+        //    IEnumerable<PhotoViewModel> photos = this.photoService.GetAll(null, photo => photo.Tags.Count, OrderBy.Descending, PhotoViewModel.FromPhoto);
+        //    IPagedList<PhotoViewModel> photosPagedList = new PagedList<PhotoViewModel>(photos, page, pageSize);
 
-            return this.View(photosPagedList);
-        }
+        //    return this.View(photosPagedList);
+        //}
 
         [HttpGet]
-        public ActionResult Sort(string text, int page, int pageSize)
+        public ActionResult Shared(string text, int page, int pageSize)
         {
             this.ViewBag.SelectedTag = text;
 
@@ -36,7 +36,7 @@ namespace Visions.Web.Controllers
                 .Select(PhotoViewModel.FromPhoto);
             IPagedList<PhotoViewModel> photosPagedList = new PagedList<PhotoViewModel>(photos, page, pageSize);
 
-            return this.View("Shared", photosPagedList);
+            return this.View(photosPagedList);
         }
     }
 }

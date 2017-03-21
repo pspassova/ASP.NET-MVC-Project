@@ -49,6 +49,19 @@ namespace Visions.Web.Areas.Admin.Controllers
             return View(photos);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Manage(HttpPostedFileBase file, string tags)
+        {
+            ICollection<Tag> convertedTags = this.tagsConvertHelper.CreateTags(tags);
+            this.uploadTagService.UploadManyToDatabase(convertedTags);
+
+            this.UploadPhotos(file, convertedTags);
+            this.TempData["Success"] = "Upload successful";
+
+            return this.RedirectToAction("Manage");
+        }
+
         [HttpGet]
         public ActionResult Details(Guid id)
         {
@@ -60,25 +73,6 @@ namespace Visions.Web.Areas.Admin.Controllers
 
             PhotoViewModel photoViewModel = PhotoViewModel.ConvertPhotoToViewModel(photo);
             return PartialView("_PhotoDetails", photoViewModel);
-        }
-
-        [HttpGet]
-        public ActionResult Upload()
-        {
-            return PartialView("_UploadPhoto");
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Upload(HttpPostedFileBase file, string tags)
-        {
-            ICollection<Tag> convertedTags = this.tagsConvertHelper.CreateTags(tags);
-            this.uploadTagService.UploadManyToDatabase(convertedTags);
-
-            this.UploadPhotos(file, convertedTags);
-            this.TempData["Success"] = "Upload successful";
-
-            return this.RedirectToAction("UserDashboard");
         }
 
         [HttpGet]
@@ -125,7 +119,7 @@ namespace Visions.Web.Areas.Admin.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfermed(Guid id)
+        public ActionResult DeleteConfirmed(Guid id)
         {
             Photo photo = this.photoService.GetById(id);
             this.deletePhotoService.Delete(photo);

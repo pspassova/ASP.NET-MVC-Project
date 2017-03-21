@@ -30,11 +30,12 @@
                             @Html.ActionLink("Shared", "Shared", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })
                         </li>
                         <li class="page-scroll">
-                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new
-                            {
-                                id = "logoutForm",
-                                @class = "navbar-right"
-                            }))
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post,
+                                new
+                                {
+                                    id = "logoutForm",
+                                    @class = "navbar-right"
+                                }))
                             {
                                 @Html.AntiForgeryToken()
 
