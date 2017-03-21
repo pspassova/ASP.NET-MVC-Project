@@ -26,15 +26,15 @@ namespace Visions.Web
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/Content/site-css").Include(
                       "~/Content/vendor/font-awesome/css/font-awesome.css",
-                      "~/Content/vendor/bootstrap/css/bootstrap.css",
-                      "~/Content/css/creative.css"));
+                      "~/Content/vendor/bootstrap/css/bootstrap.css")
+                      .Include("~/Content/css/creative.css", new CssRewriteUrlTransform()));
+            
+            bundles.Add(new StyleBundle("~/Content/site-less")
+                .Include("~/Content/less/creative.less", new CssRewriteUrlTransform()));
 
-            bundles.Add(new StyleBundle("~/Content/less").Include(
-                      "~/Content/less/creative.less",
-                      "~/Content/less/mixins.less",
-                      "~/Content/less/variables.less"));
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

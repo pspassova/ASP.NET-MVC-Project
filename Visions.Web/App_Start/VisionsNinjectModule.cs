@@ -1,5 +1,6 @@
 ﻿using Ninject.Extensions.Interception.Infrastructure.Language;
 using Ninject.Modules;
+using Ninject.Web.Common;
 using Visions.Data;
 using Visions.Data.Contracts;
 using Visions.Data.Interceptors;
@@ -16,7 +17,7 @@ namespace Visions.Web.App_Start
     {
         public override void Load()
         {
-            this.Bind<IVisionsDbContext>().To<VisionsDbContext>().InSingletonScope();
+            this.Bind<IVisionsDbContext>().To<VisionsDbContext>().InRequestScope();
 
             this.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>));
 

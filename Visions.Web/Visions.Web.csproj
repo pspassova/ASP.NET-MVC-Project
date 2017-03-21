@@ -284,19 +284,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\creative.css" />
-    <Content Include="Content\css\creative.min.css" />
     <Content Include="Content\img\header.jpg" />
     <Content Include="Content\img\upload.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap.css" />
-    <Content Include="Content\vendor\bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\vendor\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\vendor\font-awesome\css\font-awesome.css" />
     <Content Include="Content\vendor\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="favicon.ico" />
-    <Content Include="Images\gold.jpg" />
-    <Content Include="Images\rain.jpg" />
-    <Content Include="Images\sea.jpg" />
     <Content Include="Scripts\scrollreveal.js" />
     <Content Include="Scripts\scrollreveal.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -356,11 +352,7 @@
     <Content Include="Areas\Admin\Views\Shared\_EditPhoto.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_PhotoDetails.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
-    <None Include="Properties\PublishProfiles\vissions - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\vissions - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\vsions - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\vsions - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\vsions - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\vsions - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\creative.js" />
@@ -417,13 +409,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Content\vendor\font-awesome\css\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
@@ -447,6 +441,9 @@
       <Project>{0C4D63FD-C3E4-4F96-B707-8200B090EBC6}</Project>
       <Name>Visions.Services</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
