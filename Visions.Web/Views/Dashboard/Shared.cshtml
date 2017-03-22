@@ -15,9 +15,6 @@
 }
 
 <div class="col-sm-10">
-    <label class="text-info text-lowercase">
-        Showing @this.Model.FirstItemOnPage - @Model.LastItemOnPage out of @this.Model.TotalItemCount photos
-    </label>
     @Html.PagedListPager(this.Model, page => Url.Action("Shared",
        new
        {
@@ -25,7 +22,7 @@
            page,
            pageSize = this.Model.PageSize
        }))
-    <div class="center-block text-info text-lowercase">
+    <div class="btn btn-post-article text-uppercase" >
         @Html.ActionLink("Back to homepage", "Index", "Home")
     </div>
 </div>

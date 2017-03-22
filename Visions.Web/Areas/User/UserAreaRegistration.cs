@@ -21,8 +21,6 @@ namespace Visions.Web.Areas.User
                 "user/{controller}/{action}/{page}/{pageSize}",
                 defaults: new
                 {
-                    controller = "Profile",
-                    action = "UserDashboard",
                     page = 1,
                     pageSize = 4
                 }
@@ -32,8 +30,6 @@ namespace Visions.Web.Areas.User
                 "user/{controller}/{action}/{id}",
                 defaults: new
                 {
-                    controller = "Profile",
-                    action = "UserDashboard",
                     id = UrlParameter.Optional
                 }
             );

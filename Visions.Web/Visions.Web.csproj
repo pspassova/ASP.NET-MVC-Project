@@ -340,12 +340,8 @@
     <Content Include="Content\less\mixins.less" />
     <Content Include="Content\less\variables.less" />
     <Content Include="Areas\User\Views\web.config" />
-    <Content Include="Areas\User\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\User\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\User\Views\Profile\UserDashboard.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\User\Views\Shared\_UserPhotos.cshtml" />
     <Content Include="Areas\Admin\Views\Profile\Manage.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_DeletePhoto.cshtml" />

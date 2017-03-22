@@ -16,8 +16,8 @@ namespace Visions.Web
                 "{controller}/{action}/{page}/{pageSize}",
                 defaults: new
                 {
-                    controller = "Dashboard",
-                    action = "Shared",
+                    controller = "Home",
+                    action = "Index",
                     page = 1,
                     pageSize = 4
                 }

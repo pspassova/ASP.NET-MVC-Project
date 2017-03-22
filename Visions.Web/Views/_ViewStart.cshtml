@@ -1,14 +1,3 @@
 ﻿@{
-    if (this.User.IsInRole("Admin"))
-    {
-        Layout = "~/areas/admin/views/shared/_layout.cshtml";
-    }
-    else if (!this.User.Identity.IsAuthenticated)
-    {
-        Layout = "~/views/shared/_layout.cshtml";
-    }
-    else
-    {
-        Layout = "~/areas/user/views/shared/_layout.cshtml";
-    }
+    Layout = "~/views/shared/_layout.cshtml";
 }

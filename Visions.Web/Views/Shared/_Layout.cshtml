@@ -22,12 +22,41 @@
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right homepage-nav">
+                    <ul class="nav navbar-nav navbar-right">
                         <li class="page-scroll">
-                            @Html.ActionLink("About", "About", "Home")
+                            @if (this.User.IsInRole("Admin"))
+	                        {
+                                @Html.RouteLink(this.User.Identity.Name.Substring(0, this.User.Identity.Name.IndexOf("@")), "Admin_default", new { action = "Manage", controller = "Profile" })
+                            }
+                            else
+                            {
+                                if (this.User.Identity.IsAuthenticated)
+                                {
+                                    @Html.RouteLink(this.User.Identity.Name.Substring(0, this.User.Identity.Name.IndexOf("@")), "User_default", new { action = "UserDashboard", controller = "Profile" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                                }
+                            }
                         </li>
                         <li class="page-scroll">
-                            @Html.ActionLink("Shared", "Shared", "Dashboard")
+                            @Html.ActionLink("Shared", "Shared", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })
+                        </li>
+                        <li class="page-scroll">
+                            @if (this.User.Identity.IsAuthenticated)
+	                        {
+	                        	using (Html.BeginForm("LogOff", "Account", FormMethod.Post,
+                                new
+                                {
+                                    id = "logoutForm",
+                                    @class = "navbar-brand logout-form"
+                                }))
+                                {
+                                @Html.AntiForgeryToken()
+                                <a href="javascript:document.getElementById('logoutForm').submit()">Log out</a>
+                                }
+	                        }
                         </li>
                     </ul>
                 </div>
