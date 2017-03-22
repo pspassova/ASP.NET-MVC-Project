@@ -28,5 +28,16 @@ namespace Visions.Web.Controllers
 
             return this.View(photosPagedList);
         }
+
+        [HttpPost]
+        public ActionResult Search(string query, int page, int pageSize)
+        {
+            IEnumerable<PhotoViewModel> photos = this.photoService.SortByTag(query)
+                .AsQueryable()
+                .Select(PhotoViewModel.FromPhoto);
+            IPagedList<PhotoViewModel> photosPagedList = new PagedList<PhotoViewModel>(photos, page, pageSize);
+
+            return this.View("Shared", photosPagedList);
+        }
     }
 }

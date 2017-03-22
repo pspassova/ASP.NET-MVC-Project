@@ -9,10 +9,26 @@
 
 <h2>@ViewBag.Title</h2>
 
-@if (this.Model.Count() > 0)
+@using (Ajax.BeginForm("Search", null,
+                    new AjaxOptions
+                    {
+                        UpdateTargetId = "allPhotos",
+                        InsertionMode = InsertionMode.Replace,
+                        HttpMethod = "POST"
+                    }, new
+                    {
+                        id = "searchForm"
+                    }))
 {
-    @Html.Partial("_AllPhotos", this.Model)
+    <input type="text" name="query" placeholder="Search" onsubmit="changed()" class="navbar-form form-control" />
 }
+
+<div id="allPhotos">
+    @if (this.Model.Count() > 0)
+    {
+        @Html.Partial("_AllPhotos", this.Model)
+    }
+</div>
 
 <div class="col-sm-10">
     @Html.PagedListPager(this.Model, page => Url.Action("Shared",
@@ -22,9 +38,16 @@
            page,
            pageSize = this.Model.PageSize
        }))
-    <div class="btn btn-post-article text-uppercase" >
+    <div class="btn btn-post-article text-uppercase">
         @Html.ActionLink("Back to homepage", "Index", "Home")
     </div>
 </div>
 
+@section Scripts{
+    <script>
+        function changed() {
+            $("#searchForm").submit();
+        }
+    </script>
+}
 
