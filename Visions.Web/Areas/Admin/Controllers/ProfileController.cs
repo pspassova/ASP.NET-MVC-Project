@@ -96,17 +96,25 @@ namespace Visions.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id")] PhotoViewModel photoViewModel)
+        public ActionResult Edit([Bind(Include = "Id,Path,Tags,CreatedOn")]PhotoViewModel photoViewModel)
         {
             Photo photo = this.photoService.GetById(photoViewModel.Id);
             if (photo == null)
             {
-                return HttpNotFound();
+                this.TempData["Success"] = "Edit failed";
+
+                return this.RedirectToAction("Edit");
             }
 
-            this.modifyPhotoService.Edit(photo);
+            photo.Id = photoViewModel.Id;
+            photo.Path = photoViewModel.Path;
+            photo.Tags = photoViewModel.Tags;
+            photo.CreatedOn = photoViewModel.CreatedOn;
 
-            return RedirectToAction("Manage");
+            this.modifyPhotoService.Edit(photo);
+            this.TempData["Success"] = "Edit successful";
+
+            return this.RedirectToAction("Edit");
         }
 
         [HttpGet]

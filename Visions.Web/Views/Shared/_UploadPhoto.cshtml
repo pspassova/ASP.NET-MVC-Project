@@ -7,6 +7,13 @@
 <div class="col-sm-offset-1 col-sm-11">
     <div class="well-lg col-sm-offset-7">
         <h2 class="display-3">Upload photo</h2>
+
+        @if (this.TempData["Success"] != null)
+        {
+        <div class="text-uppercase col-sm-offset-3">
+            <p>@this.TempData["Success"].ToString()</p>
+        </div>
+        }
     </div>
 
     <form id="uploadPhotoForm" action="" method="post" enctype="multipart/form-data">
@@ -23,11 +30,5 @@
         <div class="form-group col-sm-offset-9">
             <input type="submit" value="Post" class="btn btn-default" />
         </div>
-        @if (this.TempData["Success"] != null)
-        {
-            <div class="text-uppercase col-sm-offset-7">
-                <p>@this.TempData["Success"].ToString()</p>
-            </div>
-        }
     </form>
 </div>

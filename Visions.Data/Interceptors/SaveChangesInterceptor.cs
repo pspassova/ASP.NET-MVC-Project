@@ -15,7 +15,7 @@ namespace Visions.Data.Interceptors
         public void Intercept(IInvocation invocation)
         {
             invocation.Proceed();
-            this.context.SaveChanges();
+            this.context.SaveChangesAsync();
         }
     }
 }

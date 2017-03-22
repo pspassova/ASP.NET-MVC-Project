@@ -8,12 +8,12 @@
             {
             <tr>
                 <td>
-                    <img src="@photo.Path" class="center-block img-responsive" />
+                    <img src="@photo.Path" class="center-block img-responsive img-shared" />
                     @foreach (var tag in photo.Tags)
                     {
-                     this.ViewBag.SelectedTag = tag.Text;
+                        this.ViewBag.SelectedTag = tag.Text;
 
-                     <a class="text-info" onclick="location.href='@Url.Action("Sort", "Profile", new { tag.Text })'">#@tag.Text</a>
+                        <a class="btn btn-post-article text-lowercase text-info" onclick="location.href='@Url.Action("Sort", "Profile", new { tag.Text })'">#@tag.Text</a>
                     }
                 </td>
             </tr>

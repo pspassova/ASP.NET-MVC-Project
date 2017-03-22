@@ -62,7 +62,6 @@ namespace Visions.Web.Areas.User.Controllers
 
             string userId = this.User.Identity.GetUserId();
             string physicalPath = Server.MapPath("~/Images/" + userId);
-
             this.photoUploader.UploadPhotos(userId, file, physicalPath, convertedTags);
             this.TempData["Success"] = "Upload successful";
 

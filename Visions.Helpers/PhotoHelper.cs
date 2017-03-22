@@ -9,14 +9,6 @@ namespace Visions.Helpers
     {
         private static string directory;
 
-        public string GetPathForDatabase()
-        {
-            string textToCrop = "Images\\";
-            string path = "/Images/" + directory.Substring(directory.IndexOf(textToCrop) + textToCrop.Length);
-
-            return path;
-        }
-
         public void UploadToFileSystem(HttpPostedFileBase file, string physicalPath)
         {
             directory = this.GetDirectory(file, physicalPath);
@@ -25,6 +17,14 @@ namespace Visions.Helpers
             {
                 file.SaveAs(directory);
             }
+        }
+
+        public string GetPathForDatabase()
+        {
+            string textToCrop = "Images\\";
+            string path = "/Images/" + directory.Substring(directory.IndexOf(textToCrop) + textToCrop.Length);
+
+            return path;
         }
 
         private string GetFileName(HttpPostedFileBase file)

@@ -5,65 +5,76 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div>
-    <h2>Details</h2>
-    <hr />
+<hr />
+
+<div class="form-horizontal well-lg col-lg-offset-2">
+    <h2 class="col-lg-offset-8">@this.ViewBag.Title</h2>
 
     <dl class="dl-horizontal">
-        <dt>
+        <dt class="text-primary">
             @Html.DisplayNameFor(model => model.UserId)
         </dt>
 
-        <dd>
+        <dd class="text-lowercase">
             @Html.DisplayFor(model => model.UserId)
         </dd>
 
-        <dt>
+        <dt class="text-primary">
             @Html.DisplayNameFor(model => model.Path)
         </dt>
 
-        <dd>
+        <dd class="text-lowercase">
             @Html.DisplayFor(model => model.Path)
         </dd>
 
-        <dt>
+        <dt class="text-primary">
             @Html.DisplayNameFor(model => model.Tags)
         </dt>
 
-        <dd>
-            @foreach (var tag in this.Model.Tags)
+        <dd class="text-lowercase">
+            @if (this.Model.Tags.Count() > 0)
             {
-                <span>@Html.DisplayFor(model => tag.Text)</span>
+                foreach (var tag in this.Model.Tags)
+                {
+                    <span>@Html.DisplayFor(model => tag.Text)</span>
+                }
+            }
+            else
+            {
+                <label class="label label-danger text-capitalize">none</label>
             }
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Likes)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Likes)
-        </dd>
-
-        <dt>
+        <dt class="text-primary">
             @Html.DisplayNameFor(model => model.CreatedOn)
         </dt>
 
-        <dd>
+        <dd class="text-lowercase">
             @Html.DisplayFor(model => model.CreatedOn)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsDeleted)
+        <dt class="text-primary">
+            Actual image
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IsDeleted)
+            <img src="@this.Model.Path" class="col-xs-10 box-shadow" />
         </dd>
-
     </dl>
+
+    <div class="col-xs-offset-7">
+        @Html.ActionLink("Edit", "Edit", new
+   {
+       id = Model.Id
+   }, new
+   {
+       @class = "btn btn-post-article text-uppercase"
+   }) |
+        @Html.ActionLink("Back to list", "Manage", new
+   {
+   }, new
+   {
+       @class = "btn btn-post-article text-uppercase"
+   })
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to list", "Manage")
-</p>

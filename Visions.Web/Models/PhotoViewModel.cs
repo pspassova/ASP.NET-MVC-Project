@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
 using Visions.Models.Models;
@@ -30,6 +31,7 @@ namespace Visions.Web.Models
             get; set;
         }
 
+        [DisplayName("User ID")]
         public string UserId
         {
             get; set;
@@ -51,6 +53,9 @@ namespace Visions.Web.Models
             get; set;
         }
 
+        [DisplayName("Created on")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        [DataType(DataType.Date)]
         public DateTime? CreatedOn
         {
             get; set;

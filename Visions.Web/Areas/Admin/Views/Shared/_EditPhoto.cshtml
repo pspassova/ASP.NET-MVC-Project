@@ -5,65 +5,74 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm())
-{
-    <h2>@this.ViewBag.Title</h2>
-    <hr />
+<hr />
 
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal well-lg">
+<div class="form-horizontal well-lg col-lg-offset-3">
+
+    @using (Html.BeginForm())
+    {
+        <h2 class="col-lg-offset-7">@this.ViewBag.Title</h2>
+
+        if (this.TempData["Success"] != null)
+        {
+            <div class="text-uppercase col-sm-offset-8">
+                <p>@this.TempData["Success"].ToString()</p>
+            </div>
+        }
+
+        @Html.AntiForgeryToken()
+
         @Html.HiddenFor(model => model.Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Path, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Path, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="well-lg">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Path, htmlAttributes: new
+           {
+               @class = "control-label col-md-2 text-primary"
+           })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Path, new
+               {
+                   htmlAttributes = new
+                   {
+                       @class = "form-control"
+                   }
+               })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @foreach (var tag in this.Model.Tags)
-                {
-                     <span>@Html.EditorFor(model => tag.Text, new { htmlAttributes = new { @class = "form-control" } })</span>
-
-                }
+            <div class="form-group">
+                @Html.LabelFor(model => model.CreatedOn, htmlAttributes: new
+           {
+               @class = "control-label col-md-2"
+           })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CreatedOn, new
+               {
+                   htmlAttributes = new
+                   {
+                       @class = "form-control text-primary"
+                   }
+               })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Likes, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Likes, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreatedOn, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreatedOn, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsDeleted, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsDeleted)
+            <div class="form-group">
+                <label class="control-label col-md-2 text-primary">Image</label>
+                <div class="col-md-10">
+                    <img src="@this.Model.Path" class="col-xs-11" />
                 </div>
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+        <div class="col-xs-offset-7">
+            <input type="submit" value="Save" class="btn btn-post-article text-uppercase text-primary" /> |
+            @Html.ActionLink("Back to list", "Manage", new
+       {
+       }, new
+       {
+           @class = "btn btn-post-article text-uppercase"
+       })
         </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Manage")
+    }
 </div>

@@ -30,13 +30,13 @@ namespace Visions.Web.App_Start
             this.Bind<ITagService>().To<TagService>();
             this.Bind<IArticleService>().To<ArticleService>();
 
-            var uploadServiceBinding = this.Bind(typeof(IUploadService<>)).To(typeof(UploadService<>));
+            var uploadServiceBinding = this.Bind(typeof(IUploadService<>)).To(typeof(UploadService<>)).InRequestScope();
             uploadServiceBinding.Intercept().With<SaveChangesInterceptor>();
 
-            var modifyServiceBinding = this.Bind(typeof(IModifyService<>)).To(typeof(ModifyService<>));
+            var modifyServiceBinding = this.Bind(typeof(IModifyService<>)).To(typeof(ModifyService<>)).InRequestScope();
             modifyServiceBinding.Intercept().With<SaveChangesInterceptor>();
 
-            var deleteServiceBinding = this.Bind(typeof(IDeleteService<>)).To(typeof(DeleteService<>));
+            var deleteServiceBinding = this.Bind(typeof(IDeleteService<>)).To(typeof(DeleteService<>)).InRequestScope();
             deleteServiceBinding.Intercept().With<SaveChangesInterceptor>();
         }
     }
