@@ -10,6 +10,8 @@ namespace Visions.Helpers
     {
         private readonly ITagService tagService;
 
+        private const int MinTagTextLength = 2;
+
         public TagsHelper(ITagService tagService)
         {
             this.tagService = tagService;
@@ -21,8 +23,11 @@ namespace Visions.Helpers
             IEnumerable<string> separatedTagsTexts = this.SeparateTagsTexts(tagsTexts);
             foreach (var tagText in separatedTagsTexts)
             {
-                Tag tag = this.tagService.Create(tagText);
-                tags.Add(tag);
+                if (tagText.Length >= MinTagTextLength)
+                {
+                    Tag tag = this.tagService.Create(tagText);
+                    tags.Add(tag);
+                }
             }
 
             return tags;

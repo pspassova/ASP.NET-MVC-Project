@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Visions.Web.Models.ArticleViewModel>
 @{
-    ViewBag.Title = "Get started";
+    ViewBag.Title = Resources.Constants.HomepageGetStartedButtonText;
 }
 
 <header>
@@ -11,24 +11,24 @@
 
             @if (this.User.Identity.IsAuthenticated)
             {
-                <h3>Got something to say?</h3>
+                <h3>@Resources.Constants.PostArticleTitle</h3>
 
                 <form id="createArticleForm" action="" method="post" enctype="multipart/form-data">
                     @Html.AntiForgeryToken()
 
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <input id="articleTitle" type="text" name="articleTitle" class="form-control article-field" placeholder="Title" />
+                            <input id="articleTitle" type="text" name="articleTitle" class="form-control article-field" placeholder="@Resources.Constants.ArticleTitlePlaceholderMessage" />
                         </div>
 
                         <div class="form-group">
-                            <input id="articleContent" type="text" name="articleContent" class="form-control article-field" placeholder="Content" />
+                            <input id="articleContent" type="text" name="articleContent" class="form-control article-field" placeholder="@Resources.Constants.ArticleContentPlaceholderMessage" />
                         </div>
 
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" value="Post" class="btn btn-default btn-post-article article-field" />
+                        <input type="submit" value=@Resources.Constants.PostArticleButtonText class="btn btn-default btn-post-article article-field" />
                     </div>
                 </form>
 
@@ -37,11 +37,11 @@
             else
             {
                 <p>
-                    Come for what you love.
+                    @Resources.Constants.HomepageMainText
                     <br />
-                    Stay for what you discover.
+                    @Resources.Constants.HomepageSecondaryText
                 </p>
-                <a href="/account/login" class="btn btn-primary btn-xl">@this.ViewBag.Title</a>
+                @Html.ActionLink(Resources.Constants.HomepageGetStartedButtonText, "Login", "Account", new {}, new { @class="btn btn-primary btn-xl" })
             }
         </div>
     </div>
@@ -49,20 +49,22 @@
 
 @section Scripts {
     <script>
+        const ArticleFieldMinLength = 2;
+
         $("#createArticleForm").validate({
             rules: {
                 articleTitle: {
                     required: true,
-                    minlength: 2
+                    minlength: ArticleFieldMinLength
                 },
                 articleContent: {
                     required: true,
-                    minlength: 2
+                    minlength: ArticleFieldMinLength
                 }
             }
         });
 
-        $.validator.messages.required = "Please enter some text."
-        $.validator.messages.minlength = "The text must be more than {0} characters long.";
+        $.validator.messages.required = @Resources.Constants.ArticleFiledRequiredValidationMessage;
+        $.validator.messages.minlength = "@Resources.Constants.ArticleFieldMinLengthValidationMessage;
     </script>
 }

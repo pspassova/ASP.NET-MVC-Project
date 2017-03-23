@@ -11,15 +11,27 @@ namespace Visions.Web
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.MapRoute(
+            //    name: "Lang",
+            //    url: "{lang}/{controller}/{action}",
+            //    defaults: new
+            //    {
+            //        lang = UrlParameter.Optional,
+            //        controller = "Home",
+            //        action = "Index"
+            //    }
+            //);
             routes.MapRoute(
-                "DefaultPaging",
-                "{controller}/{action}/{page}/{pageSize}",
+                "Default_paging",
+                "{lang}/{controller}/{action}/{page}/{pageSize}/{text}",
                 defaults: new
                 {
+                    lang = UrlParameter.Optional,
                     controller = "Home",
                     action = "Index",
                     page = 1,
-                    pageSize = 4
+                    pageSize = 4,
+                    text = UrlParameter.Optional
                 }
             );
             routes.MapRoute(

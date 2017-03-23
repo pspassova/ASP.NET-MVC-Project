@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using PagedList;
+using Resources;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -37,7 +38,7 @@ namespace Visions.Web.Areas.User.Controllers
         }
 
         [HttpGet]
-        public ActionResult UserDashboard(int page, int pageSize)
+        public ActionResult Dashboard(int page, int pageSize)
         {
             string userId = this.User.Identity.GetUserId();
             IEnumerable<PhotoViewModel> photos = this.photoService.GetAll(userId, photo => photo.CreatedOn, OrderBy.Descending, PhotoViewModel.FromPhoto);
@@ -48,13 +49,13 @@ namespace Visions.Web.Areas.User.Controllers
         }
 
         [HttpPost]
-        public ActionResult UserDashboard(HttpPostedFileBase file, string tags)
+        public ActionResult Dashboard(HttpPostedFileBase file, string tags)
         {
             if (file == null)
             {
-                this.TempData["Success"] = "Upload failed";
+                this.TempData["Success"] = Resources.Constants.UploadFailedMessage;
 
-                return this.RedirectToAction("UserDashboard");
+                return this.RedirectToAction("Dashboard");
             }
 
             ICollection<Tag> convertedTags = this.tagsConvertHelper.CreateTags(tags);
@@ -63,9 +64,9 @@ namespace Visions.Web.Areas.User.Controllers
             string userId = this.User.Identity.GetUserId();
             string physicalPath = Server.MapPath("~/Images/" + userId);
             this.photoUploader.UploadPhotos(userId, file, physicalPath, convertedTags);
-            this.TempData["Success"] = "Upload successful";
+            this.TempData["Success"] = Resources.Constants.UploadSuccessfulMessage;
 
-            return this.RedirectToAction("UserDashboard");
+            return this.RedirectToAction("Dashboard");
         }
 
         [HttpGet]
@@ -79,7 +80,7 @@ namespace Visions.Web.Areas.User.Controllers
                            .Select(PhotoViewModel.FromPhoto);
             IPagedList<PhotoViewModel> photosPagedList = new PagedList<PhotoViewModel>(photos, page, pageSize);
 
-            return this.View("UserDashboard", photosPagedList);
+            return this.View("Dashboard", photosPagedList);
         }
     }
 }

@@ -17,7 +17,7 @@
                     {
                         this.ViewBag.SelectedTag = tag.Text;
 
-                        <a class="btn-post-article text-lowercase text-info" onclick="location.href='@Url.Action("Shared", "Dashboard", new { tag.Text })'">#@tag.Text</a>
+                        <a class="btn btn-post-article text-lowercase text-info" onclick="location.href='@Url.Action("Shared", "Dashboard", new { tag.Text })'">#@tag.Text</a>
                     }
                 </td>
             </tr>

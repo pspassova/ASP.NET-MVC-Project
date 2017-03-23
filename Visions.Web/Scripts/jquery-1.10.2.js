@@ -1062,7 +1062,7 @@ var i,
 		return 0;
 	},
 
-	// General-purpose constants
+	// General-purpose Resources.Constants
 	strundefined = typeof undefined,
 	MAX_NEGATIVE = 1 << 31,
 

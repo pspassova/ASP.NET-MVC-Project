@@ -2,24 +2,40 @@
 
 namespace Visions.Web.Areas.Admin
 {
-    public class AdminAreaRegistration : AreaRegistration 
+    public class AdminAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
+        public override string AreaName
         {
-            get 
+            get
             {
                 return "Admin";
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.Routes.LowercaseUrls = true;
 
             context.MapRoute(
+                "Admin_default_paging",
+                "{lang}/admin/{controller}/{action}/{page}/{pageSize}",
+                defaults: new
+                {
+                    lang = UrlParameter.Optional,
+                    controller = "Home",
+                    action = "Index",
+                    page = 1,
+                    pageSize = 4
+                }
+            );
+            context.MapRoute(
                 "Admin_default",
-                "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                "{lang}/admin/{controller}/{action}",
+                defaults: new
+                {
+                    lang = UrlParameter.Optional,
+                    action = "Index"
+                }
             );
         }
     }

@@ -15,9 +15,9 @@
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                        <span class="sr-only">@Resources.Constants.ToggleNavigationText</span> @Resources.Constants.MenuTabText <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand page-scroll">@Html.ActionLink("visions.", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>
+                    <a class="navbar-brand page-scroll">@Html.ActionLink(Resources.Constants.LogoText, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -32,16 +32,16 @@
                             {
                                 if (this.User.Identity.IsAuthenticated)
                                 {
-                                    @Html.RouteLink(this.User.Identity.Name.Substring(0, this.User.Identity.Name.IndexOf("@")), "User_default", new { action = "UserDashboard", controller = "Profile" })
+                                    @Html.RouteLink(this.User.Identity.Name.Substring(0, this.User.Identity.Name.IndexOf("@")), "User_default", new { action = "Dashboard", controller = "Profile" })
                                 }
                                 else
                                 {
-                                    @Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                                    @Html.ActionLink(Resources.Constants.AboutTabText, "About", "Home", new { area = "" }, new { @class = "navbar-brand" })
                                 }
                             }
                         </li>
                         <li class="page-scroll">
-                            @Html.ActionLink("Shared", "Shared", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink(Resources.Constants.SharedTabText, "Shared", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })
                         </li>
                         <li class="page-scroll">
                             @if (this.User.Identity.IsAuthenticated)
@@ -54,7 +54,7 @@
                                 }))
                                 {
                                 @Html.AntiForgeryToken()
-                                <a href="javascript:document.getElementById('logoutForm').submit()">Log out</a>
+                                <a href="javascript:document.getElementById('logoutForm').submit()">@Resources.Constants.LogoutTabText</a>
                                 }
 	                        }
                         </li>
@@ -69,7 +69,7 @@
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <hr class="primary">
-                    <p> @DateTime.Now.Year | ASP.NET MVC - Course project</p>
+                    <p> @DateTime.Now.Year | @Resources.Constants.FooterText</p>
                 </div>
             </div>
         </footer>

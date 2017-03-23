@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Resources;
 using System;
 using System.Collections.Generic;
 using System.Web;
@@ -51,7 +52,7 @@ namespace Visions.Web.Areas.Admin.Controllers
         {
             if (file == null)
             {
-                this.TempData["Success"] = "Upload failed";
+                this.TempData["Success"] = Resources.Constants.UploadFailedMessage;
 
                 return this.RedirectToAction("Manage");
             }
@@ -63,7 +64,7 @@ namespace Visions.Web.Areas.Admin.Controllers
             string physicalPath = Server.MapPath("~/Images/" + userId);
 
             this.photoUploader.UploadPhotos(userId, file, physicalPath, convertedTags);
-            this.TempData["Success"] = "Upload successful";
+            this.TempData["Success"] = Resources.Constants.UploadSuccessfulMessage;
 
             return this.RedirectToAction("Manage");
         }
@@ -101,20 +102,19 @@ namespace Visions.Web.Areas.Admin.Controllers
             Photo photo = this.photoService.GetById(photoViewModel.Id);
             if (photo == null)
             {
-                this.TempData["Success"] = "Edit failed";
+                this.TempData["Success"] = Resources.Constants.EditFailedMessage;
 
                 return this.RedirectToAction("Edit");
             }
 
             photo.Id = photoViewModel.Id;
             photo.Path = photoViewModel.Path;
-            photo.Tags = photoViewModel.Tags;
             photo.CreatedOn = photoViewModel.CreatedOn;
 
             this.modifyPhotoService.Edit(photo);
-            this.TempData["Success"] = "Edit successful";
+            this.TempData["Success"] = Resources.Constants.EditSuccessfulMessage;
 
-            return this.RedirectToAction("Edit");
+            return this.RedirectToAction("Edit", photoViewModel);
         }
 
         [HttpGet]

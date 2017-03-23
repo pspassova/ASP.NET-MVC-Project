@@ -35,7 +35,7 @@ namespace Visions.Web.Controllers
             Article article = this.articleService.Create(articleTitle, articleContent, userId);
 
             this.uploadArticleService.UploadToDatabase(article);
-            this.TempData["Success"] = "Upload successful";
+            this.TempData["Success"] = Resources.Constants.UploadSuccessfulMessage;
 
             return RedirectToAction("Index");
         }

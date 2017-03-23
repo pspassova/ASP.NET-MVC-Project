@@ -242,6 +242,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Constants.bg.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Constants.bg.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Constants.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Constants.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DatabaseConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -340,7 +350,7 @@
     <Content Include="Content\less\mixins.less" />
     <Content Include="Content\less\variables.less" />
     <Content Include="Areas\User\Views\web.config" />
-    <Content Include="Areas\User\Views\Profile\UserDashboard.cshtml" />
+    <Content Include="Areas\User\Views\Profile\Dashboard.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\User\Views\Shared\_UserPhotos.cshtml" />
     <Content Include="Areas\Admin\Views\Profile\Manage.cshtml" />
@@ -442,6 +452,18 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Constants.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Constants.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Constants.bg.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Constants.bg.designer.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

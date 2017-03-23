@@ -9,6 +9,8 @@ namespace Visions.Helpers
     {
         private static string directory;
 
+        private const string UploadedImagesFolderName = "Images";
+
         public void UploadToFileSystem(HttpPostedFileBase file, string physicalPath)
         {
             directory = this.GetDirectory(file, physicalPath);
@@ -21,8 +23,8 @@ namespace Visions.Helpers
 
         public string GetPathForDatabase()
         {
-            string textToCrop = "Images\\";
-            string path = "/Images/" + directory.Substring(directory.IndexOf(textToCrop) + textToCrop.Length);
+            string textToCrop = $"{UploadedImagesFolderName}\\";
+            string path = $"/{UploadedImagesFolderName}/" + directory.Substring(directory.IndexOf(textToCrop) + textToCrop.Length);
 
             return path;
         }

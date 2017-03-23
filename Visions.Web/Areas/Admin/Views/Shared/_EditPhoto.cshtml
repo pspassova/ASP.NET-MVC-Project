@@ -1,7 +1,7 @@
 ﻿@model Visions.Web.Models.PhotoViewModel
 
 @{
-    ViewBag.Title = "Edit photo";
+    ViewBag.Title = Resources.Constants.EditPhotoTitle;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -58,7 +58,7 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label col-md-2 text-primary">Image</label>
+                <label class="control-label col-md-2 text-primary">@Resources.Constants.LabelForImage</label>
                 <div class="col-md-10">
                     <img src="@this.Model.Path" class="col-xs-11" />
                 </div>
@@ -66,8 +66,8 @@
         </div>
 
         <div class="col-xs-offset-7">
-            <input type="submit" value="Save" class="btn btn-post-article text-uppercase text-primary" /> |
-            @Html.ActionLink("Back to list", "Manage", new
+            <input type="submit" value=@Resources.Constants.EditSaveButtonText class="btn btn-post-article text-uppercase text-primary" /> |
+            @Html.ActionLink(Resources.Constants.BackToListMessage, "Manage", new
        {
        }, new
        {

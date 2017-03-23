@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Visions.Web.Models.PhotoViewModel>
 
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = Resources.Constants.AdminManageSectionTitle;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -28,7 +28,7 @@
                     }
                 </td>
                 <td class="text-center text-uppercase text-primary">
-                    @Ajax.ActionLink("Edit", "Edit", new
+                    @Ajax.ActionLink(Resources.Constants.EditSectionText, "Edit", new
                {
                    id = photo.Id
                }, new AjaxOptions()
@@ -37,7 +37,7 @@
                    InsertionMode = InsertionMode.Replace,
                    UpdateTargetId = "edit-photo"
                }) |
-                    @Ajax.ActionLink("Details", "Details", new
+                    @Ajax.ActionLink(Resources.Constants.DetailsSectionText, "Details", new
                {
                    id = photo.Id
                }, new AjaxOptions()
@@ -46,7 +46,7 @@
                    InsertionMode = InsertionMode.Replace,
                    UpdateTargetId = "details-photo"
                }) |
-                    @Ajax.ActionLink("Delete", "Delete", new
+                    @Ajax.ActionLink(Resources.Constants.DeleteSectionText, "Delete", new
                {
                    id = photo.Id
                }, new AjaxOptions()

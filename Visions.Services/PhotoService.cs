@@ -122,6 +122,7 @@ namespace Visions.Services
                             if (photoTag.Text.Contains(tag))
                             {
                                 matchingPhotos.Add(photo);
+                                break;
                             }
                         }
                     }

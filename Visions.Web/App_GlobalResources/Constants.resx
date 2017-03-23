@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutPageMainText" xml:space="preserve">
+    <value>Visions lets you effortlessly share anything.</value>
+  </data>
+  <data name="AboutPageSecondaryText" xml:space="preserve">
+    <value>Post text, photos, quotes, links, music, and videos from your browser, phone, desktop or wherever you happen to be.</value>
+  </data>
+  <data name="AboutTabText" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AdminManageSectionTitle" xml:space="preserve">
+    <value>Manage</value>
+  </data>
+  <data name="ArticleContentPlaceholderMessage" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="ArticleFieldMinLengthValidationMessage" xml:space="preserve">
+    <value>The text must be more than {0} characters long.</value>
+    <comment>The message will be displayed when the text provided for the new article's title or content is below the minimal count of characters.</comment>
+  </data>
+  <data name="ArticleFiledRequiredValidationMessage" xml:space="preserve">
+    <value>Please enter some text.</value>
+    <comment>The message will be displayed when no text is provided for the new article's title or content.</comment>
+  </data>
+  <data name="ArticleTitlePlaceholderMessage" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="BackToHomepageMessage" xml:space="preserve">
+    <value>Back to homepage</value>
+  </data>
+  <data name="BackToListMessage" xml:space="preserve">
+    <value>Back to list</value>
+  </data>
+  <data name="ChoosePhotoAltMessage" xml:space="preserve">
+    <value>Choose a photo</value>
+  </data>
+  <data name="DeleteButtonText" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteConfirmationQuestionMessage" xml:space="preserve">
+    <value>Are you sure you want to delete this?</value>
+  </data>
+  <data name="DeletePhotoTitle" xml:space="preserve">
+    <value>Delete photo</value>
+  </data>
+  <data name="DeleteSectionText" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DetailsSectionText" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="EditButtonText" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditFailedMessage" xml:space="preserve">
+    <value>Edit failed</value>
+  </data>
+  <data name="EditPhotoTitle" xml:space="preserve">
+    <value>Edit photo</value>
+  </data>
+  <data name="EditSaveButtonText" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="EditSectionText" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditSuccessfulMessage" xml:space="preserve">
+    <value>Edit successful</value>
+  </data>
+  <data name="FooterText" xml:space="preserve">
+    <value>ASP.NET MVC - Course project</value>
+  </data>
+  <data name="FoundedByLabel" xml:space="preserve">
+    <value>Founded</value>
+  </data>
+  <data name="FoundedByText" xml:space="preserve">
+    <value>March 2017</value>
+  </data>
+  <data name="FounderLabel" xml:space="preserve">
+    <value>Founder</value>
+  </data>
+  <data name="FounderText" xml:space="preserve">
+    <value>Binary Unicorn</value>
+  </data>
+  <data name="HomepageGetStartedButtonText" xml:space="preserve">
+    <value>Get started</value>
+  </data>
+  <data name="HomepageMainText" xml:space="preserve">
+    <value>Come for what you love.</value>
+  </data>
+  <data name="HomepageSecondaryText" xml:space="preserve">
+    <value>Stay for what you discover.</value>
+  </data>
+  <data name="LabelForImage" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="LogoText" xml:space="preserve">
+    <value>visions.</value>
+  </data>
+  <data name="LogoutTabText" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="MenuTabText" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="NoResultsMessage" xml:space="preserve">
+    <value>No results</value>
+  </data>
+  <data name="PhotoDetailsTitle" xml:space="preserve">
+    <value>Photo details</value>
+  </data>
+  <data name="PostArticleButtonText" xml:space="preserve">
+    <value>Post</value>
+  </data>
+  <data name="PostArticleTitle" xml:space="preserve">
+    <value>Got something to say?</value>
+  </data>
+  <data name="PostUploadedPhotoButtonText" xml:space="preserve">
+    <value>Post</value>
+  </data>
+  <data name="ProfileTabText" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="SearchPlaceholderText" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SharedDashboardTitle" xml:space="preserve">
+    <value>Shared dashboard</value>
+  </data>
+  <data name="SharedTabText" xml:space="preserve">
+    <value>Shared</value>
+  </data>
+  <data name="TagsFieldPlaceholderMessage" xml:space="preserve">
+    <value>Tags, separated by spaces, at least two characters long</value>
+  </data>
+  <data name="ToggleNavigationText" xml:space="preserve">
+    <value>Toggle navigation</value>
+  </data>
+  <data name="UploadFailedMessage" xml:space="preserve">
+    <value>Upload failed</value>
+  </data>
+  <data name="UploadPhotoTitle" xml:space="preserve">
+    <value>Upload photo</value>
+  </data>
+  <data name="UploadSuccessfulMessage" xml:space="preserve">
+    <value>Upload successful</value>
+  </data>
+  <data name="UserIdDisplayName" xml:space="preserve">
+    <value>User ID</value>
+  </data>
+</root>

@@ -4,7 +4,7 @@
 @model IPagedList<Visions.Web.Models.PhotoViewModel>
 
 @{
-    ViewBag.Title = "Shared dashboard";
+    ViewBag.Title = Resources.Constants.SharedDashboardTitle;
 }
 
 <h2>@ViewBag.Title</h2>
@@ -20,13 +20,19 @@
                         id = "searchForm"
                     }))
 {
-    <input type="text" name="query" placeholder="Search" onsubmit="changed()" class="navbar-form form-control" />
+    <input type="text" name="query" placeholder=@Resources.Constants.SearchPlaceholderText onsubmit="changed()" class="navbar-form form-control" />
 }
 
 <div id="allPhotos">
     @if (this.Model.Count() > 0)
     {
         @Html.Partial("_AllPhotos", this.Model)
+    }
+    else
+    {
+        <div class="well-lg text-uppercase text-center">
+            <h1>@Resources.Constants.NoResultsMessage.</h1>
+        </div>
     }
 </div>
 
@@ -39,7 +45,7 @@
            pageSize = this.Model.PageSize
        }))
     <div class="btn btn-post-article text-uppercase">
-        @Html.ActionLink("Back to homepage", "Index", "Home")
+        @Html.ActionLink(Resources.Constants.BackToHomepageMessage, "Index", "Home")
     </div>
 </div>
 
