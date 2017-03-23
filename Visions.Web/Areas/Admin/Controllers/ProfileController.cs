@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNet.Identity;
-using Resources;
 using System;
 using System.Collections.Generic;
 using System.Web;

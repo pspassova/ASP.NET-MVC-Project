@@ -27,6 +27,6 @@ namespace Visions.Data.Contracts
 
         void InitializeDb();
 
-        void SaveChangesAsync();
+        void SaveChanges();
     }
 }

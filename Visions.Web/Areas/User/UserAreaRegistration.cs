@@ -31,11 +31,10 @@ namespace Visions.Web.Areas.User
             );
             context.MapRoute(
                 "User_default",
-                "{lang}/user/{controller}/{action}/{id}",
+                "{lang}/user/{controller}/{action}",
                 defaults: new
                 {
-                    lang = UrlParameter.Optional,
-                    id = UrlParameter.Optional
+                    lang = UrlParameter.Optional
                 }
             );
         }

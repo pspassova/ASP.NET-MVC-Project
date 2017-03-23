@@ -52,9 +52,9 @@ namespace Visions.Data
             //this.SaveChanges();
         }
 
-        public new void SaveChangesAsync()
+        public new void SaveChanges()
         {
-            base.SaveChangesAsync();
+            base.SaveChanges();
         }
 
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)

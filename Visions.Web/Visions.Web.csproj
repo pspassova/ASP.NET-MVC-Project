@@ -454,10 +454,11 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\Constants.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
+    <EmbeddedResource Include="App_GlobalResources\Constants.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Constants.designer.cs</LastGenOutput>
-    </Content>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\Constants.bg.resx">
