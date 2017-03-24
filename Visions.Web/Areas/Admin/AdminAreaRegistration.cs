@@ -21,7 +21,7 @@ namespace Visions.Web.Areas.Admin
                 "{lang}/admin/{controller}/{action}/{page}/{pageSize}",
                 defaults: new
                 {
-                    lang = UrlParameter.Optional,
+                    lang = "en",
                     controller = "Home",
                     action = "Index",
                     page = 1,
@@ -33,7 +33,7 @@ namespace Visions.Web.Areas.Admin
                 "{lang}/admin/{controller}/{action}",
                 defaults: new
                 {
-                    lang = UrlParameter.Optional,
+                    lang = "en",
                     action = "Index"
                 }
             );

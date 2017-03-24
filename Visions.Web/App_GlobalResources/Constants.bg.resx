@@ -117,14 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutPageMainText" xml:space="preserve">
+    <value>Тук можеш да споделяш каквото пожелаеш.</value>
+  </data>
   <data name="AboutPageSecondaryText" xml:space="preserve">
     <value>Публикувай снимки, цитати, линкове, музика и видеа от своя браузър, телефон или където и да се намираш.</value>
+  </data>
+  <data name="AboutPageTitle" xml:space="preserve">
+    <value>За нас</value>
   </data>
   <data name="AboutTabText" xml:space="preserve">
     <value>За нас</value>
   </data>
   <data name="AdminManageSectionTitle" xml:space="preserve">
     <value>Администраторски профил</value>
+  </data>
+  <data name="AlreadyHaveAnAccountText" xml:space="preserve">
+    <value>Вече имаш профил?</value>
   </data>
   <data name="ArticleContentPlaceholderMessage" xml:space="preserve">
     <value>Съдържание</value>
@@ -146,6 +155,9 @@
   </data>
   <data name="ChoosePhotoAltMessage" xml:space="preserve">
     <value>Избери снимка</value>
+  </data>
+  <data name="CreateNewAccountText" xml:space="preserve">
+    <value>Създай нов профил.</value>
   </data>
   <data name="DeleteButtonText" xml:space="preserve">
     <value>Изтрий</value>
@@ -180,6 +192,9 @@
   <data name="EditSuccessfulMessage" xml:space="preserve">
     <value>Промяната е успешна</value>
   </data>
+  <data name="EmailPlaceholderText" xml:space="preserve">
+    <value>пример: myname@yahoo.com</value>
+  </data>
   <data name="FooterText" xml:space="preserve">
     <value>Проект за курса по ASP.NET MVC</value>
   </data>
@@ -204,11 +219,17 @@
   <data name="LabelForImage" xml:space="preserve">
     <value>Снимка</value>
   </data>
+  <data name="LoginPageTitle" xml:space="preserve">
+    <value>Вход</value>
+  </data>
   <data name="LogoutTabText" xml:space="preserve">
     <value>Изход</value>
   </data>
   <data name="MenuTabText" xml:space="preserve">
     <value>Меню</value>
+  </data>
+  <data name="NewRegistrationText" xml:space="preserve">
+    <value>Регистрирай се</value>
   </data>
   <data name="NoResultsMessage" xml:space="preserve">
     <value>Няма резултати</value>
@@ -227,6 +248,9 @@
   </data>
   <data name="ProfileTabText" xml:space="preserve">
     <value>Профил</value>
+  </data>
+  <data name="RegisterPageTitle" xml:space="preserve">
+    <value>Регистрация</value>
   </data>
   <data name="SearchPlaceholderText" xml:space="preserve">
     <value>Търси</value>

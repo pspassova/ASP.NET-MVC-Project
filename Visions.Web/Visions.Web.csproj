@@ -294,6 +294,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\creative.css" />
+    <Content Include="Content\img\background.jpg" />
     <Content Include="Content\img\header.jpg" />
     <Content Include="Content\img\upload.png" />
     <Content Include="Content\PagedList.css" />

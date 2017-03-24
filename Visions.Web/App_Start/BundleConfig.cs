@@ -34,7 +34,7 @@ namespace Visions.Web
             bundles.Add(new StyleBundle("~/Content/site-less")
                 .Include("~/Content/less/creative.less", new CssRewriteUrlTransform()));
 
-            BundleTable.EnableOptimizations = true;
+            //BundleTable.EnableOptimizations = true;
         }
     }
 }

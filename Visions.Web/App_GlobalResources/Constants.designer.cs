@@ -81,6 +81,15 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
+        internal static string AboutPageTitle {
+            get {
+                return ResourceManager.GetString("AboutPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
         internal static string AboutTabText {
             get {
                 return ResourceManager.GetString("AboutTabText", resourceCulture);
@@ -93,6 +102,15 @@ namespace Resources {
         internal static string AdminManageSectionTitle {
             get {
                 return ResourceManager.GetString("AdminManageSectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Already have an account?.
+        /// </summary>
+        internal static string AlreadyHaveAnAccountText {
+            get {
+                return ResourceManager.GetString("AlreadyHaveAnAccountText", resourceCulture);
             }
         }
         
@@ -156,6 +174,15 @@ namespace Resources {
         internal static string ChoosePhotoAltMessage {
             get {
                 return ResourceManager.GetString("ChoosePhotoAltMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a new account..
+        /// </summary>
+        internal static string CreateNewAccountText {
+            get {
+                return ResourceManager.GetString("CreateNewAccountText", resourceCulture);
             }
         }
         
@@ -259,6 +286,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to eg: myname@yahoo.com.
+        /// </summary>
+        internal static string EmailPlaceholderText {
+            get {
+                return ResourceManager.GetString("EmailPlaceholderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ASP.NET MVC - Course project.
         /// </summary>
         internal static string FooterText {
@@ -340,6 +376,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Log in.
+        /// </summary>
+        internal static string LoginPageTitle {
+            get {
+                return ResourceManager.GetString("LoginPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to visions..
         /// </summary>
         internal static string LogoText {
@@ -363,6 +408,15 @@ namespace Resources {
         internal static string MenuTabText {
             get {
                 return ResourceManager.GetString("MenuTabText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register as a new user.
+        /// </summary>
+        internal static string NewRegistrationText {
+            get {
+                return ResourceManager.GetString("NewRegistrationText", resourceCulture);
             }
         }
         
@@ -417,6 +471,15 @@ namespace Resources {
         internal static string ProfileTabText {
             get {
                 return ResourceManager.GetString("ProfileTabText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register.
+        /// </summary>
+        internal static string RegisterPageTitle {
+            get {
+                return ResourceManager.GetString("RegisterPageTitle", resourceCulture);
             }
         }
         
