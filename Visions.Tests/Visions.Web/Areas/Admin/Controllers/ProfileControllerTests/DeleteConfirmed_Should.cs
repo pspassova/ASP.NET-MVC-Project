@@ -1,6 +1,8 @@
 ﻿using Moq;
 using NUnit.Framework;
 using System;
+using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using TestStack.FluentMVCTesting;
@@ -11,10 +13,10 @@ using Visions.Web.Areas.Admin.Controllers;
 using Visions.Web.Common.Contracts;
 using Visions.Web.Models;
 
+
 namespace Visions.Tests.Visions.Web.Areas.Admin.Controllers.ProfileControllerTests
 {
-    [TestFixture]
-    public class Details_Should
+    public class DeletingConfirmed_Should
     {
         private ProfileController controller;
         private Mock<HttpServerUtilityBase> serverMock;
@@ -50,13 +52,26 @@ namespace Visions.Tests.Visions.Web.Areas.Admin.Controllers.ProfileControllerTes
         }
 
         [Test]
+        public void HaveValidateAntiForgeryTokenAttribute()
+        {
+            // Arrange, Act
+            MethodAttributes attribute = typeof(ProfileController).GetMethods()
+                .Where(x => x.Name == nameof(ProfileController.DeletingConfirmed))
+                .Select(x => x.Attributes)
+                .SingleOrDefault(x => x.GetType() == typeof(ValidateAntiForgeryTokenAttribute));
+
+            // Assert
+            Assert.IsNotNull(attribute);
+        }
+
+        [Test]
         public void InvokeGetByIdMethod_Once_WhenAnIdIsPassed()
         {
             // Arrange
             this.photoServiceMock.Setup(x => x.GetById(It.IsAny<Guid>()));
 
             // Act
-            this.controller.Details(It.IsAny<Guid>());
+            this.controller.DeletingConfirmed(It.IsAny<Guid>());
 
             // Assert
             this.photoServiceMock.Verify(x => x.GetById(It.IsAny<Guid>()), Times.Once);
@@ -66,57 +81,38 @@ namespace Visions.Tests.Visions.Web.Areas.Admin.Controllers.ProfileControllerTes
         public void ReturnHttpNotFoundResult_WhenPassedIdIsNotFound()
         {
             // Arrange, Act
-            var result = this.controller.Details(It.IsAny<Guid>());
+            var result = this.controller.DeletingConfirmed(It.IsAny<Guid>());
 
             // Assert
             Assert.IsInstanceOf<HttpNotFoundResult>(result);
         }
 
         [Test]
-        public void InvokeConvertToViewModelMethod_Once_WhenPassedIdIsFound()
+        public void InvokeDeleteMethod_Once_WhenPhotoIsFound()
         {
             // Arrange
             var photoMock = new Mock<Photo>();
             this.photoServiceMock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(photoMock.Object);
 
-            this.photoConverterMock.Setup(x => x.ConvertToViewModel(It.IsAny<Photo>()));
+            this.deletePhotoServiceMock.Setup(x => x.Delete(It.IsAny<Photo>())).Verifiable();
 
             // Act
-            this.controller.Details(It.IsAny<Guid>());
+            this.controller.DeletingConfirmed(It.IsAny<Guid>());
 
             // Assert
-            this.photoConverterMock.Verify(x => x.ConvertToViewModel(It.IsAny<Photo>()), Times.Once);
+            this.deletePhotoServiceMock.Verify(x => x.Delete(It.IsAny<Photo>()), Times.Once);
         }
 
         [Test]
-        public void RenderTheCorrectPartialView_WhenPassedIdIsFound()
+        public void RedirectToTheCorrectAction_WhenIdIsPassed()
         {
             // Arrange
-            string partialView = "_PhotoDetails";
-
             var photoMock = new Mock<Photo>();
             this.photoServiceMock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(photoMock.Object);
 
             // Act, Assert
-            this.controller.WithCallTo(x => x.Details(It.IsAny<Guid>())).ShouldRenderPartialView(partialView);
-        }
-
-        [Test]
-        public void RenderTheCorrectPartialView_WithTheCorrectModel_WhenPassedIdIsFound()
-        {
-            // Arrange
-            string partialView = "_PhotoDetails";
-
-            var photoMock = new Mock<Photo>();
-            this.photoServiceMock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(photoMock.Object);
-
-            var photoViewModelMock = new Mock<PhotoViewModel>();
-            this.photoConverterMock.Setup(x => x.ConvertToViewModel(It.IsAny<Photo>())).Returns(photoViewModelMock.Object);
-
-            // Act, Assert
-            this.controller.WithCallTo(x => x.Details(It.IsAny<Guid>()))
-                .ShouldRenderPartialView(partialView)
-                .WithModel<PhotoViewModel>(photoViewModelMock.Object);
+            this.controller.WithCallTo(x => x.DeletingConfirmed(It.IsAny<Guid>()))
+                .ShouldRedirectTo(c => c.Manage);
         }
     }
 }

@@ -264,8 +264,10 @@
     <Compile Include="App_Start\VisionsNinjectModule.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ProfileController.cs" />
+    <Compile Include="Common\Contracts\IPagingProvider.cs" />
     <Compile Include="Common\Contracts\IPhotoConverter.cs" />
     <Compile Include="Common\Contracts\IPhotoUploader.cs" />
+    <Compile Include="Common\PagingProvider.cs" />
     <Compile Include="Common\PhotoConverter.cs" />
     <Compile Include="Common\PhotoUploader.cs" />
     <Compile Include="Areas\User\Controllers\ProfileController.cs" />

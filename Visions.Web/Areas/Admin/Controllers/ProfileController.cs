@@ -98,12 +98,12 @@ namespace Visions.Web.Areas.Admin.Controllers
             }
 
             PhotoViewModel photoViewModel = this.photoConverter.ConvertToViewModel(photo);
-            return PartialView("_EditPhoto", photoViewModel);
+            return this.PartialView("_EditPhoto", photoViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Path,Tags,CreatedOn")]PhotoViewModel photoViewModel)
+        public ActionResult Edit([Bind(Include = "Id,Path,CreatedOn")]PhotoViewModel photoViewModel)
         {
             Photo photo = this.photoService.GetById(photoViewModel.Id);
             if (photo == null)
@@ -120,13 +120,12 @@ namespace Visions.Web.Areas.Admin.Controllers
             this.modifyPhotoService.Edit(photo);
             this.TempData["Success"] = Resources.Constants.EditSuccessfulMessage;
 
-            return this.RedirectToAction("Edit", photoViewModel);
+            return this.PartialView("_EditPhoto", photoViewModel);
         }
 
         [HttpGet]
         public ActionResult Delete(Guid id)
         {
-
             Photo photo = this.photoService.GetById(id);
             if (photo == null)
             {
@@ -134,17 +133,23 @@ namespace Visions.Web.Areas.Admin.Controllers
             }
 
             PhotoViewModel photoViewModel = this.photoConverter.ConvertToViewModel(photo);
-            return PartialView("_DeletePhoto", photoViewModel);
+
+            return this.PartialView("_DeletePhoto", photoViewModel);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
+        public ActionResult DeletingConfirmed(Guid id)
         {
             Photo photo = this.photoService.GetById(id);
+            if (photo == null)
+            {
+                return HttpNotFound();
+            }
+
             this.deletePhotoService.Delete(photo);
 
-            return RedirectToAction("Manage");
+            return this.RedirectToAction("Manage");
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TestStack.FluentMVCTesting;
@@ -67,53 +66,22 @@ namespace Visions.Tests.Visions.Web.Areas.Admin.Controllers.ProfileControllerTes
         }
 
         [Test]
-        public void RedirectToTheRoute_WhenPassedFileIsNull()
-        {
-            // Arrange, Act
-            ActionResult result = this.controller.Manage(null, It.IsAny<string>());
-
-            // Assert
-            Assert.IsInstanceOf<RedirectToRouteResult>(result);
-        }
-
-        [Test]
         public void RedirectToTheCorrectAction_WhenPassedFileIsNull()
         {
-            // Arrange
-            string expectedActionName = "Manage";
-
-            // Act
-            RedirectToRouteResult result = this.controller.Manage(null, It.IsAny<string>()) as RedirectToRouteResult;
-
-            // Assert
-            Assert.AreSame(expectedActionName, result.RouteValues.First().Value);
-        }
-
-        [Test]
-        public void RedirectToTheRoute_WhenPassedFileIsNotNull()
-        {
-            // Arrange
-            var fileMock = new Mock<HttpPostedFileBase>();
-
-            //Act
-            ActionResult result = this.controller.Manage(fileMock.Object, It.IsAny<string>());
-
-            // Assert
-            Assert.IsInstanceOf<RedirectToRouteResult>(result);
+            // Arrange, Act, Assert
+            this.controller.WithCallTo(x => x.Manage(null, It.IsAny<string>()))
+                .ShouldRedirectTo(c => c.Manage());
         }
 
         [Test]
         public void RedirectToTheCorrectAction_WhenPassedFileIsNotNull()
         {
             // Arrange
-            string expectedActionName = "Manage";
             var fileMock = new Mock<HttpPostedFileBase>();
 
-            // Act
-            RedirectToRouteResult result = this.controller.Manage(fileMock.Object, It.IsAny<string>()) as RedirectToRouteResult;
-
-            // Assert
-            Assert.AreSame(expectedActionName, result.RouteValues.First().Value);
+            // Act, Assert
+            this.controller.WithCallTo(x => x.Manage(fileMock.Object, It.IsAny<string>()))
+                .ShouldRedirectTo(c => c.Manage());
         }
 
         [Test]
@@ -132,7 +100,7 @@ namespace Visions.Tests.Visions.Web.Areas.Admin.Controllers.ProfileControllerTes
         }
 
         [Test]
-        public void CallCreateTagsMethod_Once_WhenPassedTagsAreNotNull()
+        public void InvokeCreateTagsMethod_Once_WhenPassedTagsAreNotNull()
         {
             // Arrange
             string passedTags = "tags";
@@ -150,7 +118,7 @@ namespace Visions.Tests.Visions.Web.Areas.Admin.Controllers.ProfileControllerTes
         }
 
         [Test]
-        public void CallUploadManyToDatabaseMethod_Once_WhenPassedTagsAreNotNull()
+        public void InvokeUploadManyToDatabaseMethod_Once_WhenPassedTagsAreNotNull()
         {
             // Arrange
             string passedTags = "tags";
@@ -168,7 +136,7 @@ namespace Visions.Tests.Visions.Web.Areas.Admin.Controllers.ProfileControllerTes
         }
 
         [Test]
-        public void CallMapPathMethod_Once_WhenPassedParametersAreValid()
+        public void InvokeMapPathMethod_Once_WhenPassedParametersAreValid()
         {
             // Arrange
             string validTags = "tags";
@@ -185,7 +153,7 @@ namespace Visions.Tests.Visions.Web.Areas.Admin.Controllers.ProfileControllerTes
         }
 
         [Test]
-        public void CallUploadPhotosMethod_Once_WhenPassedFileIsNotNull()
+        public void InvokeUploadPhotosMethod_Once_WhenPassedFileIsNotNull()
         {
             // Arrange
             this.serverMock.Setup(x => x.MapPath(It.IsAny<string>())).Returns((string s) => s);
@@ -198,8 +166,8 @@ namespace Visions.Tests.Visions.Web.Areas.Admin.Controllers.ProfileControllerTes
 
             // Assert
             this.photoUploaderMock.Verify(x => x.UploadPhotos(
-                fileMock.Object, 
-                It.IsAny<string>(), 
+                fileMock.Object,
+                It.IsAny<string>(),
                 It.IsAny<ICollection<Tag>>()), Times.Once);
         }
 

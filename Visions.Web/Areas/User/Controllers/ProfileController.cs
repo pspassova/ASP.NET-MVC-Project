@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNet.Identity;
-using PagedList;
+﻿using PagedList;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Visions.Auth.Contracts;
 using Visions.Helpers.Contracts;
 using Visions.Models.Models;
 using Visions.Services.Contracts;
@@ -16,33 +16,42 @@ namespace Visions.Web.Areas.User.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
+        private readonly HttpServerUtilityBase server;
         private readonly IUploadService<Photo> uploadPhotoService;
         private readonly IUploadService<Tag> uploadTagService;
         private readonly IPhotoService photoService;
         private readonly IPhotoUploader photoUploader;
-        private readonly ITagsHelper tagsConvertHelper;
+        private readonly ITagsHelper tagsHelper;
+        private readonly IUserProvider userProvider;
+        private readonly IPagingProvider<PhotoViewModel> pagingProvider;
 
         public ProfileController(
+            HttpServerUtilityBase server,
             IUploadService<Photo> uploadPhotoService,
             IUploadService<Tag> uploadTagService,
             IPhotoService photoService,
             IPhotoUploader photoUploader,
-            ITagsHelper tagsConvertHelper)
+            ITagsHelper tagsHelper,
+            IUserProvider userProvider,
+            IPagingProvider<PhotoViewModel> pagingProvider)
         {
+            this.server = server;
             this.uploadPhotoService = uploadPhotoService;
             this.uploadTagService = uploadTagService;
             this.photoService = photoService;
             this.photoUploader = photoUploader;
-            this.tagsConvertHelper = tagsConvertHelper;
+            this.tagsHelper = tagsHelper;
+            this.userProvider = userProvider;
+            this.pagingProvider = pagingProvider;
         }
 
         [HttpGet]
         public ActionResult Dashboard(int page, int pageSize)
         {
-            string userId = this.User.Identity.GetUserId();
+            string userId = this.userProvider.GetUserId();
             IEnumerable<PhotoViewModel> photos = this.photoService.GetAll(userId, photo => photo.CreatedOn, OrderBy.Descending, PhotoViewModel.FromPhoto);
 
-            IPagedList<PhotoViewModel> photosPagedList = new PagedList<PhotoViewModel>(photos, page, pageSize);
+            IPagedList<PhotoViewModel> photosPagedList = this.pagingProvider.CreatePagedList(photos, page, pageSize);
 
             return this.View(photosPagedList);
         }
@@ -57,10 +66,14 @@ namespace Visions.Web.Areas.User.Controllers
                 return this.RedirectToAction("Dashboard");
             }
 
-            ICollection<Tag> convertedTags = this.tagsConvertHelper.CreateTags(tags);
-            this.uploadTagService.UploadManyToDatabase(convertedTags);
+            ICollection<Tag> convertedTags = new List<Tag>();
+            if (tags != null)
+            {
+                convertedTags = this.tagsHelper.CreateTags(tags);
+                this.uploadTagService.UploadManyToDatabase(convertedTags);
+            }
 
-            string physicalPath = Server.MapPath("~/Images/");
+            string physicalPath = this.server.MapPath("~/Images/");
             this.photoUploader.UploadPhotos(file, physicalPath, convertedTags);
             this.TempData["Success"] = Resources.Constants.UploadSuccessfulMessage;
 
@@ -72,11 +85,11 @@ namespace Visions.Web.Areas.User.Controllers
         {
             this.ViewBag.SelectedTag = text;
 
-            string userId = this.User.Identity.GetUserId();
+            string userId = this.userProvider.GetUserId();
             IEnumerable<PhotoViewModel> photos = this.photoService.SortByTag(text, userId)
                            .AsQueryable()
                            .Select(PhotoViewModel.FromPhoto);
-            IPagedList<PhotoViewModel> photosPagedList = new PagedList<PhotoViewModel>(photos, page, pageSize);
+            IPagedList<PhotoViewModel> photosPagedList = this.pagingProvider.CreatePagedList(photos, page, pageSize);
 
             return this.View("Dashboard", photosPagedList);
         }

@@ -16,7 +16,7 @@ namespace Visions.Services.Contracts
 
         IEnumerable<Photo> GetAll(string userId);
 
-        IEnumerable<T1> GetAll<T, T1>(string userId, Expression<Func<Photo, T>> orderByDescending, OrderBy? order, Expression<Func<Photo, T1>> selectAs);
+        IEnumerable<T1> GetAll<T, T1>(string userId, Expression<Func<Photo, T>> orderByProperty, OrderBy? order, Expression<Func<Photo, T1>> selectAs);
 
         IEnumerable<Photo> SortByTag(string tag, string userId = "");
     }

@@ -22,7 +22,7 @@ namespace Visions.Web.App_Start
         {
             this.Bind<HttpServerUtilityBase>().ToMethod(c => new HttpServerUtilityWrapper(HttpContext.Current.Server));
 
-            // Visions.Data
+            // Data
             this.Bind<IVisionsDbContext>().To<VisionsDbContext>().InRequestScope();
 
             this.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>));
@@ -42,7 +42,7 @@ namespace Visions.Web.App_Start
             var deleteServiceBinding = this.Bind(typeof(IDeleteService<>)).To(typeof(DeleteService<>)).InRequestScope();
             deleteServiceBinding.Intercept().With<SaveChangesInterceptor>();
 
-            // Visions.Auth
+            // Auth
             this.Bind<IUserProvider>().To<UserProvider>();
 
             // Helpers
@@ -52,6 +52,7 @@ namespace Visions.Web.App_Start
             // Common
             this.Bind<IPhotoUploader>().To<PhotoUploader>();
             this.Bind<IPhotoConverter>().To<PhotoConverter>();
+            this.Bind(typeof(IPagingProvider<>)).To(typeof(PagingProvider<>));
         }
     }
 }
