@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using Visions.Auth.Contracts;
 using Visions.Models.Models;
 using Visions.Services.Contracts;
 using Visions.Services.Enumerations;
@@ -12,11 +12,16 @@ namespace Visions.Web.Controllers
     {
         private readonly IUploadService<Article> uploadArticleService;
         private readonly IArticleService articleService;
+        private readonly IUserProvider userProvider;
 
-        public HomeController(IUploadService<Article> uploadArticleService, IArticleService articleService)
+        public HomeController(
+            IUploadService<Article> uploadArticleService, 
+            IArticleService articleService,
+            IUserProvider userProvider)
         {
             this.uploadArticleService = uploadArticleService;
             this.articleService = articleService;
+            this.userProvider = userProvider;
         }
 
         [HttpGet]
@@ -31,19 +36,18 @@ namespace Visions.Web.Controllers
         [HttpPost]
         public ActionResult Index(string articleTitle, string articleContent)
         {
-            string userId = this.User.Identity.GetUserId();
+            string userId = this.userProvider.GetUserId();
             Article article = this.articleService.Create(articleTitle, articleContent, userId);
 
             this.uploadArticleService.UploadToDatabase(article);
-            this.TempData["Success"] = Resources.Constants.UploadSuccessfulMessage;
 
-            return RedirectToAction("Index");
+            return this.RedirectToAction("Index");
         }
 
         [HttpGet]
         public ActionResult About()
         {
-            return View();
+            return this.View();
         }
     }
 }

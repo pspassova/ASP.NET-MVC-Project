@@ -176,14 +176,16 @@
     <Compile Include="Visions.Models\UserTests\PinnedArticles_Should.cs" />
     <Compile Include="Visions.Models\UserTests\PinnedPhotos_Should.cs" />
     <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\Class_Should.cs" />
-    <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\DeleteConfirmed_Should.cs" />
+    <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\DeletingConfirmed_Should.cs" />
     <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\Delete_Should.cs" />
     <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\Details_Should.cs" />
     <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\Edit_Should.cs" />
     <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\Manage_Should.cs" />
-    <Compile Include="Visions.Web\Areas\Admin\User\Controllers\ProfileControllerTests\Class_Should.cs" />
-    <Compile Include="Visions.Web\Areas\Admin\User\Controllers\ProfileControllerTests\Dashboard_Should.cs" />
-    <Compile Include="Visions.Web\Areas\Admin\User\Controllers\ProfileControllerTests\Sort_Should.cs" />
+    <Compile Include="Visions.Web\Areas\User\Controllers\ProfileControllerTests\Class_Should.cs" />
+    <Compile Include="Visions.Web\Areas\User\Controllers\ProfileControllerTests\Dashboard_Should.cs" />
+    <Compile Include="Visions.Web\Areas\User\Controllers\ProfileControllerTests\Sort_Should.cs" />
+    <Compile Include="Visions.Web\Controllers\HomeConrollerTests\About_Should.cs" />
+    <Compile Include="Visions.Web\Controllers\HomeConrollerTests\Index_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

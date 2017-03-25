@@ -12,7 +12,7 @@ using Visions.Web.Areas.User.Controllers;
 using Visions.Web.Common.Contracts;
 using Visions.Web.Models;
 
-namespace Visions.Tests.Visions.Web.Areas.Admin.User.Controllers.ProfileControllerTests
+namespace Visions.Tests.Visions.Web.Areas.User.Controllers.ProfileControllerTests
 {
     public class Sort_Should
     {

@@ -16,7 +16,7 @@ using TestStack.FluentMVCTesting;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Visions.Tests.Visions.Web.Areas.Admin.User.Controllers.ProfileControllerTests
+namespace Visions.Tests.Visions.Web.Areas.User.Controllers.ProfileControllerTests
 {
     [TestFixture]
     public class Dashboard_Should
