@@ -24,8 +24,13 @@ namespace Visions.Web
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            string lang = this.Request.Url.LocalPath.Split('/')[1];
+            string lang = this.Request.CurrentExecutionFilePath.Split('/')[1];
+            if (lang == null || lang == "__browserLink")
+            {
+                string defaultLanguage = "en-GB";
 
+                lang = defaultLanguage;
+            }
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(lang);
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(lang);
         }

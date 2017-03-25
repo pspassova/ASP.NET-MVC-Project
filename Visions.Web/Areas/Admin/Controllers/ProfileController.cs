@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
@@ -7,7 +6,7 @@ using Visions.Helpers.Contracts;
 using Visions.Models.Models;
 using Visions.Services.Contracts;
 using Visions.Services.Enumerations;
-using Visions.Web.Helpers.Contracts;
+using Visions.Web.Common.Contracts;
 using Visions.Web.Models;
 
 namespace Visions.Web.Areas.Admin.Controllers
@@ -15,27 +14,33 @@ namespace Visions.Web.Areas.Admin.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
+        private readonly HttpServerUtilityBase server;
         private readonly IUploadService<Tag> uploadTagService;
         private readonly IModifyService<Photo> modifyPhotoService;
         private readonly IDeleteService<Photo> deletePhotoService;
         private readonly IPhotoService photoService;
         private readonly IPhotoUploader photoUploader;
-        private readonly ITagsHelper tagsConvertHelper;
+        private readonly IPhotoConverter photoConverter;
+        private readonly ITagsHelper tagsHelper;
 
         public ProfileController(
+            HttpServerUtilityBase server,
             IUploadService<Tag> uploadTagService,
             IModifyService<Photo> modifyPhotoService,
             IDeleteService<Photo> deletePhotoService,
             IPhotoService photoService,
             IPhotoUploader photoUploader,
-            ITagsHelper tagsConvertHelper)
+            IPhotoConverter photoConverter,
+            ITagsHelper tagsHelper)
         {
+            this.server = server;
             this.uploadTagService = uploadTagService;
             this.modifyPhotoService = modifyPhotoService;
             this.deletePhotoService = deletePhotoService;
             this.photoService = photoService;
             this.photoUploader = photoUploader;
-            this.tagsConvertHelper = tagsConvertHelper;
+            this.photoConverter = photoConverter;
+            this.tagsHelper = tagsHelper;
         }
 
         [HttpGet]
@@ -56,13 +61,15 @@ namespace Visions.Web.Areas.Admin.Controllers
                 return this.RedirectToAction("Manage");
             }
 
-            ICollection<Tag> convertedTags = this.tagsConvertHelper.CreateTags(tags);
-            this.uploadTagService.UploadManyToDatabase(convertedTags);
+            ICollection<Tag> convertedTags = new List<Tag>();
+            if (tags != null)
+            {
+                convertedTags = this.tagsHelper.CreateTags(tags);
+                this.uploadTagService.UploadManyToDatabase(convertedTags);
+            }
 
-            string userId = this.User.Identity.GetUserId();
-            string physicalPath = Server.MapPath("~/Images/" + userId);
-
-            this.photoUploader.UploadPhotos(userId, file, physicalPath, convertedTags);
+            string physicalPath = this.server.MapPath("~/Images/");
+            this.photoUploader.UploadPhotos(file, physicalPath, convertedTags);
             this.TempData["Success"] = Resources.Constants.UploadSuccessfulMessage;
 
             return this.RedirectToAction("Manage");
@@ -77,8 +84,8 @@ namespace Visions.Web.Areas.Admin.Controllers
                 return HttpNotFound();
             }
 
-            PhotoViewModel photoViewModel = PhotoViewModel.ConvertPhotoToViewModel(photo);
-            return PartialView("_PhotoDetails", photoViewModel);
+            PhotoViewModel photoViewModel = this.photoConverter.ConvertToViewModel(photo);
+            return this.PartialView("_PhotoDetails", photoViewModel);
         }
 
         [HttpGet]
@@ -90,7 +97,7 @@ namespace Visions.Web.Areas.Admin.Controllers
                 return HttpNotFound();
             }
 
-            PhotoViewModel photoViewModel = PhotoViewModel.ConvertPhotoToViewModel(photo);
+            PhotoViewModel photoViewModel = this.photoConverter.ConvertToViewModel(photo);
             return PartialView("_EditPhoto", photoViewModel);
         }
 
@@ -126,7 +133,7 @@ namespace Visions.Web.Areas.Admin.Controllers
                 return HttpNotFound();
             }
 
-            PhotoViewModel photoViewModel = PhotoViewModel.ConvertPhotoToViewModel(photo);
+            PhotoViewModel photoViewModel = this.photoConverter.ConvertToViewModel(photo);
             return PartialView("_DeletePhoto", photoViewModel);
         }
 

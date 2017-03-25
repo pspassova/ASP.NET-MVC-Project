@@ -175,6 +175,7 @@
     <Compile Include="Visions.Models\UserTests\PinnedPhotos_Should.cs" />
     <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\Class_Should.cs" />
     <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\Details_Should.cs" />
+    <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\Edit_Should.cs" />
     <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\Manage_Should.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +183,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Visions.Auth\Visions.Auth.csproj">
+      <Project>{FD72A3F2-EEB5-4323-A455-EB8744FC94C1}</Project>
+      <Name>Visions.Auth</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Visions.Data\Visions.Data.csproj">
       <Project>{D53AE12F-0D3B-4688-B6C3-0A2B6FDE3B65}</Project>
       <Name>Visions.Data</Name>

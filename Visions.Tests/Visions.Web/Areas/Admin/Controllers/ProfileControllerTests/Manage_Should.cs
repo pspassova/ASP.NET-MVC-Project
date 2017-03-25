@@ -1,12 +1,15 @@
 ﻿using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 using TestStack.FluentMVCTesting;
 using Visions.Helpers.Contracts;
 using Visions.Models.Models;
 using Visions.Services.Contracts;
 using Visions.Web.Areas.Admin.Controllers;
-using Visions.Web.Helpers.Contracts;
+using Visions.Web.Common.Contracts;
 using Visions.Web.Models;
 
 namespace Visions.Tests.Visions.Web.Areas.Admin.Controllers.ProfileControllerTests
@@ -15,24 +18,36 @@ namespace Visions.Tests.Visions.Web.Areas.Admin.Controllers.ProfileControllerTes
     public class Manage_Should
     {
         private ProfileController controller;
+        private Mock<HttpServerUtilityBase> serverMock;
+        private Mock<IUploadService<Tag>> uploadTagServiceMock;
+        private Mock<IModifyService<Photo>> modifyPhotoServiceMock;
+        private Mock<IDeleteService<Photo>> deletePhotoServiceMock;
+        private Mock<IPhotoService> photoServiceMock;
+        private Mock<IPhotoUploader> photoUploaderMock;
+        private Mock<IPhotoConverter> photoConverterMock;
+        private Mock<ITagsHelper> tagsHelperMock;
 
         [SetUp]
         public void Setup()
         {
-            var uploadTagServiceMock = new Mock<IUploadService<Tag>>();
-            var modifyPhotoServiceMock = new Mock<IModifyService<Photo>>();
-            var deletePhotoServiceMock = new Mock<IDeleteService<Photo>>();
-            var photoServiceMock = new Mock<IPhotoService>();
-            var photoUploaderMock = new Mock<IPhotoUploader>();
-            var tagsHelperMock = new Mock<ITagsHelper>();
+            this.serverMock = new Mock<HttpServerUtilityBase>();
+            this.uploadTagServiceMock = new Mock<IUploadService<Tag>>();
+            this.modifyPhotoServiceMock = new Mock<IModifyService<Photo>>();
+            this.deletePhotoServiceMock = new Mock<IDeleteService<Photo>>();
+            this.photoServiceMock = new Mock<IPhotoService>();
+            this.photoUploaderMock = new Mock<IPhotoUploader>();
+            this.photoConverterMock = new Mock<IPhotoConverter>();
+            this.tagsHelperMock = new Mock<ITagsHelper>();
 
             this.controller = new ProfileController(
-                uploadTagServiceMock.Object,
-                modifyPhotoServiceMock.Object,
-                deletePhotoServiceMock.Object,
-                photoServiceMock.Object,
-                photoUploaderMock.Object,
-                tagsHelperMock.Object);
+                this.serverMock.Object,
+                this.uploadTagServiceMock.Object,
+                this.modifyPhotoServiceMock.Object,
+                this.deletePhotoServiceMock.Object,
+                this.photoServiceMock.Object,
+                this.photoUploaderMock.Object,
+                this.photoConverterMock.Object,
+                this.tagsHelperMock.Object);
         }
 
         [Test]
@@ -49,6 +64,160 @@ namespace Visions.Tests.Visions.Web.Areas.Admin.Controllers.ProfileControllerTes
             this.controller.WithCallTo(x => x.Manage())
                 .ShouldRenderDefaultView()
                 .WithModel<IEnumerable<PhotoViewModel>>();
+        }
+
+        [Test]
+        public void RedirectToTheRoute_WhenPassedFileIsNull()
+        {
+            // Arrange, Act
+            ActionResult result = this.controller.Manage(null, It.IsAny<string>());
+
+            // Assert
+            Assert.IsInstanceOf<RedirectToRouteResult>(result);
+        }
+
+        [Test]
+        public void RedirectToTheCorrectAction_WhenPassedFileIsNull()
+        {
+            // Arrange
+            string expectedActionName = "Manage";
+
+            // Act
+            RedirectToRouteResult result = this.controller.Manage(null, It.IsAny<string>()) as RedirectToRouteResult;
+
+            // Assert
+            Assert.AreSame(expectedActionName, result.RouteValues.First().Value);
+        }
+
+        [Test]
+        public void RedirectToTheRoute_WhenPassedFileIsNotNull()
+        {
+            // Arrange
+            var fileMock = new Mock<HttpPostedFileBase>();
+
+            //Act
+            ActionResult result = this.controller.Manage(fileMock.Object, It.IsAny<string>());
+
+            // Assert
+            Assert.IsInstanceOf<RedirectToRouteResult>(result);
+        }
+
+        [Test]
+        public void RedirectToTheCorrectAction_WhenPassedFileIsNotNull()
+        {
+            // Arrange
+            string expectedActionName = "Manage";
+            var fileMock = new Mock<HttpPostedFileBase>();
+
+            // Act
+            RedirectToRouteResult result = this.controller.Manage(fileMock.Object, It.IsAny<string>()) as RedirectToRouteResult;
+
+            // Assert
+            Assert.AreSame(expectedActionName, result.RouteValues.First().Value);
+        }
+
+        [Test]
+        public void SetTempDataSuccessKey_WithCorrectValue_WhenPassedFileIsNull()
+        {
+            // Arrange
+            string key = "Success";
+            string value = "Upload failed";
+
+            // Act
+            ActionResult result = this.controller.Manage(null, It.IsAny<string>());
+
+            // Assert
+            Assert.That(this.controller.TempData.ContainsKey(key));
+            Assert.That(this.controller.TempData.ContainsValue(value));
+        }
+
+        [Test]
+        public void CallCreateTagsMethod_Once_WhenPassedTagsAreNotNull()
+        {
+            // Arrange
+            string passedTags = "tags";
+            this.tagsHelperMock.Setup(x => x.CreateTags(passedTags));
+
+            this.serverMock.Setup(x => x.MapPath(It.IsAny<string>())).Returns((string s) => s);
+
+            var fileMock = new Mock<HttpPostedFileBase>();
+
+            // Act
+            this.controller.Manage(fileMock.Object, passedTags);
+
+            // Assert
+            this.tagsHelperMock.Verify(x => x.CreateTags(passedTags), Times.Once);
+        }
+
+        [Test]
+        public void CallUploadManyToDatabaseMethod_Once_WhenPassedTagsAreNotNull()
+        {
+            // Arrange
+            string passedTags = "tags";
+            this.uploadTagServiceMock.Setup(x => x.UploadManyToDatabase(It.IsAny<IEnumerable<Tag>>()));
+
+            this.serverMock.Setup(x => x.MapPath(It.IsAny<string>())).Returns((string s) => s);
+
+            var fileMock = new Mock<HttpPostedFileBase>();
+
+            // Act
+            this.controller.Manage(fileMock.Object, passedTags);
+
+            // Assert
+            this.uploadTagServiceMock.Verify(x => x.UploadManyToDatabase(It.IsAny<IEnumerable<Tag>>()), Times.Once);
+        }
+
+        [Test]
+        public void CallMapPathMethod_Once_WhenPassedParametersAreValid()
+        {
+            // Arrange
+            string validTags = "tags";
+
+            this.serverMock.Setup(x => x.MapPath(It.IsAny<string>())).Returns((string s) => s);
+
+            var fileMock = new Mock<HttpPostedFileBase>();
+
+            // Act
+            this.controller.Manage(fileMock.Object, validTags);
+
+            // Assert
+            this.serverMock.Verify(x => x.MapPath(It.IsAny<string>()), Times.Once);
+        }
+
+        [Test]
+        public void CallUploadPhotosMethod_Once_WhenPassedFileIsNotNull()
+        {
+            // Arrange
+            this.serverMock.Setup(x => x.MapPath(It.IsAny<string>())).Returns((string s) => s);
+
+            var fileMock = new Mock<HttpPostedFileBase>();
+            this.photoUploaderMock.Setup(x => x.UploadPhotos(fileMock.Object, It.IsAny<string>(), It.IsAny<ICollection<Tag>>()));
+
+            // Act
+            this.controller.Manage(fileMock.Object, It.IsAny<string>());
+
+            // Assert
+            this.photoUploaderMock.Verify(x => x.UploadPhotos(
+                fileMock.Object, 
+                It.IsAny<string>(), 
+                It.IsAny<ICollection<Tag>>()), Times.Once);
+        }
+
+        [Test]
+        public void SetTempDataSuccessKey_WithCorrectValue_WhenPassedFileIsNotNull()
+        {
+            // Arrange
+            string key = "Success";
+            string value = "Upload successful";
+
+            var fileMock = new Mock<HttpPostedFileBase>();
+
+            // Act
+            ActionResult result = this.controller.Manage(fileMock.Object, It.IsAny<string>());
+
+            // Assert
+            Assert.That(this.controller.TempData.ContainsKey(key));
+            Assert.That(this.controller.TempData.ContainsValue(value));
         }
     }
 }

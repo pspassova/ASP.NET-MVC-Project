@@ -1,5 +1,4 @@
-﻿using Resources;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -65,20 +64,6 @@ namespace Visions.Web.Models
         public bool IsDeleted
         {
             get; set;
-        }
-
-        public static PhotoViewModel ConvertPhotoToViewModel(Photo photo)
-        {
-            return new PhotoViewModel
-            {
-                Id = photo.Id,
-                UserId = photo.UserId,
-                Path = photo.Path,
-                Likes = photo.Likes,
-                Tags = photo.Tags,
-                CreatedOn = photo.CreatedOn,
-                IsDeleted = photo.IsDeleted
-            };
         }
     }
 }

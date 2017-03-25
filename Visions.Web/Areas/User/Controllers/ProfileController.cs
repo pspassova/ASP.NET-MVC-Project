@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
 using PagedList;
-using Resources;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,7 +8,7 @@ using Visions.Helpers.Contracts;
 using Visions.Models.Models;
 using Visions.Services.Contracts;
 using Visions.Services.Enumerations;
-using Visions.Web.Helpers.Contracts;
+using Visions.Web.Common.Contracts;
 using Visions.Web.Models;
 
 namespace Visions.Web.Areas.User.Controllers
@@ -61,9 +60,8 @@ namespace Visions.Web.Areas.User.Controllers
             ICollection<Tag> convertedTags = this.tagsConvertHelper.CreateTags(tags);
             this.uploadTagService.UploadManyToDatabase(convertedTags);
 
-            string userId = this.User.Identity.GetUserId();
-            string physicalPath = Server.MapPath("~/Images/" + userId);
-            this.photoUploader.UploadPhotos(userId, file, physicalPath, convertedTags);
+            string physicalPath = Server.MapPath("~/Images/");
+            this.photoUploader.UploadPhotos(file, physicalPath, convertedTags);
             this.TempData["Success"] = Resources.Constants.UploadSuccessfulMessage;
 
             return this.RedirectToAction("Dashboard");
