@@ -43,7 +43,7 @@ namespace Visions.Web.Areas.Admin.Controllers
         {
             IEnumerable<PhotoViewModel> photos = this.photoService.GetAll(null, photo => photo.CreatedOn, OrderBy.Descending, PhotoViewModel.FromPhoto);
 
-            return View(photos);
+            return this.View(photos);
         }
 
         [HttpPost]

@@ -99,31 +99,31 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="TestStack.FluentMVCTesting, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\TestStack.FluentMVCTesting.3.0.0\lib\NET45\TestStack.FluentMVCTesting.dll</HintPath>
+    <Reference Include="TestStack.FluentMVCTesting, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TestStack.FluentMVCTesting.2.0.0\lib\NET40\TestStack.FluentMVCTesting.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -173,6 +173,9 @@
     <Compile Include="Visions.Models\UserTests\GenerateUserIdentity_Should.cs" />
     <Compile Include="Visions.Models\UserTests\PinnedArticles_Should.cs" />
     <Compile Include="Visions.Models\UserTests\PinnedPhotos_Should.cs" />
+    <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\Class_Should.cs" />
+    <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\Details_Should.cs" />
+    <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\Manage_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -183,12 +186,26 @@
       <Project>{D53AE12F-0D3B-4688-B6C3-0A2B6FDE3B65}</Project>
       <Name>Visions.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Visions.Helpers\Visions.Helpers.csproj">
+      <Project>{6AC8559E-3ACC-45F0-BFB5-538572986CEB}</Project>
+      <Name>Visions.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Visions.Models\Visions.Models.csproj">
       <Project>{4CFD0108-767A-4A85-A475-A5E1AFC1254F}</Project>
       <Name>Visions.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Visions.Services\Visions.Services.csproj">
+      <Project>{0C4D63FD-C3E4-4F96-B707-8200B090EBC6}</Project>
+      <Name>Visions.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Visions.Web\Visions.Web.csproj">
+      <Project>{52468002-6A0A-4E60-9860-D72832AB21D8}</Project>
+      <Name>Visions.Web</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Visions.Models\TagTests\" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
