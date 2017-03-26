@@ -27,35 +27,18 @@ namespace Visions.Web.Models
             }
         }
 
-        //public static Expression<Func<ArticleViewModel, Article>> ToArticle
-        //{
-        //    get
-        //    {
-        //        return articleViewModel => new Article
-        //        {
-        //            Id = articleViewModel.Id,
-        //            Title = articleViewModel.Title,
-        //            Content = articleViewModel.Content,
-        //            Tags = articleViewModel.Tags,
-        //            UserId = articleViewModel.UserId,
-        //            IsDeleted = articleViewModel.IsDeleted,
-        //            CreatedOn = articleViewModel.CreatedOn,
-        //        };
-        //    }
-        //}
-
         public Guid Id
         {
             get; set;
         }
 
-        //[StringLength(500, MinimumLength = 2, ErrorMessage = "Enter at least {0} characters.")]
+        [StringLength(500, MinimumLength = 2, ErrorMessage = "Enter at least {0} characters.")]
         public string Title
         {
             get; set;
         }
 
-        //[StringLength(100, MinimumLength = 2, ErrorMessage = "Enter at least {0} characters.")]
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "Enter at least {0} characters.")]
         public string Content
         {
             get; set;

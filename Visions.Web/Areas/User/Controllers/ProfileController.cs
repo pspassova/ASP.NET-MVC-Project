@@ -1,4 +1,5 @@
-﻿using PagedList;
+﻿using Bytes2you.Validation;
+using PagedList;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -35,6 +36,15 @@ namespace Visions.Web.Areas.User.Controllers
             IUserProvider userProvider,
             IPagingProvider<PhotoViewModel> pagingProvider)
         {
+            Guard.WhenArgument(server, "server").IsNull().Throw();
+            Guard.WhenArgument(uploadPhotoService, "uploadPhotoService").IsNull().Throw();
+            Guard.WhenArgument(uploadTagService, "uploadTagService").IsNull().Throw();
+            Guard.WhenArgument(photoService, "photoService").IsNull().Throw();
+            Guard.WhenArgument(photoUploader, "photoUploader").IsNull().Throw();
+            Guard.WhenArgument(tagsHelper, "tagsHelper").IsNull().Throw();
+            Guard.WhenArgument(userProvider, "userProvider").IsNull().Throw();
+            Guard.WhenArgument(pagingProvider, "pagingProvider").IsNull().Throw();
+
             this.server = server;
             this.uploadPhotoService = uploadPhotoService;
             this.uploadTagService = uploadTagService;

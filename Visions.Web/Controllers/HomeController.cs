@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Bytes2you.Validation;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using Visions.Auth.Contracts;
 using Visions.Models.Models;
@@ -19,6 +20,10 @@ namespace Visions.Web.Controllers
             IArticleService articleService,
             IUserProvider userProvider)
         {
+            Guard.WhenArgument(uploadArticleService, "uploadArticleService").IsNull().Throw();
+            Guard.WhenArgument(articleService, "articleService").IsNull().Throw();
+            Guard.WhenArgument(userProvider, "userProvider").IsNull().Throw();
+
             this.uploadArticleService = uploadArticleService;
             this.articleService = articleService;
             this.userProvider = userProvider;

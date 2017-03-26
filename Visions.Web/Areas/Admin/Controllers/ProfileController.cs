@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bytes2you.Validation;
+using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
@@ -33,6 +34,15 @@ namespace Visions.Web.Areas.Admin.Controllers
             IPhotoConverter photoConverter,
             ITagsHelper tagsHelper)
         {
+            Guard.WhenArgument(server, "server").IsNull().Throw();
+            Guard.WhenArgument(uploadTagService, "uploadTagService").IsNull().Throw();
+            Guard.WhenArgument(modifyPhotoService, "modifyPhotoService").IsNull().Throw();
+            Guard.WhenArgument(deletePhotoService, "deletePhotoService").IsNull().Throw();
+            Guard.WhenArgument(photoService, "photoService").IsNull().Throw();
+            Guard.WhenArgument(photoUploader, "photoUploader").IsNull().Throw();
+            Guard.WhenArgument(photoConverter, "photoConverter").IsNull().Throw();
+            Guard.WhenArgument(tagsHelper, "tagsHelper").IsNull().Throw();
+
             this.server = server;
             this.uploadTagService = uploadTagService;
             this.modifyPhotoService = modifyPhotoService;

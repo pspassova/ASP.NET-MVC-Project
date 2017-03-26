@@ -15,19 +15,19 @@ namespace Visions.Tests.Visions.Web.Controllers.HomeConrollerTests
     public class Index_Should
     {
         private HomeController controller;
-        private Mock<IUploadService<Article>> uploadArticleService;
+        private Mock<IUploadService<Article>> uploadArticleServiceMock;
         private Mock<IArticleService> articleServiceMock;
         private Mock<IUserProvider> userProviderMock;
 
         [SetUp]
         public void Setup()
         {
-            this.uploadArticleService = new Mock<IUploadService<Article>>();
+            this.uploadArticleServiceMock = new Mock<IUploadService<Article>>();
             this.articleServiceMock = new Mock<IArticleService>();
             this.userProviderMock = new Mock<IUserProvider>();
 
             this.controller = new HomeController(
-                this.uploadArticleService.Object,
+                this.uploadArticleServiceMock.Object,
                 this.articleServiceMock.Object,
                 this.userProviderMock.Object);
         }
@@ -109,13 +109,13 @@ namespace Visions.Tests.Visions.Web.Controllers.HomeConrollerTests
             this.articleServiceMock.Setup(x => x.Create(articleTitle, articleContent, userId))
                .Returns(articleMock.Object);
 
-            this.uploadArticleService.Setup(x => x.UploadToDatabase(articleMock.Object)).Verifiable();
+            this.uploadArticleServiceMock.Setup(x => x.UploadToDatabase(articleMock.Object)).Verifiable();
 
             // Act
             this.controller.Index(articleTitle, articleContent);
 
             // Assert
-            this.uploadArticleService.Verify(x => x.UploadToDatabase(articleMock.Object), Times.Once);
+            this.uploadArticleServiceMock.Verify(x => x.UploadToDatabase(articleMock.Object), Times.Once);
         }
 
         [Test]

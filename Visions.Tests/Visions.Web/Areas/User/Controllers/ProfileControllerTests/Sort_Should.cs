@@ -117,7 +117,7 @@ namespace Visions.Tests.Visions.Web.Areas.User.Controllers.ProfileControllerTest
         }
 
         [Test]
-        public void RendeDashboardView_WhenPassedParametersAreValid()
+        public void RenderDashboardView_WhenPassedParametersAreValid()
         {
             // Arrange
             string viewName = "Dashboard";
