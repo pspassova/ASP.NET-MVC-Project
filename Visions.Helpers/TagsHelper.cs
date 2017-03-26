@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bytes2you.Validation;
+using System;
 using System.Collections.Generic;
 using Visions.Helpers.Contracts;
 using Visions.Models.Models;
@@ -14,13 +15,21 @@ namespace Visions.Helpers
 
         public TagsHelper(ITagService tagService)
         {
+            Guard.WhenArgument(tagService, "tagService").IsNull().Throw();
+
             this.tagService = tagService;
         }
 
         public ICollection<Tag> CreateTags(string tagsTexts)
         {
+            IEnumerable<string> separatedTagsTexts = new List<string>();
+            if (tagsTexts != null)
+            {
+                separatedTagsTexts = this.SeparateTagsTexts(tagsTexts);
+            }
+
             ICollection<Tag> tags = new List<Tag>();
-            IEnumerable<string> separatedTagsTexts = this.SeparateTagsTexts(tagsTexts);
+
             foreach (var tagText in separatedTagsTexts)
             {
                 if (tagText.Length >= MinTagTextLength)

@@ -156,6 +156,8 @@
     <Compile Include="Visions.Data\VisionsDbContextTests\Create_Should.cs" />
     <Compile Include="Visions.Data\VisionsDbContextTests\Set_Should.cs" />
     <Compile Include="Visions.Helpers\PhotoHelperTests\UploadToFileSystem_Should.cs" />
+    <Compile Include="Visions.Helpers\TagHelperTests\Constructor_Should.cs" />
+    <Compile Include="Visions.Helpers\TagHelperTests\CreateTags_Should.cs" />
     <Compile Include="Visions.Models\ArticleTests\Content_Should.cs" />
     <Compile Include="Visions.Models\ArticleTests\CreatedOn_Should.cs" />
     <Compile Include="Visions.Models\ArticleTests\Id_Should.cs" />
@@ -222,6 +224,9 @@
     <Compile Include="Visions.Web\Controllers\HomeConrollerTests\About_Should.cs" />
     <Compile Include="Visions.Web\Controllers\HomeConrollerTests\Constructor_Should.cs" />
     <Compile Include="Visions.Web\Controllers\HomeConrollerTests\Index_Should.cs" />
+    <Compile Include="Visoins.Auth\UserProviderTests\Constructor_Should.cs" />
+    <Compile Include="Visoins.Auth\UserProviderTests\GetUserId_Should.cs" />
+    <Compile Include="Visoins.Auth\UserProviderTests\GetUsername_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -255,7 +260,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Visions.Models\TagTests\" />
-    <Folder Include="Visoins.Auth\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
