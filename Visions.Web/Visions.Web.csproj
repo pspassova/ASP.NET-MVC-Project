@@ -302,6 +302,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\creative.css" />
+    <Content Include="Content\ErrorPage.css" />
     <Content Include="Content\img\background.jpg" />
     <Content Include="Content\img\header.jpg" />
     <Content Include="Content\img\upload.png" />
@@ -311,6 +312,10 @@
     <Content Include="Content\vendor\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\vendor\font-awesome\css\font-awesome.css" />
     <Content Include="Content\vendor\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="ErrorPages\400.html" />
+    <Content Include="ErrorPages\403.html" />
+    <Content Include="ErrorPages\404.html" />
+    <Content Include="ErrorPages\500.html" />
     <Content Include="favicon.ico" />
     <Content Include="Scripts\scrollreveal.js" />
     <Content Include="Scripts\scrollreveal.min.js" />
