@@ -15,7 +15,7 @@ namespace Visions.Helpers
         {
             directory = this.GetDirectory(file, physicalPath);
 
-            if (file != null && file.ContentLength > 0)
+            if (file != null)
             {
                 file.SaveAs(directory);
             }

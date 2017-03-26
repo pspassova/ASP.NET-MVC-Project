@@ -1,4 +1,5 @@
-﻿using Visions.Models.Models;
+﻿using Bytes2you.Validation;
+using Visions.Models.Models;
 using Visions.Web.Common.Contracts;
 using Visions.Web.Models;
 
@@ -8,6 +9,8 @@ namespace Visions.Web.Common
     {
         public PhotoViewModel ConvertToViewModel(Photo photo)
         {
+            Guard.WhenArgument(photo, "photo").IsNull().Throw();
+
             PhotoViewModel photoViewModel = new PhotoViewModel
             {
                 Id = photo.Id,

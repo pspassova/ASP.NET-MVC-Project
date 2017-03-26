@@ -14,6 +14,16 @@ namespace Visions.Web.Common
                 items = new List<T>();
             }
 
+            if (pageNumber == 0)
+            {
+                pageNumber = 1;
+            }
+
+            if (pageSize == 0)
+            {
+                pageSize = 1;
+            }
+
             return new PagedList<T>(items, pageNumber, pageSize);
         }
     }

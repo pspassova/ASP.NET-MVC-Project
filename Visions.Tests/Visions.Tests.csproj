@@ -151,9 +151,12 @@
     <Compile Include="Visions.Data\GenericRepositoryTests\GetAll_Should.cs" />
     <Compile Include="Visions.Data\GenericRepositoryTests\GetById_Should.cs" />
     <Compile Include="Visions.Data\GenericRepositoryTests\Update_Should.cs" />
+    <Compile Include="Visions.Data\Interceptors\SaveChangesInterceptorTests\Constructor_Should.cs" />
+    <Compile Include="Visions.Data\Interceptors\SaveChangesInterceptorTests\Intercept_Should.cs" />
     <Compile Include="Visions.Data\VisionsDbContextTests\Constructor_Should.cs" />
     <Compile Include="Visions.Data\VisionsDbContextTests\Create_Should.cs" />
     <Compile Include="Visions.Data\VisionsDbContextTests\Set_Should.cs" />
+    <Compile Include="Visions.Helpers\PhotoHelperTests\UploadToFileSystem_Should.cs" />
     <Compile Include="Visions.Models\ArticleTests\Content_Should.cs" />
     <Compile Include="Visions.Models\ArticleTests\CreatedOn_Should.cs" />
     <Compile Include="Visions.Models\ArticleTests\Id_Should.cs" />
@@ -205,6 +208,10 @@
     <Compile Include="Visions.Web\Areas\User\Controllers\ProfileControllerTests\Constructor_Should.cs" />
     <Compile Include="Visions.Web\Areas\User\Controllers\ProfileControllerTests\Dashboard_Should.cs" />
     <Compile Include="Visions.Web\Areas\User\Controllers\ProfileControllerTests\Sort_Should.cs" />
+    <Compile Include="Visions.Web\Common\PagingProviderTests\CreatePagedList_Should.cs" />
+    <Compile Include="Visions.Web\Common\PhotoConverterTests\ConvertToViewModel_Should.cs" />
+    <Compile Include="Visions.Web\Common\PhotoUploaderTests\Constructor_Should.cs" />
+    <Compile Include="Visions.Web\Common\PhotoUploaderTests\UploadPhotos_Should.cs" />
     <Compile Include="Visions.Web\Controllers\DashboardControllerTests\Constructor_Should.cs" />
     <Compile Include="Visions.Web\Controllers\DashboardControllerTests\Search_Should.cs" />
     <Compile Include="Visions.Web\Controllers\DashboardControllerTests\Shared_Should.cs" />

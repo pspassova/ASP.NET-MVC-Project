@@ -1,4 +1,5 @@
-﻿using Ninject.Extensions.Interception;
+﻿using Bytes2you.Validation;
+using Ninject.Extensions.Interception;
 using Visions.Data.Contracts;
 
 namespace Visions.Data.Interceptors
@@ -9,11 +10,15 @@ namespace Visions.Data.Interceptors
 
         public SaveChangesInterceptor(IVisionsDbContext context)
         {
+            Guard.WhenArgument(context, "context").IsNull().Throw();
+
             this.context = context;
         }
 
         public void Intercept(IInvocation invocation)
         {
+            Guard.WhenArgument(invocation, "invocation").IsNull().Throw();
+
             invocation.Proceed();
             this.context.SaveChanges();
         }
