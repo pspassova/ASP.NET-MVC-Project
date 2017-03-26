@@ -33,13 +33,13 @@ namespace Visions.Web.App_Start
             this.Bind<IArticleService>().To<ArticleService>();
 
             // Interceptors
-            var uploadServiceBinding = this.Bind(typeof(IUploadService<>)).To(typeof(UploadService<>)).InRequestScope();
+            var uploadServiceBinding = this.Bind(typeof(IUploadService<>)).To(typeof(UploadService<>))/*.InRequestScope()*/;
             uploadServiceBinding.Intercept().With<SaveChangesInterceptor>();
 
-            var modifyServiceBinding = this.Bind(typeof(IModifyService<>)).To(typeof(ModifyService<>)).InRequestScope();
+            var modifyServiceBinding = this.Bind(typeof(IModifyService<>)).To(typeof(ModifyService<>))/*.InRequestScope()*/;
             modifyServiceBinding.Intercept().With<SaveChangesInterceptor>();
 
-            var deleteServiceBinding = this.Bind(typeof(IDeleteService<>)).To(typeof(DeleteService<>)).InRequestScope();
+            var deleteServiceBinding = this.Bind(typeof(IDeleteService<>)).To(typeof(DeleteService<>))/*.InRequestScope()*/;
             deleteServiceBinding.Intercept().With<SaveChangesInterceptor>();
 
             // Auth

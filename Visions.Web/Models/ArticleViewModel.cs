@@ -32,13 +32,13 @@ namespace Visions.Web.Models
             get; set;
         }
 
-        [StringLength(500, MinimumLength = 2, ErrorMessage = "Enter at least {0} characters.")]
+        //[StringLength(50, MinimumLength = 2, ErrorMessage = "Enter at least {0} characters.")]
         public string Title
         {
             get; set;
         }
 
-        [StringLength(100, MinimumLength = 2, ErrorMessage = "Enter at least {0} characters.")]
+        //[StringLength(500, MinimumLength = 2, ErrorMessage = "Enter at least {0} characters.")]
         public string Content
         {
             get; set;

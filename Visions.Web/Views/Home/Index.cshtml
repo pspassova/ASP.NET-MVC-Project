@@ -18,11 +18,13 @@
 
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <input id="articleTitle" type="text" name="articleTitle" class="form-control article-field" placeholder="@Resources.Constants.ArticleTitlePlaceholderMessage" />
+                            <input id="articleTitle" type="text" name="articleTitle" class="form-control article-field" placeholder="@Constants.ArticleTitlePlaceholderMessage"
+                                    pattern="(.*?){2,50}" autofocus required title="must be from 2 to 50 symbols"/>
                         </div>
 
                         <div class="form-group">
-                            <input id="articleContent" type="text" name="articleContent" class="form-control article-field" placeholder="@Resources.Constants.ArticleContentPlaceholderMessage" />
+                            <input id="articleContent" type="text" name="articleContent" class="form-control article-field" placeholder="@Constants.ArticleContentPlaceholderMessage" 
+                                   pattern="(.*?){2,500}" autofocus required title="must be from 2 to 500 symbols" />
                         </div>
 
                     </div>
@@ -47,7 +49,7 @@
     </div>
 </header>
 
-@section Scripts {
+@*@section Scripts {
     <script>
         const ArticleFieldMinLength = 2;
 
@@ -67,4 +69,4 @@
         $.validator.messages.required = @Constants.ArticleFiledRequiredValidationMessage;
         $.validator.messages.minlength = "@Constants.ArticleFieldMinLengthValidationMessage;
     </script>
-}
+}*@

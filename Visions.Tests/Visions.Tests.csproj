@@ -175,6 +175,14 @@
     <Compile Include="Visions.Models\UserTests\GenerateUserIdentity_Should.cs" />
     <Compile Include="Visions.Models\UserTests\PinnedArticles_Should.cs" />
     <Compile Include="Visions.Models\UserTests\PinnedPhotos_Should.cs" />
+    <Compile Include="Visions.Services\ArticleServiceTests\Constructor_Should.cs" />
+    <Compile Include="Visions.Services\ArticleServiceTests\Create_Should.cs" />
+    <Compile Include="Visions.Services\ArticleServiceTests\GetAllDetailed_Should.cs" />
+    <Compile Include="Visions.Services\ArticleServiceTests\GetAll_Should.cs" />
+    <Compile Include="Visions.Services\DeleteServiceTests\Constructor_Should.cs" />
+    <Compile Include="Visions.Services\DeleteServiceTests\Delete_Should.cs" />
+    <Compile Include="Visions.Services\ModifyServiceTests\Constructor_Should.cs" />
+    <Compile Include="Visions.Services\ModifyServiceTests\Edit_Should.cs" />
     <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\Class_Should.cs" />
     <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\Constructor_Should.cs" />
     <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\DeletingConfirmed_Should.cs" />
