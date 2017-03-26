@@ -183,6 +183,17 @@
     <Compile Include="Visions.Services\DeleteServiceTests\Delete_Should.cs" />
     <Compile Include="Visions.Services\ModifyServiceTests\Constructor_Should.cs" />
     <Compile Include="Visions.Services\ModifyServiceTests\Edit_Should.cs" />
+    <Compile Include="Visions.Services\PhotoServiceTests\Constructor_Should.cs" />
+    <Compile Include="Visions.Services\PhotoServiceTests\Create_Should.cs" />
+    <Compile Include="Visions.Services\PhotoServiceTests\GetAllDetailed_Should.cs" />
+    <Compile Include="Visions.Services\PhotoServiceTests\GetAllWithUserId_Should.cs" />
+    <Compile Include="Visions.Services\PhotoServiceTests\GetAll_Should.cs" />
+    <Compile Include="Visions.Services\PhotoServiceTests\GetById_Should.cs" />
+    <Compile Include="Visions.Services\PhotoServiceTests\SortByTag_Should.cs" />
+    <Compile Include="Visions.Services\TagServiceTests\Create_Should.cs" />
+    <Compile Include="Visions.Services\UploadServiceTests\Constructor_Should.cs" />
+    <Compile Include="Visions.Services\UploadServiceTests\UploadManyToDatabase_Should.cs" />
+    <Compile Include="Visions.Services\UploadServiceTests\UploadToDatabase_Should.cs" />
     <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\Class_Should.cs" />
     <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\Constructor_Should.cs" />
     <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\DeletingConfirmed_Should.cs" />

@@ -4,6 +4,7 @@ using System;
 using Visions.Data.Contracts;
 using Visions.Models.Models;
 using Visions.Services;
+using Visions.Services.Contracts;
 
 namespace Visions.Tests.Visions.Services.DeleteServiceTests
 {
@@ -15,7 +16,7 @@ namespace Visions.Tests.Visions.Services.DeleteServiceTests
         {
             // Arrange
             var repositoryMock = new Mock<IEfRepository<Photo>>();
-            DeleteService<Photo> deleteService = new DeleteService<Photo>(repositoryMock.Object);
+            IDeleteService<Photo> deleteService = new DeleteService<Photo>(repositoryMock.Object);
 
             // Act, Assert
             Assert.Throws<ArgumentNullException>(() => deleteService.Delete(null));
@@ -27,7 +28,7 @@ namespace Visions.Tests.Visions.Services.DeleteServiceTests
             // Arrange
             var itemMock = new Mock<Tag>();
             var repositoryMock = new Mock<IEfRepository<Tag>>();
-            DeleteService<Tag> deleteService = new DeleteService<Tag>(repositoryMock.Object);
+            IDeleteService<Tag> deleteService = new DeleteService<Tag>(repositoryMock.Object);
 
             // Act
             deleteService.Delete(itemMock.Object);

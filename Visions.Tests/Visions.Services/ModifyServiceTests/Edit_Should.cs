@@ -4,6 +4,7 @@ using System;
 using Visions.Data.Contracts;
 using Visions.Models.Models;
 using Visions.Services;
+using Visions.Services.Contracts;
 
 namespace Visions.Tests.Visions.Services.ModifyServiceTests
 {
@@ -15,19 +16,19 @@ namespace Visions.Tests.Visions.Services.ModifyServiceTests
         {
             // Arrange
             var repositoryMock = new Mock<IEfRepository<Photo>>();
-            ModifyService<Photo> modifyService = new ModifyService<Photo>(repositoryMock.Object);
+            IModifyService<Photo> modifyService = new ModifyService<Photo>(repositoryMock.Object);
 
             // Act, Assert
             Assert.Throws<ArgumentNullException>(() => modifyService.Edit(null));
         }
 
         [Test]
-        public void InvokeUpdateMethodFromRepository_WhenAnItemToDeleteIsProvided()
+        public void InvokeUpdateMethodFromRepository_WhenAnItemToEditIsProvided()
         {
             // Arrange
             var itemMock = new Mock<Tag>();
             var repositoryMock = new Mock<IEfRepository<Tag>>();
-            ModifyService<Tag> modifyService = new ModifyService<Tag>(repositoryMock.Object);
+            IModifyService<Tag> modifyService = new ModifyService<Tag>(repositoryMock.Object);
 
             // Act
             modifyService.Edit(itemMock.Object);
