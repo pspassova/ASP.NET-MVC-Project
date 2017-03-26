@@ -11,8 +11,10 @@ namespace Visions.Tests.Visions.Web.Areas.Admin.Controllers.ProfileControllerTes
         [Test]
         public void HaveAuthorizeAttribute()
         {
+            // Arrange, Act
             Attribute attribute = Attribute.GetCustomAttribute(typeof(ProfileController), typeof(AuthorizeAttribute));
 
+            // Assert
             Assert.IsNotNull(attribute);
         }
     }

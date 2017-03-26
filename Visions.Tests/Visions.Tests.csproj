@@ -48,8 +48,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -211,6 +211,11 @@
     <Compile Include="Visions.Web\Common\PhotoConverterTests\ConvertToViewModel_Should.cs" />
     <Compile Include="Visions.Web\Common\PhotoUploaderTests\Constructor_Should.cs" />
     <Compile Include="Visions.Web\Common\PhotoUploaderTests\UploadPhotos_Should.cs" />
+    <Compile Include="Visions.Web\Controllers\AccountControllerTests\Class_Should.cs" />
+    <Compile Include="Visions.Web\Controllers\AccountControllerTests\Constructor_Should.cs" />
+    <Compile Include="Visions.Web\Controllers\AccountControllerTests\Login_Should.cs" />
+    <Compile Include="Visions.Web\Controllers\AccountControllerTests\LogOff_Should.cs" />
+    <Compile Include="Visions.Web\Controllers\AccountControllerTests\Register_Should.cs" />
     <Compile Include="Visions.Web\Controllers\DashboardControllerTests\Constructor_Should.cs" />
     <Compile Include="Visions.Web\Controllers\DashboardControllerTests\Search_Should.cs" />
     <Compile Include="Visions.Web\Controllers\DashboardControllerTests\Shared_Should.cs" />
@@ -250,6 +255,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Visions.Models\TagTests\" />
+    <Folder Include="Visoins.Auth\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

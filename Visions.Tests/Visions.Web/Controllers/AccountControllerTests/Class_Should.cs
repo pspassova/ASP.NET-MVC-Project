@@ -1,9 +1,9 @@
 ﻿using NUnit.Framework;
 using System;
+using Visions.Web.Controllers;
 using System.Web.Mvc;
-using Visions.Web.Areas.User.Controllers;
 
-namespace Visions.Tests.Visions.Web.Areas.User.Controllers.ProfileControllerTests
+namespace Visions.Tests.Visions.Web.Controllers.AccountControllerTests
 {
     [TestFixture]
     public class Class_Should
@@ -12,7 +12,7 @@ namespace Visions.Tests.Visions.Web.Areas.User.Controllers.ProfileControllerTest
         public void HaveAuthorizeAttribute()
         {
             // Arrange, Act
-            Attribute attribute = Attribute.GetCustomAttribute(typeof(ProfileController), typeof(AuthorizeAttribute));
+            Attribute attribute = Attribute.GetCustomAttribute(typeof(AccountController), typeof(AuthorizeAttribute));
 
             // Assert
             Assert.IsNotNull(attribute);
