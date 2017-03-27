@@ -6,7 +6,7 @@ namespace Visions.Tests.Visions.Models.PhotoTests
     [TestFixture]
     public class Id_Should
     {
-        private const string PropertyName = "Id";
+        private const string PropertyName = "Path";
 
         [Test]
         public void BeAProperty_InPhotoClass()

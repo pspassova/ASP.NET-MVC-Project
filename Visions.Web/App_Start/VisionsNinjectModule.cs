@@ -20,7 +20,9 @@ namespace Visions.Web.App_Start
     {
         public override void Load()
         {
-            this.Bind<HttpServerUtilityBase>().ToMethod(c => new HttpServerUtilityWrapper(HttpContext.Current.Server));
+            // Server
+            this.Bind<HttpServerUtilityBase>().ToMethod(x => new HttpServerUtilityWrapper(HttpContext.Current.Server)).InRequestScope();
+            this.Bind<HttpContextBase>().ToMethod(x => new HttpContextWrapper(HttpContext.Current)).InRequestScope();
 
             // Data
             this.Bind<IVisionsDbContext>().To<VisionsDbContext>().InRequestScope();
@@ -33,13 +35,13 @@ namespace Visions.Web.App_Start
             this.Bind<IArticleService>().To<ArticleService>();
 
             // Interceptors
-            var uploadServiceBinding = this.Bind(typeof(IUploadService<>)).To(typeof(UploadService<>))/*.InRequestScope()*/;
+            var uploadServiceBinding = this.Bind(typeof(IUploadService<>)).To(typeof(UploadService<>)).InRequestScope();
             uploadServiceBinding.Intercept().With<SaveChangesInterceptor>();
 
-            var modifyServiceBinding = this.Bind(typeof(IModifyService<>)).To(typeof(ModifyService<>))/*.InRequestScope()*/;
+            var modifyServiceBinding = this.Bind(typeof(IModifyService<>)).To(typeof(ModifyService<>)).InRequestScope();
             modifyServiceBinding.Intercept().With<SaveChangesInterceptor>();
 
-            var deleteServiceBinding = this.Bind(typeof(IDeleteService<>)).To(typeof(DeleteService<>))/*.InRequestScope()*/;
+            var deleteServiceBinding = this.Bind(typeof(IDeleteService<>)).To(typeof(DeleteService<>)).InRequestScope();
             deleteServiceBinding.Intercept().With<SaveChangesInterceptor>();
 
             // Auth
