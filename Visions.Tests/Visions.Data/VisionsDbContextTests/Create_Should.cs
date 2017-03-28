@@ -10,10 +10,10 @@ namespace Visions.Tests.Visions.Data.VisionsDbContextTests
         public void CreateAnInstanceOfVisionsDbContext()
         {
             // Arrange, Act
-            var actualResult = VisionsDbContext.Create();
+            var actualResult = EfDbContext.Create();
 
             // Assert
-            Assert.IsInstanceOf<VisionsDbContext>(actualResult);
+            Assert.IsInstanceOf<EfDbContext>(actualResult);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Visions.Tests.Visions.Services.ArticleServiceTests
         public void CreateAnInstanceOfArticleService_WhenArticleRepositoryIsProvided()
         {
             // Arrange
-            var repositoryMock = new Mock<IEfRepository<Article>>();
+            var repositoryMock = new Mock<IEfDbSetWrapper<Article>>();
 
             // Act, Assert
             Assert.IsInstanceOf<ArticleService>(new ArticleService(repositoryMock.Object));

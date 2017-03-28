@@ -16,10 +16,10 @@ namespace Visions.Tests.Visions.Data.GenericRepositoryTests
         {
             // Arange
             var dbSetMock = new Mock<DbSet<User>>();
-            var contextMock = new Mock<IVisionsDbContext>();
+            var contextMock = new Mock<IEfDbContext>();
             contextMock.Setup(x => x.Set<User>()).Returns(dbSetMock.Object);
 
-            IEfRepository<User> repository = new EfRepository<User>(contextMock.Object);
+            IEfDbSetWrapper<User> repository = new EfDbSetWrapper<User>(contextMock.Object);
 
             // Act
             var exception = Assert.Throws<ArgumentNullException>(() => repository.Update(null));

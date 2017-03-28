@@ -7,8 +7,8 @@ namespace Visions.Web.App_Start
     {
         public static void InitializeDatabase()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<VisionsDbContext, Visions.Data.Migrations.Configuration>());
-            VisionsDbContext.Create().InitializeDb();
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<EfDbContext, Visions.Data.Migrations.Configuration>());
+            EfDbContext.Create().InitializeDb();
         }
     }
 }

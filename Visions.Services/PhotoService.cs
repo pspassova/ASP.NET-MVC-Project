@@ -11,9 +11,9 @@ namespace Visions.Services
 {
     public class PhotoService : IPhotoService
     {
-        private readonly IEfRepository<Photo> repository;
+        private readonly IEfDbSetWrapper<Photo> repository;
 
-        public PhotoService(IEfRepository<Photo> repository)
+        public PhotoService(IEfDbSetWrapper<Photo> repository)
         {
             Guard.WhenArgument(repository, "repository").IsNull().Throw();
 

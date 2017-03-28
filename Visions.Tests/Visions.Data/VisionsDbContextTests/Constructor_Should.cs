@@ -12,7 +12,7 @@ namespace Visions.Tests.Visions.Data.VisionsDbContextTests
         public void CreateAnInstanceOfDbContext()
         {
             // Arrange
-            IVisionsDbContext context = new VisionsDbContext();
+            IEfDbContext context = new EfDbContext();
 
             // Act, Assert
             Assert.IsInstanceOf<DbContext>(context);
@@ -22,10 +22,10 @@ namespace Visions.Tests.Visions.Data.VisionsDbContextTests
         public void CreateAnInstanceOfVisionsDbContext()
         {
             // Arrange
-            IVisionsDbContext context = new VisionsDbContext();
+            IEfDbContext context = new EfDbContext();
 
             // Act, Assert
-            Assert.IsInstanceOf<VisionsDbContext>(context);
+            Assert.IsInstanceOf<EfDbContext>(context);
         }
     }
 }

@@ -11,12 +11,12 @@ namespace Visions.Tests.Visions.Services.ArticleServiceTests
     public class Create_Should
     {
         private IArticleService articleService;
-        private Mock<IEfRepository<Article>> repositoryMock;
+        private Mock<IEfDbSetWrapper<Article>> repositoryMock;
 
         [SetUp]
         public void Setup()
         {
-            this.repositoryMock = new Mock<IEfRepository<Article>>();
+            this.repositoryMock = new Mock<IEfDbSetWrapper<Article>>();
 
             this.articleService = new ArticleService(repositoryMock.Object);
         }

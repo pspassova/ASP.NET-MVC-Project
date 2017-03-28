@@ -1,7 +1,9 @@
-﻿@model Visions.Web.Models.PhotoViewModel
+﻿@using Visions.Web.App_GlobalResources
+
+@model Visions.Web.Models.PhotoViewModel
 
 @{
-    ViewBag.Title = Resources.Constants.EditPhotoTitle;
+    ViewBag.Title = GlobalResources.EditPhotoTitle;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -58,7 +60,7 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label col-md-2 text-primary">@Resources.Constants.LabelForImage</label>
+                <label class="control-label col-md-2 text-primary">@GlobalResources.LabelForImage</label>
                 <div class="col-md-10">
                     <img src="@this.Model.Path" class="col-xs-11" />
                 </div>
@@ -66,8 +68,8 @@
         </div>
 
         <div class="col-xs-offset-7">
-            <input type="submit" value=@Resources.Constants.EditSaveButtonText class="btn btn-post-article text-uppercase text-primary" /> |
-            @Html.ActionLink(Resources.Constants.BackToListMessage, "Manage", new
+            <input type="submit" value=@GlobalResources.EditSaveButtonText class="btn btn-post-article text-uppercase text-primary" /> |
+            @Html.ActionLink(GlobalResources.BackToListMessage, "Manage", new
        {
        }, new
        {

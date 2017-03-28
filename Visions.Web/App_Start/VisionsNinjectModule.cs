@@ -25,9 +25,9 @@ namespace Visions.Web.App_Start
             this.Bind<HttpContextBase>().ToMethod(x => new HttpContextWrapper(HttpContext.Current)).InRequestScope();
 
             // Data
-            this.Bind<IVisionsDbContext>().To<VisionsDbContext>().InRequestScope();
+            this.Bind<IEfDbContext>().To<EfDbContext>().InRequestScope();
 
-            this.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>));
+            this.Bind(typeof(IEfDbSetWrapper<>)).To(typeof(EfDbSetWrapper<>));
 
             // Services
             this.Bind<IPhotoService>().To<PhotoService>();

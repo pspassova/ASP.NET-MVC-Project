@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Visions.Data.Contracts
 {
-    public interface IEfRepository<T>
+    public interface IEfDbSetWrapper<T>
         where T : class
     {
         T GetById(object id);

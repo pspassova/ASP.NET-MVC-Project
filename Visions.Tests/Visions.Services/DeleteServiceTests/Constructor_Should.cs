@@ -21,7 +21,7 @@ namespace Visions.Tests.Visions.Services.DeleteServiceTests
         public void CreateAnInstanceOfDeleteService_WhenARepositoryIsProvided()
         {
             // Arrange
-            var repositoryMock = new Mock<IEfRepository<Article>>();
+            var repositoryMock = new Mock<IEfDbSetWrapper<Article>>();
 
             // Act, Assert
             Assert.IsInstanceOf<DeleteService<Article>>(new DeleteService<Article>(repositoryMock.Object));

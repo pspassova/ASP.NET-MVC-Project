@@ -11,9 +11,9 @@ namespace Visions.Services
 {
     public class ArticleService : IArticleService
     {
-        private readonly IEfRepository<Article> repository;
+        private readonly IEfDbSetWrapper<Article> repository;
 
-        public ArticleService(IEfRepository<Article> repository)
+        public ArticleService(IEfDbSetWrapper<Article> repository)
         {
             Guard.WhenArgument(repository, "repository").IsNull().Throw();
 

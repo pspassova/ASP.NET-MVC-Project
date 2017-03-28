@@ -1,7 +1,9 @@
-﻿@model Visions.Web.Models.PhotoViewModel
+﻿@using Visions.Web.App_GlobalResources
+
+@model Visions.Web.Models.PhotoViewModel
 
 @{
-    ViewBag.Title = Resources.Constants.PhotoDetailsTitle;
+    ViewBag.Title = GlobalResources.PhotoDetailsTitle;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -54,7 +56,7 @@
         </dd>
 
         <dt class="text-primary">
-            @Resources.Constants.LabelForImage
+            @GlobalResources.LabelForImage
         </dt>
 
         <dd>
@@ -63,14 +65,14 @@
     </dl>
 
     <div class="col-xs-offset-7">
-        @Html.ActionLink(Resources.Constants.EditButtonText, "Edit", new
+        @Html.ActionLink(GlobalResources.EditButtonText, "Edit", new
    {
        id = Model.Id
    }, new
    {
        @class = "btn btn-post-article text-uppercase"
    }) |
-        @Html.ActionLink(Resources.Constants.BackToListMessage, "Manage", new
+        @Html.ActionLink(GlobalResources.BackToListMessage, "Manage", new
    {
    }, new
    {

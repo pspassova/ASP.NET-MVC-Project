@@ -21,7 +21,7 @@ namespace Visions.Tests.Visions.Services.PhotoServiceTests
         public void CreateAnInstanceOfPhotoService_WhenPhotoRepositoryIsProvided()
         {
             // Arrange
-            var repositoryMock = new Mock<IEfRepository<Photo>>();
+            var repositoryMock = new Mock<IEfDbSetWrapper<Photo>>();
 
             // Act, Assert
             Assert.IsInstanceOf<PhotoService>(new PhotoService(repositoryMock.Object));

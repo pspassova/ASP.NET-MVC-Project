@@ -15,7 +15,7 @@ namespace Visions.Tests.Visions.Services.DeleteServiceTests
         public void ThrowArgumentNullException_WhenAnItemToDeleteIsNotProvided()
         {
             // Arrange
-            var repositoryMock = new Mock<IEfRepository<Photo>>();
+            var repositoryMock = new Mock<IEfDbSetWrapper<Photo>>();
             IDeleteService<Photo> deleteService = new DeleteService<Photo>(repositoryMock.Object);
 
             // Act, Assert
@@ -27,7 +27,7 @@ namespace Visions.Tests.Visions.Services.DeleteServiceTests
         {
             // Arrange
             var itemMock = new Mock<Tag>();
-            var repositoryMock = new Mock<IEfRepository<Tag>>();
+            var repositoryMock = new Mock<IEfDbSetWrapper<Tag>>();
             IDeleteService<Tag> deleteService = new DeleteService<Tag>(repositoryMock.Object);
 
             // Act

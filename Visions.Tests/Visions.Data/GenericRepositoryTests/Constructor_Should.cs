@@ -14,7 +14,7 @@ namespace Visions.Tests.Visions.Data.GenericRepositoryTests
         public void ThrowArgumentNullException_WhenIVisionsDbContextIsNull()
         {
             // Arrange, Act
-            var exception = Assert.Throws<ArgumentNullException>(() => new EfRepository<User>(null));
+            var exception = Assert.Throws<ArgumentNullException>(() => new EfDbSetWrapper<User>(null));
 
             // Assert
             StringAssert.IsMatch("context", exception.ParamName);
@@ -24,11 +24,11 @@ namespace Visions.Tests.Visions.Data.GenericRepositoryTests
         public void CreateAnInstanceOfGenericRepository_WithCorrectDataModel_WhenIVisionsDbContextIsProvided()
         {
             // Arrange
-            var contextMock = new Mock<VisionsDbContext>();
-            IEfRepository<User> repository = new EfRepository<User>(contextMock.Object);
+            var contextMock = new Mock<EfDbContext>();
+            IEfDbSetWrapper<User> repository = new EfDbSetWrapper<User>(contextMock.Object);
 
             // Act, Assert
-            Assert.IsInstanceOf<EfRepository<User>>(repository);
+            Assert.IsInstanceOf<EfDbSetWrapper<User>>(repository);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Visions.Tests.Visions.Data.VisionsDbContextTests
         public void ReturnInstanceOfDbBaseSetOfTheCorrectClass_WhenAClassIsProvided()
         {
             // Arrange
-            IVisionsDbContext context = new VisionsDbContext();
+            IEfDbContext context = new EfDbContext();
 
             // Act
             var actualResult = context.Set<User>();

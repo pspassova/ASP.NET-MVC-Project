@@ -6,9 +6,9 @@ namespace Visions.Data.Interceptors
 {
     public class SaveChangesInterceptor : IInterceptor
     {
-        private readonly IVisionsDbContext context;
+        private readonly IEfDbContext context;
 
-        public SaveChangesInterceptor(IVisionsDbContext context)
+        public SaveChangesInterceptor(IEfDbContext context)
         {
             Guard.WhenArgument(context, "context").IsNull().Throw();
 

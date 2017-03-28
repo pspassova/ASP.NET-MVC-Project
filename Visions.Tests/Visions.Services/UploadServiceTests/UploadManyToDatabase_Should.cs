@@ -15,7 +15,7 @@ namespace Visions.Tests.Visions.Services.UploadServiceTests
         public void ThrowArgumentNullException_WhenItemsToUploadAreNotProvided()
         {
             // Arrange
-            var repositoryMock = new Mock<IEfRepository<Article>>();
+            var repositoryMock = new Mock<IEfDbSetWrapper<Article>>();
             UploadService<Article> UploadService = new UploadService<Article>(repositoryMock.Object);
 
             // Act, Assert
@@ -27,7 +27,7 @@ namespace Visions.Tests.Visions.Services.UploadServiceTests
         {
             // Arrange
             var itemsMock = new Mock<IEnumerable<Photo>>();
-            var repositoryMock = new Mock<IEfRepository<Photo>>();
+            var repositoryMock = new Mock<IEfDbSetWrapper<Photo>>();
             UploadService<Photo> UploadService = new UploadService<Photo>(repositoryMock.Object);
 
             // Act

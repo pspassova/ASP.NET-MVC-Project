@@ -12,12 +12,12 @@ namespace Visions.Tests.Visions.Services.PhotoServiceTests
     public class Create_Should
     {
         private IPhotoService photoService;
-        private Mock<IEfRepository<Photo>> repositoryMock;
+        private Mock<IEfDbSetWrapper<Photo>> repositoryMock;
 
         [SetUp]
         public void Setup()
         {
-            this.repositoryMock = new Mock<IEfRepository<Photo>>();
+            this.repositoryMock = new Mock<IEfDbSetWrapper<Photo>>();
 
             this.photoService = new PhotoService(repositoryMock.Object);
         }

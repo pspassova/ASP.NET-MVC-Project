@@ -15,7 +15,7 @@ namespace Visions.Tests.Visions.Services.ModifyServiceTests
         public void ThrowArgumentNullException_WhenAnItemToEditIsNotProvided()
         {
             // Arrange
-            var repositoryMock = new Mock<IEfRepository<Photo>>();
+            var repositoryMock = new Mock<IEfDbSetWrapper<Photo>>();
             IModifyService<Photo> modifyService = new ModifyService<Photo>(repositoryMock.Object);
 
             // Act, Assert
@@ -27,7 +27,7 @@ namespace Visions.Tests.Visions.Services.ModifyServiceTests
         {
             // Arrange
             var itemMock = new Mock<Tag>();
-            var repositoryMock = new Mock<IEfRepository<Tag>>();
+            var repositoryMock = new Mock<IEfDbSetWrapper<Tag>>();
             IModifyService<Tag> modifyService = new ModifyService<Tag>(repositoryMock.Object);
 
             // Act

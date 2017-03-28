@@ -1,7 +1,9 @@
-﻿@model IEnumerable<Visions.Web.Models.PhotoViewModel>
+﻿@using Visions.Web.App_GlobalResources
+
+@model IEnumerable<Visions.Web.Models.PhotoViewModel>
 
 @{
-    ViewBag.Title = Resources.Constants.UploadPhotoTitle;
+    ViewBag.Title = GlobalResources.UploadPhotoTitle;
 }
 
 <div class="col-sm-offset-1 col-sm-11">
@@ -19,16 +21,16 @@
     <form id="uploadPhotoForm" action="" method="post" enctype="multipart/form-data">
         <div class="form-group col-sm-offset-1 col-sm-1">
             <label for="file">
-                <img src="~/Content/img/upload.png" alt="@Resources.Constants.ChoosePhotoAltMessage" class="img-responsive" role="button" />
+                <img src="~/Content/img/upload.png" alt="@GlobalResources.ChoosePhotoAltMessage" class="img-responsive" role="button" />
             </label>
 
             <input id="file" type="file" name="file" class="hidden" />
         </div>
         <div class="form-group col-lg-10">
-            <input type="text" name="tags" placeholder="@Resources.Constants.TagsFieldPlaceholderMessage" class="form-control" />
+            <input type="text" name="tags" placeholder="@GlobalResources.TagsFieldPlaceholderMessage" class="form-control" />
         </div>
         <div class="form-group col-sm-offset-9">
-            <input type="submit" value=@Resources.Constants.PostUploadedPhotoButtonText class="btn btn-default" />
+            <input type="submit" value=@GlobalResources.PostUploadedPhotoButtonText class="btn btn-default" />
         </div>
     </form>
 </div>

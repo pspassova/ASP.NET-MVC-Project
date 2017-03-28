@@ -1,6 +1,8 @@
-﻿@model IEnumerable<Visions.Web.Models.ArticleViewModel>
+﻿@using Visions.Web.App_GlobalResources
+
+@model IEnumerable<Visions.Web.Models.ArticleViewModel>
 @{
-    ViewBag.Title = Constants.HomepageGetStartedButtonText;
+    ViewBag.Title = GlobalResources.HomepageGetStartedButtonText;
 }
 
 <header>
@@ -11,26 +13,26 @@
 
             @if (this.User.Identity.IsAuthenticated)
             {
-                <h3>@Constants.PostArticleTitle</h3>
+                <h3>@GlobalResources.PostArticleTitle</h3>
 
                 <form id="createArticleForm" action="" method="post" enctype="multipart/form-data">
                     @Html.AntiForgeryToken()
 
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <input id="articleTitle" type="text" name="articleTitle" class="form-control article-field" placeholder="@Constants.ArticleTitlePlaceholderMessage"
+                            <input id="articleTitle" type="text" name="articleTitle" class="form-control article-field" placeholder="@GlobalResources.ArticleTitlePlaceholderMessage"
                                     pattern="(.*?){2,50}" autofocus required title="must be from 2 to 50 symbols"/>
                         </div>
 
                         <div class="form-group">
-                            <input id="articleContent" type="text" name="articleContent" class="form-control article-field" placeholder="@Constants.ArticleContentPlaceholderMessage" 
+                            <input id="articleContent" type="text" name="articleContent" class="form-control article-field" placeholder="@GlobalResources.ArticleContentPlaceholderMessage" 
                                    pattern="(.*?){2,500}" autofocus required title="must be from 2 to 500 symbols" />
                         </div>
 
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" value=@Constants.PostArticleButtonText class="btn btn-default btn-post-article article-field" />
+                        <input type="submit" value=@GlobalResources.PostArticleButtonText class="btn btn-default btn-post-article article-field" />
                     </div>
                 </form>
 
@@ -39,17 +41,17 @@
             else
             {
                 <p>
-                    @Constants.HomepageMainText
+                    @GlobalResources.HomepageMainText
                     <br />
-                    @Constants.HomepageSecondaryText
+                    @GlobalResources.HomepageSecondaryText
                 </p>
-                @Html.ActionLink(Constants.HomepageGetStartedButtonText, "Login", "Account", new {}, new { @class="btn btn-primary btn-xl" })
+                @Html.ActionLink(GlobalResources.HomepageGetStartedButtonText, "Login", "Account", new {}, new { @class="btn btn-primary btn-xl" })
             }
         </div>
     </div>
 </header>
 
-@*@section Scripts {
+@section Scripts {
     <script>
         const ArticleFieldMinLength = 2;
 
@@ -66,7 +68,7 @@
             }
         });
 
-        $.validator.messages.required = @Constants.ArticleFiledRequiredValidationMessage;
-        $.validator.messages.minlength = "@Constants.ArticleFieldMinLengthValidationMessage;
+        $.validator.messages.required = @GlobalResources.ArticleFiledRequiredValidationMessage;
+        $.validator.messages.minlength = "@GlobalResources.ArticleFieldMinLengthValidationMessage;
     </script>
-}*@
+}

@@ -127,13 +127,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IEfRepository.cs" />
-    <Compile Include="Contracts\IVisionsDbContext.cs" />
-    <Compile Include="EfRepository.cs" />
+    <Compile Include="Contracts\IEfDbSetWrapper.cs" />
+    <Compile Include="Contracts\IEfDbContext.cs" />
+    <Compile Include="EfDbSetWrapper.cs" />
     <Compile Include="Interceptors\SaveChangesInterceptor.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VisionsDbContext.cs" />
+    <Compile Include="EfDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

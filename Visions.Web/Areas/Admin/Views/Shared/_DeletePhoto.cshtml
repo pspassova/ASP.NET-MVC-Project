@@ -1,14 +1,16 @@
-﻿@model Visions.Web.Models.PhotoViewModel
+﻿@using Visions.Web.App_GlobalResources
+
+@model Visions.Web.Models.PhotoViewModel
 
 @{
-    ViewBag.Title = Resources.Constants.DeletePhotoTitle;
+    ViewBag.Title = GlobalResources.DeletePhotoTitle;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <hr />
 
 <div class="well-lg col-lg-offset-3">
-    <h3 class="col-lg-offset-6">@Resources.Constants.DeleteConfirmationQuestionMessage</h3>
+    <h3 class="col-lg-offset-6">@GlobalResources.DeleteConfirmationQuestionMessage</h3>
 
     <dl class="dl-horizontal">
         <dt class="text-primary">
@@ -39,7 +41,7 @@
         </dd>
 
         <dt class="text-primary">
-            @Resources.Constants.LabelForImage
+            @GlobalResources.LabelForImage
         </dt>
 
         <dd>
@@ -52,8 +54,8 @@
         @Html.AntiForgeryToken()
 
         <div class="col-xs-offset-6">
-            <input type="submit" value=@Resources.Constants.DeleteButtonText class="btn btn-post-article text-uppercase text-danger" /> |
-            @Html.ActionLink(Resources.Constants.BackToListMessage, "Manage", new
+            <input type="submit" value=@GlobalResources.DeleteButtonText class="btn btn-post-article text-uppercase text-danger" /> |
+            @Html.ActionLink(GlobalResources.BackToListMessage, "Manage", new
        {
        }, new
        {

@@ -15,7 +15,7 @@ namespace Visions.Tests.Visions.Services.PhotoServiceTests
         public void InvokeGetByIdMethod_Once()
         {
             // Arrange
-            var repositoryMock = new Mock<IEfRepository<Photo>>();
+            var repositoryMock = new Mock<IEfDbSetWrapper<Photo>>();
             IPhotoService photoService = new PhotoService(repositoryMock.Object);
 
             // Act

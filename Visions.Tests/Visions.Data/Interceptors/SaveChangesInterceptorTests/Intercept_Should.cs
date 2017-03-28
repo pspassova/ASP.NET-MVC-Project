@@ -14,7 +14,7 @@ namespace Visions.Tests.Visions.Data.Interceptors.SaveChangesInterceptorTests
         public void ThrowArgumentNullException_WhenInvocationIsNull()
         {
             // Arrange
-            var contextMock = new Mock<IVisionsDbContext>();
+            var contextMock = new Mock<IEfDbContext>();
             SaveChangesInterceptor interceptor = new SaveChangesInterceptor(contextMock.Object);
 
             // Act, Assert
@@ -25,7 +25,7 @@ namespace Visions.Tests.Visions.Data.Interceptors.SaveChangesInterceptorTests
         public void InvokeProceedMethod_Once_WhenInvocationIsProvided()
         {
             // Arrange
-            var contextMock = new Mock<IVisionsDbContext>();
+            var contextMock = new Mock<IEfDbContext>();
             SaveChangesInterceptor interceptor = new SaveChangesInterceptor(contextMock.Object);
 
             var invocationMock = new Mock<IInvocation>();
@@ -41,7 +41,7 @@ namespace Visions.Tests.Visions.Data.Interceptors.SaveChangesInterceptorTests
         public void InvokeSaveChangesMethod_Once_WhenInvocationIsProvided()
         {
             // Arrange
-            var contextMock = new Mock<IVisionsDbContext>();
+            var contextMock = new Mock<IEfDbContext>();
             SaveChangesInterceptor interceptor = new SaveChangesInterceptor(contextMock.Object);
 
             var invocationMock = new Mock<IInvocation>();

@@ -1,6 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Visions.Web.App_GlobalResources
+
+<!DOCTYPE html>
 <html>
 <head>
+    @RenderSection("Styles", required: false);
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title | Visions</title>
@@ -15,9 +19,15 @@
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">@Constants.ToggleNavigationText</span> @Resources.Constants.MenuTabText <i class="fa fa-bars"></i>
+                        <span class="sr-only">@GlobalResources.ToggleNavigationText</span> @GlobalResources.MenuTabText <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand page-scroll">@Html.ActionLink(Constants.LogoText, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>
+                    <a class="navbar-brand page-scroll">@Html.ActionLink(GlobalResources.LogoText, "Index", "Home", new
+                                                   {
+                                                       area = ""
+                                                   }, new
+                                                   {
+                                                       @class = "navbar-brand"
+                                                   })</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -25,38 +35,58 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="page-scroll">
                             @if (this.User.IsInRole("Admin"))
-	                        {
-                                @Html.RouteLink(this.User.Identity.Name.Substring(0, this.User.Identity.Name.IndexOf("@")), "Admin_default", new { action = "Manage", controller = "Profile" })
+                            {
+                                @Html.RouteLink(this.User.Identity.Name.Substring(0, this.User.Identity.Name.IndexOf("@")), "Admin_default", new
+                           {
+                               action = "Manage",
+                               controller = "Profile"
+                           })
                             }
                             else
                             {
                                 if (this.User.Identity.IsAuthenticated)
                                 {
-                                    @Html.RouteLink(this.User.Identity.Name.Substring(0, this.User.Identity.Name.IndexOf("@")), "User_default", new { action = "Dashboard", controller = "Profile" })
+                                    @Html.RouteLink(this.User.Identity.Name.Substring(0, this.User.Identity.Name.IndexOf("@")), "User_default", new
+                               {
+                                   action = "Dashboard",
+                                   controller = "Profile"
+                               })
                                 }
                                 else
                                 {
-                                    @Html.ActionLink(Constants.AboutTabText, "About", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                                    @Html.ActionLink(GlobalResources.AboutTabText, "About", "Home", new
+                               {
+                                   area = ""
+                               }, new
+                               {
+                                   @class = "navbar-brand"
+                               })
                                 }
                             }
                         </li>
                         <li class="page-scroll">
-                            @Html.ActionLink(Constants.SharedTabText, "Shared", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink(GlobalResources.SharedTabText, "Shared", "Dashboard", new
+                       {
+                           area = ""
+                       }, new
+                       {
+                           @class = "navbar-brand"
+                       })
                         </li>
                         <li class="page-scroll">
                             @if (this.User.Identity.IsAuthenticated)
-	                        {
-	                        	using (Html.BeginForm("LogOff", "Account", FormMethod.Post,
+                            {
+                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post,
                                 new
                                 {
                                     id = "logoutForm",
                                     @class = "navbar-brand logout-form"
                                 }))
                                 {
-                                @Html.AntiForgeryToken()
-                                <a href="javascript:document.getElementById('logoutForm').submit()">@Constants.LogoutTabText</a>
+                                    @Html.AntiForgeryToken()
+                                    <a href="javascript:document.getElementById('logoutForm').submit()">@GlobalResources.LogoutTabText</a>
                                 }
-	                        }
+                            }
                         </li>
                     </ul>
                 </div>
@@ -69,7 +99,7 @@
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <hr class="primary">
-                    <p> @DateTime.Now.Year | @Constants.FooterText</p>
+                    <p> @DateTime.Now.Year | @GlobalResources.FooterText</p>
                 </div>
             </div>
         </footer>

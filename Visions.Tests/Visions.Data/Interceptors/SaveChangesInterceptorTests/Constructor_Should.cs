@@ -20,7 +20,7 @@ namespace Visions.Tests.Visions.Data.Interceptors.SaveChangesInterceptorTests
         public void CreateAnInstanceOfSaveChangesInterceptor()
         {
             // Arrange
-            var contextMock = new Mock<IVisionsDbContext>();
+            var contextMock = new Mock<IEfDbContext>();
 
             // Act, Assert
             Assert.IsInstanceOf<SaveChangesInterceptor>(new SaveChangesInterceptor(contextMock.Object));

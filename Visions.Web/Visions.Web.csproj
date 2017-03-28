@@ -246,15 +246,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_GlobalResources\Constants.bg.designer.cs">
+    <Compile Include="App_GlobalResources\GlobalResources.bg.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Constants.bg.resx</DependentUpon>
+      <DependentUpon>GlobalResources.bg.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\Constants.designer.cs">
+    <Compile Include="App_GlobalResources\GlobalResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Constants.resx</DependentUpon>
+      <DependentUpon>GlobalResources.resx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DatabaseConfig.cs" />
@@ -296,10 +296,10 @@
     <Content Include="Content\vendor\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\vendor\font-awesome\css\font-awesome.css" />
     <Content Include="Content\vendor\font-awesome\fonts\fontawesome-webfont.svg" />
-    <Content Include="ErrorPages\400.html" />
-    <Content Include="ErrorPages\403.html" />
-    <Content Include="ErrorPages\404.html" />
-    <Content Include="ErrorPages\500.html" />
+    <Content Include="400.html" />
+    <Content Include="403.html" />
+    <Content Include="404.html" />
+    <Content Include="500.html" />
     <Content Include="favicon.ico" />
     <Content Include="Scripts\scrollreveal.js" />
     <Content Include="Scripts\scrollreveal.min.js" />
@@ -435,16 +435,15 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="App_GlobalResources\Constants.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Constants.designer.cs</LastGenOutput>
-      <CustomToolNamespace>Resources</CustomToolNamespace>
+    <EmbeddedResource Include="App_GlobalResources\GlobalResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\Constants.bg.resx">
+    <Content Include="App_GlobalResources\GlobalResources.bg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Constants.bg.designer.cs</LastGenOutput>
+      <LastGenOutput>GlobalResources.bg.Designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <PropertyGroup>

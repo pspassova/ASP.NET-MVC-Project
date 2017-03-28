@@ -21,7 +21,7 @@ namespace Visions.Tests.Visions.Services.ModifyServiceTests
         public void CreateAnInstanceOfModifyService_WhenARepositoryIsProvided()
         {
             // Arrange
-            var repositoryMock = new Mock<IEfRepository<Article>>();
+            var repositoryMock = new Mock<IEfDbSetWrapper<Article>>();
 
             // Act, Assert
             Assert.IsInstanceOf<ModifyService<Article>>(new ModifyService<Article>(repositoryMock.Object));

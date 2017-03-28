@@ -1,10 +1,11 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
+@using Visions.Web.App_GlobalResources
 
 @model IPagedList<Visions.Web.Models.PhotoViewModel>
 
 @{
-    ViewBag.Title = Resources.Constants.SharedDashboardTitle;
+    ViewBag.Title = GlobalResources.SharedDashboardTitle;
 }
 
 <h2>@ViewBag.Title</h2>
@@ -20,7 +21,7 @@
                         id = "searchForm"
                     }))
 {
-    <input type="text" name="query" placeholder=@Resources.Constants.SearchPlaceholderText onsubmit="changed()" class="navbar-form form-control" />
+    <input type="text" name="query" placeholder=@GlobalResources.SearchPlaceholderText onsubmit="changed()" class="navbar-form form-control" />
 }
 
 <div id="allPhotos">
@@ -31,7 +32,7 @@
     else
     {
         <div class="well-lg text-uppercase text-center">
-            <h1>@Resources.Constants.NoResultsMessage.</h1>
+            <h1>@GlobalResources.NoResultsMessage.</h1>
         </div>
     }
 </div>
@@ -45,7 +46,7 @@
            pageSize = this.Model.PageSize
        }))
     <div class="btn btn-post-article text-uppercase">
-        @Html.ActionLink(Resources.Constants.BackToHomepageMessage, "Index", "Home")
+        @Html.ActionLink(GlobalResources.BackToHomepageMessage, "Index", "Home")
     </div>
 </div>
 

@@ -9,6 +9,7 @@ using Visions.Helpers.Contracts;
 using Visions.Models.Models;
 using Visions.Services.Contracts;
 using Visions.Services.Enumerations;
+using Visions.Web.App_GlobalResources;
 using Visions.Web.Common.Contracts;
 using Visions.Web.Models;
 
@@ -72,7 +73,7 @@ namespace Visions.Web.Areas.User.Controllers
         {
             if (file == null)
             {
-                this.TempData["Success"] = Resources.Constants.UploadFailedMessage;
+                this.TempData["Success"] = GlobalResources.UploadFailedMessage;
 
                 return this.RedirectToAction("Dashboard");
             }
@@ -86,7 +87,7 @@ namespace Visions.Web.Areas.User.Controllers
 
             string physicalPath = this.server.MapPath("~/Images/");
             this.photoUploader.UploadPhotos(file, physicalPath, convertedTags);
-            this.TempData["Success"] = Resources.Constants.UploadSuccessfulMessage;
+            this.TempData["Success"] = GlobalResources.UploadSuccessfulMessage;
 
             return this.RedirectToAction("Dashboard");
         }

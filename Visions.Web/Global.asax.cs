@@ -21,20 +21,5 @@ namespace Visions.Web
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngine());
         }
-
-        protected void Application_BeginRequest(object sender, EventArgs e)
-        {
-            string englishLanguage = "en-GB";
-            string bulgarianLanguage = "bg";
-
-            string lang = this.Request.CurrentExecutionFilePath.Split('/')[1];
-            if (lang == null || (lang != englishLanguage && lang != bulgarianLanguage))
-            {
-                lang = englishLanguage;
-            }
-
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(lang);
-            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(lang);
-        }
     }
 }

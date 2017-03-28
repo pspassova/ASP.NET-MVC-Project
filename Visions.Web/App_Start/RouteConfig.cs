@@ -16,7 +16,6 @@ namespace Visions.Web
                 "{lang}/{controller}/{action}/{page}/{pageSize}/{text}",
                 defaults: new
                 {
-                    lang = "en",
                     controller = "Home",
                     action = "Index",
                     page = 1,

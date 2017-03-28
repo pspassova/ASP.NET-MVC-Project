@@ -21,7 +21,7 @@ namespace Visions.Tests.Visions.Services.UploadServicetests
         public void CreateAnInstanceOfUploadService_WhenARepositoryIsProvided()
         {
             // Arrange
-            var repositoryMock = new Mock<IEfRepository<Photo>>();
+            var repositoryMock = new Mock<IEfDbSetWrapper<Photo>>();
 
             // Act, Assert
             Assert.IsInstanceOf<UploadService<Photo>>(new UploadService<Photo>(repositoryMock.Object));

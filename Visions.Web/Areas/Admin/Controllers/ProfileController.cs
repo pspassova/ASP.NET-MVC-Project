@@ -8,6 +8,7 @@ using Visions.Helpers.Contracts;
 using Visions.Models.Models;
 using Visions.Services.Contracts;
 using Visions.Services.Enumerations;
+using Visions.Web.App_GlobalResources;
 using Visions.Web.Common.Contracts;
 using Visions.Web.Models;
 
@@ -68,7 +69,7 @@ namespace Visions.Web.Areas.Admin.Controllers
         {
             if (file == null)
             {
-                this.TempData["Success"] = Resources.Constants.UploadFailedMessage;
+                this.TempData["Success"] = GlobalResources.UploadFailedMessage;
 
                 return this.RedirectToAction("Manage");
             }
@@ -82,7 +83,7 @@ namespace Visions.Web.Areas.Admin.Controllers
 
             string physicalPath = this.server.MapPath("~/Images/");
             this.photoUploader.UploadPhotos(file, physicalPath, convertedTags);
-            this.TempData["Success"] = Resources.Constants.UploadSuccessfulMessage;
+            this.TempData["Success"] = GlobalResources.UploadSuccessfulMessage;
 
             return this.RedirectToAction("Manage");
         }
@@ -120,7 +121,7 @@ namespace Visions.Web.Areas.Admin.Controllers
             Photo photo = this.photoService.GetById(photoViewModel.Id);
             if (photo == null)
             {
-                this.TempData["Success"] = Resources.Constants.EditFailedMessage;
+                this.TempData["Success"] = GlobalResources.EditFailedMessage;
 
                 return this.RedirectToAction("Edit");
             }
@@ -130,7 +131,7 @@ namespace Visions.Web.Areas.Admin.Controllers
             photo.CreatedOn = photoViewModel.CreatedOn;
 
             this.modifyPhotoService.Edit(photo);
-            this.TempData["Success"] = Resources.Constants.EditSuccessfulMessage;
+            this.TempData["Success"] = GlobalResources.EditSuccessfulMessage;
 
             return this.PartialView("_EditPhoto", photoViewModel);
         }

@@ -4,7 +4,7 @@ using Visions.Models.Models;
 
 namespace Visions.Data.Contracts
 {
-    public interface IVisionsDbContext
+    public interface IEfDbContext
     {
         IDbSet<Article> Articles
         {

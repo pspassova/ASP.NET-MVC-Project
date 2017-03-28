@@ -7,10 +7,10 @@ using System.Collections.Generic;
 
 namespace Visions.Data
 {
-    public class EfRepository<T> : IEfRepository<T>
+    public class EfDbSetWrapper<T> : IEfDbSetWrapper<T>
         where T : class
     {
-        public EfRepository(IVisionsDbContext context)
+        public EfDbSetWrapper(IEfDbContext context)
         {
             Guard.WhenArgument(context, "context").IsNull().Throw();
 
@@ -18,7 +18,7 @@ namespace Visions.Data
             this.DbSet = this.Context.Set<T>();
         }
 
-        public IVisionsDbContext Context
+        public IEfDbContext Context
         {
             get; set;
         }

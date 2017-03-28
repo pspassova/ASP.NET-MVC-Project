@@ -1,10 +1,11 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
+@using Visions.Web.App_GlobalResources
 
 @model IPagedList<Visions.Web.Models.PhotoViewModel>
 
 @{
-    ViewBag.Title = Resources.Constants.ProfileTabText;
+    ViewBag.Title = GlobalResources.ProfileTabText;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -19,7 +20,7 @@
 else
 {
     <div class="well-lg text-uppercase text-center">
-        <h1>@Resources.Constants.NoResultsMessage.</h1>
+        <h1>@GlobalResources.NoResultsMessage.</h1>
     </div>
 }
 
@@ -33,7 +34,7 @@ else
        }))
 
     <div id="backToHomepageLink">
-        @Html.ActionLink(Resources.Constants.BackToHomepageMessage, "Index", "Home", new
+        @Html.ActionLink(GlobalResources.BackToHomepageMessage, "Index", "Home", new
    {
        area = ""
    }, new

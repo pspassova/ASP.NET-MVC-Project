@@ -7,9 +7,9 @@ namespace Visions.Services
     public class ModifyService<T> : IModifyService<T>
         where T : class
     {
-        private readonly IEfRepository<T> repository;
+        private readonly IEfDbSetWrapper<T> repository;
 
-        public ModifyService(IEfRepository<T> repository)
+        public ModifyService(IEfDbSetWrapper<T> repository)
         {
             Guard.WhenArgument(repository, "repository").IsNull().Throw();
 

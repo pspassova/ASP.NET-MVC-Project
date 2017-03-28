@@ -8,9 +8,9 @@ namespace Visions.Services
     public class UploadService<T> : IUploadService<T>
         where T : class
     {
-        private readonly IEfRepository<T> repository;
+        private readonly IEfDbSetWrapper<T> repository;
 
-        public UploadService(IEfRepository<T> repository)
+        public UploadService(IEfDbSetWrapper<T> repository)
         {
             Guard.WhenArgument(repository, "repository").IsNull().Throw();
 
