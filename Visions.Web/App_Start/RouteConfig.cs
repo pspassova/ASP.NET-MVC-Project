@@ -22,14 +22,17 @@ namespace Visions.Web
                     page = 1,
                     pageSize = 4,
                     text = UrlParameter.Optional
+                },
+                constraints: new
+                {
+                    lang = "en|bg"
                 }
             );
             routes.MapRoute(
                 name: "Default",
-                url: "{lang}/{controller}/{action}",
+                url: "{controller}/{action}",
                 defaults: new
                 {
-                    lang= "en",
                     controller = "Home",
                     action = "Index"
                 }

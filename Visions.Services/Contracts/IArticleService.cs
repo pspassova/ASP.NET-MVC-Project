@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System.Linq;
 using Visions.Models.Models;
 using Visions.Services.Enumerations;
 
@@ -10,8 +8,8 @@ namespace Visions.Services.Contracts
     {
         Article Create(string title, string content, string userId);
 
-        IEnumerable<Article> GetAll();
+        IQueryable<Article> GetAll();
 
-        IEnumerable<T1> GetAll<T, T1>(Expression<Func<Article, T>> orderByProperty, OrderBy? order, Expression<Func<Article, T1>> selectAs);
+        IQueryable<Article> GetAllOrderedByCreatedOn(OrderBy? order, string userId = "");
     }
 }

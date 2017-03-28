@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using Visions.Data.Contracts;
 using Visions.Models.Models;
 using Visions.Services.Contracts;
@@ -39,51 +38,46 @@ namespace Visions.Services
             return this.repository.GetById(id);
         }
 
-        public IEnumerable<Photo> GetAll()
+        public IQueryable<Photo> GetAll()
         {
-            return this.GetAll(null);
+            return this.repository.All;
         }
 
-        public IEnumerable<Photo> GetAll(string userId)
+        public IQueryable<Photo> GetAllByUserId(string userId)
         {
-            if (userId == null)
+            if (userId == "")
             {
-                return this.repository.GetAll();
+                return this.repository.All;
             }
             else
             {
-                return this.repository.GetAll(photo => photo.UserId == userId);
+                return this.repository.All.Where(x => x.UserId == userId);
             }
         }
 
-        public IEnumerable<T1> GetAll<T, T1>(string userId, Expression<Func<Photo, T>> orderByProperty, OrderBy? order, Expression<Func<Photo, T1>> selectAs)
+        public IQueryable<Photo> GetAllOrderedByCreatedOn(OrderBy? order, string userId = "")
         {
-            IQueryable<Photo> result = this.repository.All;
-
-            if (userId != null)
+            if (userId == string.Empty)
             {
-                result = result.Where(photo => photo.UserId == userId);
-            }
-
-            if (orderByProperty != null)
-            {
-                if (order == OrderBy.Ascending || order == null)
+                if (order == null || order == OrderBy.Ascending)
                 {
-                    result = result.OrderBy(orderByProperty);
+                    return this.repository.All;
                 }
-                else if (order == OrderBy.Descending)
+                else
                 {
-                    result = result.OrderByDescending(orderByProperty);
+                    return this.repository.All.OrderByDescending(x => x.CreatedOn);
                 }
-            }
-
-            if (selectAs != null)
-            {
-                return result.Select(selectAs).ToList();
             }
             else
             {
-                return result.OfType<T1>().ToList();
+                if (order == null || order == OrderBy.Ascending)
+                {
+                    return this.repository.All.Where(x => x.UserId == userId);
+                }
+                else
+                {
+                    return this.repository.All.Where(x => x.UserId == userId).OrderByDescending(x => x.CreatedOn);
+                }
             }
         }
 
@@ -97,7 +91,7 @@ namespace Visions.Services
                 }
                 else
                 {
-                    return this.GetAll(userId);
+                    return this.GetAllByUserId(userId);
                 }
             }
             else
@@ -109,7 +103,7 @@ namespace Visions.Services
                 }
                 else
                 {
-                    photos = this.GetAll(userId);
+                    photos = this.GetAllByUserId(userId);
                 }
 
                 ICollection<Photo> matchingPhotos = new List<Photo>();

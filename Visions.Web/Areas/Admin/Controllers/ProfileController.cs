@@ -1,6 +1,7 @@
 ﻿using Bytes2you.Validation;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Visions.Helpers.Contracts;
@@ -56,7 +57,8 @@ namespace Visions.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Manage()
         {
-            IEnumerable<PhotoViewModel> photos = this.photoService.GetAll(null, photo => photo.CreatedOn, OrderBy.Descending, PhotoViewModel.FromPhoto);
+            IEnumerable<PhotoViewModel> photos = this.photoService.GetAllOrderedByCreatedOn(OrderBy.Descending)
+                .Select(PhotoViewModel.FromPhoto);
 
             return this.View(photos);
         }

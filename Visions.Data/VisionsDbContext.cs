@@ -1,10 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
-using System.Linq;
 using Visions.Data.Contracts;
 using Visions.Models.Models;
 
@@ -50,17 +45,6 @@ namespace Visions.Data
         {
             base.SaveChanges();
         }
-
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<User>().ToTable("AspNetUsers");
-        //    modelBuilder.Entity<IdentityRole>().ToTable("AspNetRoles");
-        //    modelBuilder.Entity<IdentityUserRole>().ToTable("AspNetUserRoles");
-        //    modelBuilder.Entity<IdentityUserLogin>().ToTable("AspNetUserLogins");
-        //    modelBuilder.Entity<IdentityUserClaim>().ToTable("AspNetUserClaims");
-
-        //    base.OnModelCreating(modelBuilder);
-        //}
 
         //private void InitializeIdentity()
         //{

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
+using System.Linq;
 using Visions.Models.Models;
 using Visions.Services.Enumerations;
 
@@ -12,11 +12,11 @@ namespace Visions.Services.Contracts
 
         Photo GetById(Guid id);
 
-        IEnumerable<Photo> GetAll();
+        IQueryable<Photo> GetAll();
 
-        IEnumerable<Photo> GetAll(string userId);
+        IQueryable<Photo> GetAllByUserId(string userId);
 
-        IEnumerable<T1> GetAll<T, T1>(string userId, Expression<Func<Photo, T>> orderByProperty, OrderBy? order, Expression<Func<Photo, T1>> selectAs);
+        IQueryable<Photo> GetAllOrderedByCreatedOn(OrderBy? order, string userId = "");
 
         IEnumerable<Photo> SortByTag(string tag, string userId = "");
     }

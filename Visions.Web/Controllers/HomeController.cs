@@ -1,5 +1,6 @@
 ﻿using Bytes2you.Validation;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Visions.Auth.Contracts;
 using Visions.Models.Models;
@@ -32,13 +33,15 @@ namespace Visions.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            IEnumerable<ArticleViewModel> articles = this.articleService.GetAll(article => article.CreatedOn, OrderBy.Descending, ArticleViewModel.FromArticle);
+            IEnumerable<ArticleViewModel> articles = this.articleService.GetAllOrderedByCreatedOn(OrderBy.Descending)
+                .Select(ArticleViewModel.FromArticle);
 
             return this.View(articles);
         }
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(string articleTitle, string articleContent)
         {
             string userId = this.userProvider.GetUserId();

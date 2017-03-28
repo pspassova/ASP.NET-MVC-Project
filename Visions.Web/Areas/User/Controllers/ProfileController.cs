@@ -59,7 +59,8 @@ namespace Visions.Web.Areas.User.Controllers
         public ActionResult Dashboard(int page, int pageSize)
         {
             string userId = this.userProvider.GetUserId();
-            IEnumerable<PhotoViewModel> photos = this.photoService.GetAll(userId, photo => photo.CreatedOn, OrderBy.Descending, PhotoViewModel.FromPhoto);
+            IEnumerable<PhotoViewModel> photos = this.photoService.GetAllOrderedByCreatedOn(OrderBy.Descending, userId)
+                .Select(PhotoViewModel.FromPhoto);
 
             IPagedList<PhotoViewModel> photosPagedList = this.pagingProvider.CreatePagedList(photos, page, pageSize);
 
