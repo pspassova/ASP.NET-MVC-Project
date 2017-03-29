@@ -17,24 +17,20 @@ namespace Visions.Web.Areas.Admin
             context.Routes.LowercaseUrls = true;
 
             context.MapRoute(
-                "Admin_default_paging",
-                "{lang}/admin/{controller}/{action}/{page}/{pageSize}",
+                "Admin_default",
+                "{lang}/admin/{controller}/{action}/{page}/{pageSize}/{text}",
                 defaults: new
                 {
                     lang = "en",
                     controller = "Home",
                     action = "Index",
                     page = 1,
-                    pageSize = 4
-                }
-            );
-            context.MapRoute(
-                "Admin_default",
-                "{lang}/admin/{controller}/{action}",
-                defaults: new
+                    pageSize = 4,
+                    text = UrlParameter.Optional
+                },
+                constraints: new
                 {
-                    lang = "en",
-                    action = "Index"
+                    lang = "en|bg"
                 }
             );
         }

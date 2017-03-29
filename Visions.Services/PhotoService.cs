@@ -81,7 +81,7 @@ namespace Visions.Services
             }
         }
 
-        public IEnumerable<Photo> SortByTag(string tag, string userId = "")
+        public IQueryable<Photo> SortByTag(string tag, string userId = "")
         {
             if (tag == null)
             {
@@ -106,7 +106,7 @@ namespace Visions.Services
                     photos = this.GetAllByUserId(userId);
                 }
 
-                ICollection<Photo> matchingPhotos = new List<Photo>();
+                IList<Photo> matchingPhotos = new List<Photo>();
                 foreach (var photo in photos)
                 {
                     if (photo.Tags.Count > 0)
@@ -122,7 +122,7 @@ namespace Visions.Services
                     }
                 }
 
-                return matchingPhotos;
+                return matchingPhotos.AsQueryable();
             }
         }
     }

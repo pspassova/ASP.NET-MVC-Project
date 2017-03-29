@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Visions.Web.Models.Account
+namespace Visions.Web.Models
 {
     public class LoginViewModel
     {

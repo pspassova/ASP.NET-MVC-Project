@@ -12,10 +12,11 @@ namespace Visions.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                "Default_paging",
+                "Paging_default",
                 "{lang}/{controller}/{action}/{page}/{pageSize}/{text}",
                 defaults: new
                 {
+                    lang = "en",
                     controller = "Home",
                     action = "Index",
                     page = 1,

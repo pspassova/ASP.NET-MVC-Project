@@ -3,16 +3,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    @RenderSection("Styles", required: false);
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title | Visions</title>
     @Styles.Render("~/Content/site-css")
     @Styles.Render("~/Content/site-less")
+
+    @RenderSection("Styles", required: false)
+
     @*<link href="~/Content/less/creative.less" rel="stylesheet" />*@
 </head>
-<body id="page-top">
+<body @*id="page-top"*@>
     <div class="container">
         <nav id="mainNav" class="navbar navbar-default navbar-fixed-top affix-top">
             <div class="container-fluid">
@@ -76,7 +77,7 @@
                         <li class="page-scroll">
                             @if (this.User.Identity.IsAuthenticated)
                             {
-                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post,
+                                using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post,
                                 new
                                 {
                                     id = "logoutForm",

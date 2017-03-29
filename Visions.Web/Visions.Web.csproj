@@ -278,8 +278,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Account\LoginViewModel.cs" />
-    <Compile Include="Models\Account\RegisterViewModel.cs" />
+    <Compile Include="Helpers\Account\ChallengeResult.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\ArticleViewModel.cs" />
     <Compile Include="Models\PhotoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -385,14 +386,12 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Dashboard\Shared.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_AllArticles.cshtml" />
     <Content Include="Views\Shared\_AllPhotos.cshtml" />
     <Content Include="Views\Shared\_UploadPhoto.cshtml" />

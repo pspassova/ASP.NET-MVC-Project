@@ -29,14 +29,15 @@ namespace Visions.Web.Controllers
             this.ViewBag.SelectedTag = text;
 
             IEnumerable<PhotoViewModel> photos = this.photoService.SortByTag(text)
-                .AsQueryable()
-                .Select(PhotoViewModel.FromPhoto);
+                .Select(PhotoViewModel.FromPhoto)
+                .OrderByDescending(x => x.CreatedOn);
             IPagedList<PhotoViewModel> photosPagedList = this.pagingProvider.CreatePagedList(photos, page, pageSize);
 
             return this.View(photosPagedList);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Search(string query, int page, int pageSize)
         {
             IEnumerable<PhotoViewModel> photos = this.photoService.SortByTag(query)

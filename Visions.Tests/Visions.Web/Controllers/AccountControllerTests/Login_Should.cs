@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Web.Mvc;
 using TestStack.FluentMVCTesting;
 using Visions.Web.Controllers;
-using Visions.Web.Models.Account;
+using Visions.Web.Models;
 
 namespace Visions.Tests.Visions.Web.Controllers.AccountControllerTests
 {

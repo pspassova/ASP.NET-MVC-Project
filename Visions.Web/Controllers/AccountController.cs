@@ -5,8 +5,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Visions.Auth;
-using Visions.Web.Models.Account;
+using Visions.Web.Models;
 using Visions.Models.Models;
+using Bytes2you.Validation;
 
 namespace Visions.Web.Controllers
 {
@@ -22,19 +23,22 @@ namespace Visions.Web.Controllers
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
-            UserManager = userManager;
-            SignInManager = signInManager;
+            Guard.WhenArgument(userManager, "userManager").IsNull().Throw();
+            Guard.WhenArgument(signInManager, "signInManager").IsNull().Throw();
+
+            this.UserManager = userManager;
+            this.SignInManager = signInManager;
         }
 
         public ApplicationSignInManager SignInManager
         {
             get
             {
-                return signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                return this.signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
             private set
             {
-                signInManager = value;
+                this.signInManager = value;
             }
         }
 
@@ -42,157 +46,121 @@ namespace Visions.Web.Controllers
         {
             get
             {
-                return userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return this.userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
             private set
             {
-                userManager = value;
+                this.userManager = value;
             }
         }
-
-        //
-        // GET: /Account/Login
-        [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
-        {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
-        }
-
-        //
-        // POST: /Account/Login
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            var result = await this.SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
-            }
-        }
-       
-        //
-        // GET: /Account/Register
-        [AllowAnonymous]
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Account/Register
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = new User { UserName = model.Email, Email = model.Email };
-                var result = await this.UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                    return RedirectToAction("Index", "Home");
-                }
-                AddErrors(result);
-            }
-
-            return View(model);
-        }
-
-        //
-        // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
-        {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
-        }
-
-        #region Helpers
-        // Used for XSRF protection when adding external logins
-        private const string XsrfKey = "XsrfId";
 
         private IAuthenticationManager AuthenticationManager
         {
             get
             {
-                return HttpContext.GetOwinContext().Authentication;
+                return this.HttpContext.GetOwinContext().Authentication;
             }
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Login(string returnUrl)
+        {
+            this.ViewBag.ReturnUrl = returnUrl;
+
+            return this.View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Login(LoginViewModel loginViewModel, string returnUrl)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(loginViewModel);
+            }
+
+            SignInStatus status = await this.SignInManager.PasswordSignInAsync(
+                loginViewModel.Email,
+                loginViewModel.Password,
+                loginViewModel.RememberMe,
+                shouldLockout: false);
+
+            switch (status)
+            {
+                case SignInStatus.Success:
+                    return this.RedirectToLocal(returnUrl);
+                case SignInStatus.LockedOut:
+                    return this.View("Lockout");
+                case SignInStatus.RequiresVerification:
+                    return this.RedirectToAction("SendCode", new
+                    {
+                        ReturnUrl = returnUrl,
+                        RememberMe = loginViewModel.RememberMe
+                    });
+                case SignInStatus.Failure:
+                default:
+                    this.ModelState.AddModelError("", "Invalid login attempt.");
+                    return this.View(loginViewModel);
+            }
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Register()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Register(RegisterViewModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                User user = new User { UserName = model.Email, Email = model.Email };
+                IdentityResult result = await this.UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    return this.RedirectToAction("Index", "Home");
+                }
+
+                this.AddErrors(result);
+            }
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogOff()
+        {
+            this.AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+
+            return this.RedirectToAction("Index", "Home");
+        }
+
+        #region Helpers
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                this.ModelState.AddModelError("", error);
             }
         }
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
-            if (Url.IsLocalUrl(returnUrl))
+            if (this.Url.IsLocalUrl(returnUrl))
             {
-                return Redirect(returnUrl);
-            }
-            return RedirectToAction("Index", "Home");
-        }
-
-        internal class ChallengeResult : HttpUnauthorizedResult
-        {
-            public ChallengeResult(string provider, string redirectUri)
-                : this(provider, redirectUri, null)
-            {
+                return this.Redirect(returnUrl);
             }
 
-            public ChallengeResult(string provider, string redirectUri, string userId)
-            {
-                LoginProvider = provider;
-                RedirectUri = redirectUri;
-                UserId = userId;
-            }
-
-            public string LoginProvider
-            {
-                get; set;
-            }
-            public string RedirectUri
-            {
-                get; set;
-            }
-            public string UserId
-            {
-                get; set;
-            }
-
-            public override void ExecuteResult(ControllerContext context)
-            {
-                var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
-                if (UserId != null)
-                {
-                    properties.Dictionary[XsrfKey] = UserId;
-                }
-                context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
-            }
+            return this.RedirectToAction("Index", "Home");
         }
         #endregion
     }

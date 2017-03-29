@@ -17,7 +17,7 @@ namespace Visions.Web.Areas.User
             context.Routes.LowercaseUrls = true;
 
             context.MapRoute(
-                "User_default_paging",
+                "User_default",
                 "{lang}/user/{controller}/{action}/{page}/{pageSize}/{text}",
                 defaults: new
                 {
@@ -27,14 +27,10 @@ namespace Visions.Web.Areas.User
                     page = 1,
                     pageSize = 4,
                     text = UrlParameter.Optional
-                }
-            );
-            context.MapRoute(
-                "User_default",
-                "{lang}/user/{controller}/{action}",
-                defaults: new
+                },
+                constraints: new
                 {
-                    lang = "en"
+                    lang = "en|bg"
                 }
             );
         }

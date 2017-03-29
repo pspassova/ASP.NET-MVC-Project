@@ -18,6 +18,6 @@ namespace Visions.Services.Contracts
 
         IQueryable<Photo> GetAllOrderedByCreatedOn(OrderBy? order, string userId = "");
 
-        IEnumerable<Photo> SortByTag(string tag, string userId = "");
+        IQueryable<Photo> SortByTag(string tag, string userId = "");
     }
 }
