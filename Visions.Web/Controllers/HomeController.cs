@@ -17,7 +17,7 @@ namespace Visions.Web.Controllers
         private readonly IUserProvider userProvider;
 
         public HomeController(
-            IUploadService<Article> uploadArticleService, 
+            IUploadService<Article> uploadArticleService,
             IArticleService articleService,
             IUserProvider userProvider)
         {
@@ -39,9 +39,7 @@ namespace Visions.Web.Controllers
             return this.View(articles);
         }
 
-        [Authorize]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost, Authorize, ValidateInput(false)]
         public ActionResult Index(string articleTitle, string articleContent)
         {
             string userId = this.userProvider.GetUserId();

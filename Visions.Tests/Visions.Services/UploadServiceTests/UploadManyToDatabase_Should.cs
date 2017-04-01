@@ -15,26 +15,30 @@ namespace Visions.Tests.Visions.Services.UploadServiceTests
         public void ThrowArgumentNullException_WhenItemsToUploadAreNotProvided()
         {
             // Arrange
-            var repositoryMock = new Mock<IEfDbSetWrapper<Article>>();
-            UploadService<Article> UploadService = new UploadService<Article>(repositoryMock.Object);
+            var dbSetWrapperMock = new Mock<IEfDbSetWrapper<Article>>();
+            var dbContextSaveChangesMock = new Mock<IEfDbContextSaveChanges>();
+
+            UploadService<Article> UploadService = new UploadService<Article>(dbSetWrapperMock.Object, dbContextSaveChangesMock.Object);
 
             // Act, Assert
             Assert.Throws<ArgumentNullException>(() => UploadService.UploadManyToDatabase(null));
         }
 
         [Test]
-        public void InvokeAddManyMethodFromRepository_WhenItemsToUploadAreProvided()
+        public void InvokeAddManyMethodFromDbSetWrapper_WhenItemsToUploadAreProvided()
         {
             // Arrange
             var itemsMock = new Mock<IEnumerable<Photo>>();
-            var repositoryMock = new Mock<IEfDbSetWrapper<Photo>>();
-            UploadService<Photo> UploadService = new UploadService<Photo>(repositoryMock.Object);
+            var dbSetWrapperMock = new Mock<IEfDbSetWrapper<Photo>>();
+            var dbContextSaveChangesMock = new Mock<IEfDbContextSaveChanges>();
+
+            UploadService<Photo> UploadService = new UploadService<Photo>(dbSetWrapperMock.Object, dbContextSaveChangesMock.Object);
 
             // Act
             UploadService.UploadManyToDatabase(itemsMock.Object);
 
             // Assert
-            repositoryMock.Verify(x => x.AddMany(itemsMock.Object), Times.Once);
+            dbSetWrapperMock.Verify(x => x.AddMany(itemsMock.Object), Times.Once);
         }
     }
 }

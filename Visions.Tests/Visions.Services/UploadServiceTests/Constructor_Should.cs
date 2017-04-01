@@ -11,20 +11,34 @@ namespace Visions.Tests.Visions.Services.UploadServicetests
     public class Constructor_Should
     {
         [Test]
-        public void ThrowArgumentNullException_WhenARepositoryIsNotProvided()
+        public void ThrowArgumentNullException_WhenADbSetWrapperIsNotProvided()
         {
-            // Arrange, Act, Assert
-            Assert.Throws<ArgumentNullException>(() => new UploadService<Tag>(null));
+            // Arrange
+            var dbContextSaveChangesMock = new Mock<IEfDbContextSaveChanges>();
+
+            // Act, Assert
+            Assert.Throws<ArgumentNullException>(() => new UploadService<Tag>(null, dbContextSaveChangesMock.Object));
         }
 
         [Test]
-        public void CreateAnInstanceOfUploadService_WhenARepositoryIsProvided()
+        public void ThrowArgumentNullException_WhenADbContextSaveChangesIsNotProvided()
         {
             // Arrange
-            var repositoryMock = new Mock<IEfDbSetWrapper<Photo>>();
+            var dbSetWrapperMock = new Mock<IEfDbSetWrapper<Photo>>();
 
             // Act, Assert
-            Assert.IsInstanceOf<UploadService<Photo>>(new UploadService<Photo>(repositoryMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new UploadService<Photo>(dbSetWrapperMock.Object, null));
+        }
+
+        [Test]
+        public void CreateAnInstanceOfUploadService_BothParametersAreProvided()
+        {
+            // Arrange
+            var dbSetWrapperMock = new Mock<IEfDbSetWrapper<Photo>>();
+            var dbContextSaveChangesMock = new Mock<IEfDbContextSaveChanges>();
+
+            // Act, Assert
+            Assert.IsInstanceOf<UploadService<Photo>>(new UploadService<Photo>(dbSetWrapperMock.Object, dbContextSaveChangesMock.Object));
         }
     }
 }

@@ -149,8 +149,6 @@
     <Compile Include="Visions.Data\GenericRepositoryTests\Delete_Should.cs" />
     <Compile Include="Visions.Data\GenericRepositoryTests\GetById_Should.cs" />
     <Compile Include="Visions.Data\GenericRepositoryTests\Update_Should.cs" />
-    <Compile Include="Visions.Data\Interceptors\SaveChangesInterceptorTests\Constructor_Should.cs" />
-    <Compile Include="Visions.Data\Interceptors\SaveChangesInterceptorTests\Intercept_Should.cs" />
     <Compile Include="Visions.Data\VisionsDbContextTests\Constructor_Should.cs" />
     <Compile Include="Visions.Data\VisionsDbContextTests\Create_Should.cs" />
     <Compile Include="Visions.Data\VisionsDbContextTests\Set_Should.cs" />
@@ -253,7 +251,9 @@
       <Name>Visions.Web</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Visions.Data\Interceptors\" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

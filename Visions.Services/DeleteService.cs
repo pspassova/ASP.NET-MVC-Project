@@ -7,20 +7,24 @@ namespace Visions.Services
     public class DeleteService<T> : IDeleteService<T>
         where T : class
     {
-        private readonly IEfDbSetWrapper<T> repository;
+        private readonly IEfDbSetWrapper<T> dbSetWrapper;
+        private readonly IEfDbContextSaveChanges dbContextSaveChanges;
 
-        public DeleteService(IEfDbSetWrapper<T> repository)
+        public DeleteService(IEfDbSetWrapper<T> dbSetWrapper, IEfDbContextSaveChanges dbContextSaveChanges)
         {
-            Guard.WhenArgument(repository, "repository").IsNull().Throw();
+            Guard.WhenArgument(dbSetWrapper, "dbSetWrapper").IsNull().Throw();
+            Guard.WhenArgument(dbContextSaveChanges, "dbContextSaveChanges").IsNull().Throw();
 
-            this.repository = repository;
+            this.dbSetWrapper = dbSetWrapper;
+            this.dbContextSaveChanges = dbContextSaveChanges;
         }
 
         public void Delete(T item)
         {
             Guard.WhenArgument(item, "item").IsNull().Throw();
 
-            this.repository.Delete(item);
+            this.dbSetWrapper.Delete(item);
+            this.dbContextSaveChanges.SaveChanges();
         }
     }
 }

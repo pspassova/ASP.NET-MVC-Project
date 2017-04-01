@@ -16,8 +16,6 @@
                 <h3>@GlobalResources.PostArticleTitle</h3>
 
                 <form id="createArticleForm" action="" method="post" enctype="multipart/form-data">
-                    @Html.AntiForgeryToken()
-
                     <div class="form-horizontal">
                         <div class="form-group">
                             <input id="articleTitle" type="text" name="articleTitle" class="form-control article-field" placeholder="@GlobalResources.ArticleTitlePlaceholderMessage"
@@ -28,7 +26,6 @@
                             <input id="articleContent" type="text" name="articleContent" class="form-control article-field" placeholder="@GlobalResources.ArticleContentPlaceholderMessage" 
                                    pattern="(.*?){2,500}" autofocus required title="must be from 2 to 500 symbols" />
                         </div>
-
                     </div>
 
                     <div class="form-group">

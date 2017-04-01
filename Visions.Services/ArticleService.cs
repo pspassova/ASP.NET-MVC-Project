@@ -11,13 +11,13 @@ namespace Visions.Services
 {
     public class ArticleService : IArticleService
     {
-        private readonly IEfDbSetWrapper<Article> repository;
+        private readonly IEfDbSetWrapper<Article> dbSetWrapper;
 
-        public ArticleService(IEfDbSetWrapper<Article> repository)
+        public ArticleService(IEfDbSetWrapper<Article> dbSetWrapper)
         {
-            Guard.WhenArgument(repository, "repository").IsNull().Throw();
+            Guard.WhenArgument(dbSetWrapper, "dbSetWrapper").IsNull().Throw();
 
-            this.repository = repository;
+            this.dbSetWrapper = dbSetWrapper;
         }
 
         public Article Create(string title, string content, string userId)
@@ -35,7 +35,7 @@ namespace Visions.Services
 
         public IQueryable<Article> GetAll()
         {
-            return this.repository.All;
+            return this.dbSetWrapper.All;
         }
 
         public IQueryable<Article> GetAllOrderedByCreatedOn(OrderBy? order, string userId = "")

@@ -11,13 +11,13 @@ namespace Visions.Services
 {
     public class PhotoService : IPhotoService
     {
-        private readonly IEfDbSetWrapper<Photo> repository;
+        private readonly IEfDbSetWrapper<Photo> dbSetWrapper;
 
-        public PhotoService(IEfDbSetWrapper<Photo> repository)
+        public PhotoService(IEfDbSetWrapper<Photo> dbSetWrapper)
         {
-            Guard.WhenArgument(repository, "repository").IsNull().Throw();
+            Guard.WhenArgument(dbSetWrapper, "dbSetWrapper").IsNull().Throw();
 
-            this.repository = repository;
+            this.dbSetWrapper = dbSetWrapper;
         }
 
         public Photo Create(string userId, string path, ICollection<Tag> tags)
@@ -35,23 +35,23 @@ namespace Visions.Services
 
         public Photo GetById(Guid id)
         {
-            return this.repository.GetById(id);
+            return this.dbSetWrapper.GetById(id);
         }
 
         public IQueryable<Photo> GetAll()
         {
-            return this.repository.All;
+            return this.dbSetWrapper.All;
         }
 
         public IQueryable<Photo> GetAllByUserId(string userId)
         {
             if (userId == "")
             {
-                return this.repository.All;
+                return this.dbSetWrapper.All;
             }
             else
             {
-                return this.repository.All.Where(x => x.UserId == userId);
+                return this.dbSetWrapper.All.Where(x => x.UserId == userId);
             }
         }
 
@@ -61,22 +61,22 @@ namespace Visions.Services
             {
                 if (order == null || order == OrderBy.Ascending)
                 {
-                    return this.repository.All;
+                    return this.dbSetWrapper.All;
                 }
                 else
                 {
-                    return this.repository.All.OrderByDescending(x => x.CreatedOn);
+                    return this.dbSetWrapper.All.OrderByDescending(x => x.CreatedOn);
                 }
             }
             else
             {
                 if (order == null || order == OrderBy.Ascending)
                 {
-                    return this.repository.All.Where(x => x.UserId == userId);
+                    return this.dbSetWrapper.All.Where(x => x.UserId == userId);
                 }
                 else
                 {
-                    return this.repository.All.Where(x => x.UserId == userId).OrderByDescending(x => x.CreatedOn);
+                    return this.dbSetWrapper.All.Where(x => x.UserId == userId).OrderByDescending(x => x.CreatedOn);
                 }
             }
         }

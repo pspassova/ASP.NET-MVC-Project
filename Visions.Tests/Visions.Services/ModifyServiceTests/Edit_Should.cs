@@ -15,26 +15,30 @@ namespace Visions.Tests.Visions.Services.ModifyServiceTests
         public void ThrowArgumentNullException_WhenAnItemToEditIsNotProvided()
         {
             // Arrange
-            var repositoryMock = new Mock<IEfDbSetWrapper<Photo>>();
-            IModifyService<Photo> modifyService = new ModifyService<Photo>(repositoryMock.Object);
+            var dbSetWrapperMock = new Mock<IEfDbSetWrapper<Photo>>();
+            var dbContextSaveChangesMock = new Mock<IEfDbContextSaveChanges>();
+
+            IModifyService<Photo> modifyService = new ModifyService<Photo>(dbSetWrapperMock.Object, dbContextSaveChangesMock.Object);
 
             // Act, Assert
             Assert.Throws<ArgumentNullException>(() => modifyService.Edit(null));
         }
 
         [Test]
-        public void InvokeUpdateMethodFromRepository_WhenAnItemToEditIsProvided()
+        public void InvokeUpdateMethodFromDbSetWrapper_WhenAnItemToEditIsProvided()
         {
             // Arrange
             var itemMock = new Mock<Tag>();
-            var repositoryMock = new Mock<IEfDbSetWrapper<Tag>>();
-            IModifyService<Tag> modifyService = new ModifyService<Tag>(repositoryMock.Object);
+            var dbSetWrapperMock = new Mock<IEfDbSetWrapper<Tag>>();
+            var dbContextSaveChangesMock = new Mock<IEfDbContextSaveChanges>();
+
+            IModifyService<Tag> modifyService = new ModifyService<Tag>(dbSetWrapperMock.Object, dbContextSaveChangesMock.Object);
 
             // Act
             modifyService.Edit(itemMock.Object);
 
             // Assert
-            repositoryMock.Verify(x => x.Update(itemMock.Object), Times.Once);
+            dbSetWrapperMock.Verify(x => x.Update(itemMock.Object), Times.Once);
         }
     }
 }

@@ -15,26 +15,30 @@ namespace Visions.Tests.Visions.Services.DeleteServiceTests
         public void ThrowArgumentNullException_WhenAnItemToDeleteIsNotProvided()
         {
             // Arrange
-            var repositoryMock = new Mock<IEfDbSetWrapper<Photo>>();
-            IDeleteService<Photo> deleteService = new DeleteService<Photo>(repositoryMock.Object);
+            var dbSetWrapperMock = new Mock<IEfDbSetWrapper<Photo>>();
+            var dbContextSaveChangesMock = new Mock<IEfDbContextSaveChanges>();
+
+            IDeleteService<Photo> deleteService = new DeleteService<Photo>(dbSetWrapperMock.Object, dbContextSaveChangesMock.Object);
 
             // Act, Assert
             Assert.Throws<ArgumentNullException>(() => deleteService.Delete(null));
         }
 
         [Test]
-        public void InvokeDeleteMethodFromRepository_WhenAnItemToDeleteIsProvided()
+        public void InvokeDeleteMethodFromDbSetWrapper_WhenAnItemToDeleteIsProvided()
         {
             // Arrange
             var itemMock = new Mock<Tag>();
-            var repositoryMock = new Mock<IEfDbSetWrapper<Tag>>();
-            IDeleteService<Tag> deleteService = new DeleteService<Tag>(repositoryMock.Object);
+            var dbSetWrapperMock = new Mock<IEfDbSetWrapper<Tag>>();
+            var dbContextSaveChangesMock = new Mock<IEfDbContextSaveChanges>();
+
+            IDeleteService<Tag> deleteService = new DeleteService<Tag>(dbSetWrapperMock.Object, dbContextSaveChangesMock.Object);
 
             // Act
             deleteService.Delete(itemMock.Object);
 
             // Assert
-            repositoryMock.Verify(x => x.Delete(itemMock.Object), Times.Once);
+            dbSetWrapperMock.Verify(x => x.Delete(itemMock.Object), Times.Once);
         }
     }
 }

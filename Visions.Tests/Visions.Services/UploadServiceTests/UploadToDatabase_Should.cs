@@ -14,26 +14,30 @@ namespace Visions.Tests.Visions.Services.UploadServiceTests
         public void ThrowArgumentNullException_WhenAnItemToUploadIsNotProvided()
         {
             // Arrange
-            var repositoryMock = new Mock<IEfDbSetWrapper<Photo>>();
-            UploadService<Photo> UploadService = new UploadService<Photo>(repositoryMock.Object);
+            var dbSetWrapperMock = new Mock<IEfDbSetWrapper<Photo>>();
+            var dbContextSaveChangesMock = new Mock<IEfDbContextSaveChanges>();
+
+            UploadService<Photo> UploadService = new UploadService<Photo>(dbSetWrapperMock.Object, dbContextSaveChangesMock.Object);
 
             // Act, Assert
             Assert.Throws<ArgumentNullException>(() => UploadService.UploadToDatabase(null));
         }
 
         [Test]
-        public void InvokeAddMethodFromRepository_WhenAnItemToUploadIsProvided()
+        public void InvokeAddMethodFromDbSetWrapper_WhenAnItemToUploadIsProvided()
         {
             // Arrange
             var itemMock = new Mock<Tag>();
-            var repositoryMock = new Mock<IEfDbSetWrapper<Tag>>();
-            UploadService<Tag> UploadService = new UploadService<Tag>(repositoryMock.Object);
+            var dbSetWrapperMock = new Mock<IEfDbSetWrapper<Tag>>();
+            var dbContextSaveChangesMock = new Mock<IEfDbContextSaveChanges>();
+
+            UploadService<Tag> UploadService = new UploadService<Tag>(dbSetWrapperMock.Object, dbContextSaveChangesMock.Object);
 
             // Act
             UploadService.UploadToDatabase(itemMock.Object);
 
             // Assert
-            repositoryMock.Verify(x => x.Add(itemMock.Object), Times.Once);
+            dbSetWrapperMock.Verify(x => x.Add(itemMock.Object), Times.Once);
         }
     }
 }

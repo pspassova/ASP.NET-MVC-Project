@@ -1,12 +1,10 @@
-﻿using Ninject.Extensions.Interception.Infrastructure.Language;
-using Ninject.Modules;
+﻿using Ninject.Modules;
 using Ninject.Web.Common;
 using System.Web;
 using Visions.Auth;
 using Visions.Auth.Contracts;
 using Visions.Data;
 using Visions.Data.Contracts;
-using Visions.Data.Interceptors;
 using Visions.Helpers;
 using Visions.Helpers.Contracts;
 using Visions.Services;
@@ -26,6 +24,7 @@ namespace Visions.Web.App_Start
 
             // Data
             this.Bind<IEfDbContext>().To<EfDbContext>().InRequestScope();
+            this.Bind<IEfDbContextSaveChanges>().To<EfDbContextSaveChanges>();
 
             this.Bind(typeof(IEfDbSetWrapper<>)).To(typeof(EfDbSetWrapper<>));
 
@@ -35,15 +34,10 @@ namespace Visions.Web.App_Start
             this.Bind<IArticleService>().To<ArticleService>();
 
             // Interceptors
-            var uploadServiceBinding = this.Bind(typeof(IUploadService<>)).To(typeof(UploadService<>)).InRequestScope();
-            uploadServiceBinding.Intercept().With<SaveChangesInterceptor>();
-
-            var modifyServiceBinding = this.Bind(typeof(IModifyService<>)).To(typeof(ModifyService<>)).InRequestScope();
-            modifyServiceBinding.Intercept().With<SaveChangesInterceptor>();
-
-            var deleteServiceBinding = this.Bind(typeof(IDeleteService<>)).To(typeof(DeleteService<>)).InRequestScope();
-            deleteServiceBinding.Intercept().With<SaveChangesInterceptor>();
-
+            this.Bind(typeof(IUploadService<>)).To(typeof(UploadService<>));
+            this.Bind(typeof(IModifyService<>)).To(typeof(ModifyService<>));
+            this.Bind(typeof(IDeleteService<>)).To(typeof(DeleteService<>));
+            
             // Auth
             this.Bind<IUserProvider>().To<UserProvider>();
 

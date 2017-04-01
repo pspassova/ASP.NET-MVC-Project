@@ -8,27 +8,32 @@ namespace Visions.Services
     public class UploadService<T> : IUploadService<T>
         where T : class
     {
-        private readonly IEfDbSetWrapper<T> repository;
+        private readonly IEfDbSetWrapper<T> dbSetWrapper;
+        private readonly IEfDbContextSaveChanges dbContextSaveChanges;
 
-        public UploadService(IEfDbSetWrapper<T> repository)
+        public UploadService(IEfDbSetWrapper<T> dbSetWrapper, IEfDbContextSaveChanges dbContextSaveChanges)
         {
-            Guard.WhenArgument(repository, "repository").IsNull().Throw();
+            Guard.WhenArgument(dbSetWrapper, "dbSetWrapper").IsNull().Throw();
+            Guard.WhenArgument(dbContextSaveChanges, "dbContextSaveChanges").IsNull().Throw();
 
-            this.repository = repository;
+            this.dbSetWrapper = dbSetWrapper;
+            this.dbContextSaveChanges = dbContextSaveChanges;
         }
 
         public void UploadToDatabase(T item)
         {
             Guard.WhenArgument(item, "item").IsNull().Throw();
 
-            this.repository.Add(item);
+            this.dbSetWrapper.Add(item);
+            this.dbContextSaveChanges.SaveChanges();
         }
 
         public void UploadManyToDatabase(IEnumerable<T> items)
         {
             Guard.WhenArgument(items, "items").IsNull().Throw();
 
-            this.repository.AddMany(items);
+            this.dbSetWrapper.AddMany(items);
+            this.dbContextSaveChanges.SaveChanges();
         }
     }
 }

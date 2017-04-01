@@ -127,10 +127,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IEfDbContextSaveChanges.cs" />
     <Compile Include="Contracts\IEfDbSetWrapper.cs" />
     <Compile Include="Contracts\IEfDbContext.cs" />
+    <Compile Include="Contracts\IVisionsData.cs" />
+    <Compile Include="EfDbContextSaveChanges.cs" />
     <Compile Include="EfDbSetWrapper.cs" />
-    <Compile Include="Interceptors\SaveChangesInterceptor.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EfDbContext.cs" />

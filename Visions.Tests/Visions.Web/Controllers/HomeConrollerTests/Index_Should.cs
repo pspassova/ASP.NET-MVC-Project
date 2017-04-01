@@ -65,6 +65,19 @@ namespace Visions.Tests.Visions.Web.Controllers.HomeConrollerTests
         }
 
         [Test]
+        public void HaveValidateInputAttribute()
+        {
+            // Arrange, Act
+            MethodAttributes attribute = typeof(HomeController).GetMethods()
+                .Where(x => x.Name == nameof(HomeController.Index))
+                .Select(x => x.Attributes)
+                .SingleOrDefault(x => x.GetType() == typeof(ValidateInputAttribute));
+
+            // Assert
+            Assert.IsNotNull(attribute);
+        }
+
+        [Test]
         public void InvokeGetUserIdMethod_Once()
         {
             // Arrange, Act

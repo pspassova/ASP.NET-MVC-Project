@@ -11,16 +11,18 @@
 <h2>@ViewBag.Title</h2>
 
 @using (Ajax.BeginForm("Search", null,
-                    new AjaxOptions
-                    {
-                        UpdateTargetId = "allPhotos",
-                        InsertionMode = InsertionMode.Replace,
-                        HttpMethod = "POST"
-                    }, new
-                    {
-                        id = "searchForm"
-                    }))
+                                new AjaxOptions
+                                {
+                                    UpdateTargetId = "allPhotos",
+                                    InsertionMode = InsertionMode.Replace,
+                                    HttpMethod = "POST"
+                                }, new
+                                {
+                                    id = "searchForm"
+                                }))
 {
+    @Html.AntiForgeryToken()
+
     <input type="text" name="query" placeholder=@GlobalResources.SearchPlaceholderText onsubmit="changed()" class="navbar-form form-control" />
 }
 
