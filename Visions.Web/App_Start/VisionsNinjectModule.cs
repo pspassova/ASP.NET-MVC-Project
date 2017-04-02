@@ -1,4 +1,6 @@
-﻿using Ninject.Modules;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Ninject.Modules;
 using Ninject.Web.Common;
 using System.Web;
 using Visions.Auth;
@@ -37,8 +39,14 @@ namespace Visions.Web.App_Start
             this.Bind(typeof(IUploadService<>)).To(typeof(UploadService<>));
             this.Bind(typeof(IModifyService<>)).To(typeof(ModifyService<>));
             this.Bind(typeof(IDeleteService<>)).To(typeof(DeleteService<>));
-            
+
             // Auth
+            this.Bind<ISignInService>().ToMethod(x => HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>());
+            this.Bind<IUserService>().ToMethod(x => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>());
+
+            this.Bind<IIdentityMessageService>().To<EmailService>();
+            this.Bind<IIdentityMessageService>().To<SmsService>();
+
             this.Bind<IUserProvider>().To<UserProvider>();
 
             // Helpers

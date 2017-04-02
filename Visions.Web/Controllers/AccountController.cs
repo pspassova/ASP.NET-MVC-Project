@@ -4,62 +4,30 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Visions.Auth;
 using Visions.Web.Models;
 using Visions.Models.Models;
 using Bytes2you.Validation;
+using Visions.Auth.Contracts;
 
 namespace Visions.Web.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        private ApplicationSignInManager signInManager;
-        private ApplicationUserManager userManager;
+        private ISignInService signInService;
+        private IUserService userService;
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ISignInService signInService, IUserService userService)
         {
-            Guard.WhenArgument(userManager, "userManager").IsNull().Throw();
-            Guard.WhenArgument(signInManager, "signInManager").IsNull().Throw();
+            Guard.WhenArgument(signInService, "signInService").IsNull().Throw();
+            Guard.WhenArgument(userService, "userService").IsNull().Throw();
 
-            this.UserManager = userManager;
-            this.SignInManager = signInManager;
-        }
-
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return this.signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set
-            {
-                this.signInManager = value;
-            }
-        }
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return this.userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                this.userManager = value;
-            }
-        }
-
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return this.HttpContext.GetOwinContext().Authentication;
-            }
+            this.signInService = signInService;
+            this.userService = userService;
         }
 
         [HttpGet]
@@ -81,7 +49,7 @@ namespace Visions.Web.Controllers
                 return this.View(loginViewModel);
             }
 
-            SignInStatus status = await this.SignInManager.PasswordSignInAsync(
+            SignInStatus status = await this.signInService.PasswordSignInAsync(
                 loginViewModel.Email,
                 loginViewModel.Password,
                 loginViewModel.RememberMe,
@@ -121,10 +89,10 @@ namespace Visions.Web.Controllers
             if (this.ModelState.IsValid)
             {
                 User user = new User { UserName = model.Email, Email = model.Email };
-                IdentityResult result = await this.UserManager.CreateAsync(user, model.Password);
+                IdentityResult result = await this.userService.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await this.signInService.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     return this.RedirectToAction("Index", "Home");
                 }
@@ -145,6 +113,14 @@ namespace Visions.Web.Controllers
         }
 
         #region Helpers
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
+        }
+
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
