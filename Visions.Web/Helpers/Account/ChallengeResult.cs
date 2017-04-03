@@ -5,7 +5,7 @@ using System.Web.Mvc;
 
 namespace Visions.Web.Helpers.Account
 {
-    internal class ChallengeResult : HttpUnauthorizedResult
+    public class ChallengeResult : HttpUnauthorizedResult
     {
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
@@ -19,7 +19,6 @@ namespace Visions.Web.Helpers.Account
         {
             Guard.WhenArgument(provider, "provider").IsNull().Throw();
             Guard.WhenArgument(redirectUri, "redirectUri").IsNull().Throw();
-            Guard.WhenArgument(userId, "userId").IsNull().Throw();
 
             this.LoginProvider = provider;
             this.RedirectUri = redirectUri;

@@ -7,6 +7,7 @@ using TestStack.FluentMVCTesting;
 using Visions.Auth.Contracts;
 using Visions.Models.Models;
 using Visions.Services.Contracts;
+using Visions.Services.Enumerations;
 using Visions.Web.Controllers;
 
 namespace Visions.Tests.Visions.Web.Controllers.HomeConrollerTests
@@ -32,25 +33,16 @@ namespace Visions.Tests.Visions.Web.Controllers.HomeConrollerTests
                 this.userProviderMock.Object);
         }
 
-        //[Test]
-        //public void RenderDefaultView_WithTheCorrectModel()
-        //{
-        //    // Arrange
-        //    var articlesViewModelMock = new Mock<IEnumerable<ArticleViewModel>>();
+        // GET
+        [Test]
+        public void RenderDefaultView()
+        {
+            // Arrange, Act, Assert
+            this.controller.WithCallTo(x => x.Index())
+                .ShouldRenderDefaultView();
+        }
 
-        //    Expression<Func<Article, DateTime?>> createdOn = (Article article) => article.CreatedOn;
-        //    OrderBy orderBy = OrderBy.Descending;
-        //    Expression<Func<Article, ArticleViewModel>> selectAs = (Article article) => new ArticleViewModel();
-
-        //    this.articleServiceMock.Setup(x => x.GetAll(createdOn, orderBy, selectAs))
-        //        .Returns(articleServiceMock.Object);
-
-        //    // Act, Assert
-        //    this.controller.WithCallTo(x => x.Index())
-        //        .ShouldRenderDefaultView()
-        //        .WithModel(articlesViewModelMock.Object);
-        //}
-
+        // POST
         [Test]
         public void HaveAuthorizeAttribute()
         {

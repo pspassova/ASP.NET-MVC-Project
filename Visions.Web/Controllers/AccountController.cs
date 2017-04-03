@@ -17,10 +17,6 @@ namespace Visions.Web.Controllers
         private ISignInService signInService;
         private IUserService userService;
 
-        public AccountController()
-        {
-        }
-
         public AccountController(ISignInService signInService, IUserService userService)
         {
             Guard.WhenArgument(signInService, "signInService").IsNull().Throw();
@@ -117,7 +113,7 @@ namespace Visions.Web.Controllers
         {
             get
             {
-                return HttpContext.GetOwinContext().Authentication;
+                return this.HttpContext.GetOwinContext().Authentication;
             }
         }
 

@@ -1,10 +1,13 @@
-﻿using Moq;
+﻿using Microsoft.AspNet.Identity.Owin;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using TestStack.FluentMVCTesting;
+using Visions.Auth.Contracts;
 using Visions.Web.Controllers;
 using Visions.Web.Models;
 
@@ -14,11 +17,16 @@ namespace Visions.Tests.Visions.Web.Controllers.AccountControllerTests
     public class Login_Should
     {
         private AccountController controller;
+        private Mock<ISignInService> signInServiceMock;
+        private Mock<IUserService> userServiceMock;
 
         [SetUp]
         public void Setup()
         {
-            this.controller = new AccountController();
+            this.signInServiceMock = new Mock<ISignInService>();
+            this.userServiceMock = new Mock<IUserService>();
+
+            this.controller = new AccountController(this.signInServiceMock.Object, this.userServiceMock.Object);
         }
 
         // GET
@@ -101,6 +109,25 @@ namespace Visions.Tests.Visions.Web.Controllers.AccountControllerTests
             // Act, Assert
             this.controller.WithCallTo(x => x.Login(It.IsAny<LoginViewModel>(), It.IsAny<string>()))
                .ShouldRenderDefaultView();
+        }
+
+        [Test]
+        public void RenderDefaultView_IfSignInStatusResultIsSuccess()
+        {
+            // Arrange
+            var signInServiceMock = new Mock<ISignInService>();
+            signInServiceMock.Setup(x => x.PasswordSignInAsync(
+                It.IsAny<string>(),
+                It.IsAny<string>(),
+                It.IsAny<bool>(),
+                It.IsAny<bool>()));
+
+            // Act
+            this.controller.Login(new Mock<LoginViewModel>().Object, It.IsAny<string>());
+
+            // Assert
+            this.controller.WithCallTo(x => x.Login(It.IsAny<string>()))
+                .ShouldRenderDefaultView();
         }
     }
 }
