@@ -221,6 +221,7 @@
     <Compile Include="Visions.Services\UploadServiceTests\Constructor_Should.cs" />
     <Compile Include="Visions.Services\UploadServiceTests\UploadManyToDatabase_Should.cs" />
     <Compile Include="Visions.Services\UploadServiceTests\UploadToDatabase_Should.cs" />
+    <Compile Include="Visions.Web\Areas\Admin\AdminAreaRegistrationTests\Class_Should.cs" />
     <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\Class_Should.cs" />
     <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\Constructor_Should.cs" />
     <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\DeletingConfirmed_Should.cs" />
@@ -232,6 +233,7 @@
     <Compile Include="Visions.Web\Areas\User\Controllers\ProfileControllerTests\Constructor_Should.cs" />
     <Compile Include="Visions.Web\Areas\User\Controllers\ProfileControllerTests\Dashboard_Should.cs" />
     <Compile Include="Visions.Web\Areas\User\Controllers\ProfileControllerTests\Sort_Should.cs" />
+    <Compile Include="Visions.Web\Areas\User\UserAreaRegistrationTests\Class_Should.cs" />
     <Compile Include="Visions.Web\Common\PagingProviderTests\CreatePagedList_Should.cs" />
     <Compile Include="Visions.Web\Common\PhotoConverterTests\ConvertToViewModel_Should.cs" />
     <Compile Include="Visions.Web\Common\PhotoUploaderTests\Constructor_Should.cs" />
@@ -249,6 +251,19 @@
     <Compile Include="Visions.Web\Controllers\HomeConrollerTests\Index_Should.cs" />
     <Compile Include="Visions.Web\Helpers\Account\ChallengeResultTests\Constructor_Should.cs" />
     <Compile Include="Visions.Web\Helpers\Account\ChallengeResultTests\Class_Should.cs" />
+    <Compile Include="Visions.Web\Models\ArticleViewModelTests\Class_Should.cs" />
+    <Compile Include="Visions.Web\Models\LoginViewModelTests\Class_Should.cs" />
+    <Compile Include="Visions.Web\Models\LoginViewModelTests\Email_Should.cs" />
+    <Compile Include="Visions.Web\Models\LoginViewModelTests\Password_Should.cs" />
+    <Compile Include="Visions.Web\Models\LoginViewModelTests\RememberMe_Should.cs" />
+    <Compile Include="Visions.Web\Models\PhotoViewModelTests\Class_Should.cs" />
+    <Compile Include="Visions.Web\Models\PhotoViewModelTests\CreatedOn_Should.cs" />
+    <Compile Include="Visions.Web\Models\PhotoViewModelTests\Path_Should.cs" />
+    <Compile Include="Visions.Web\Models\PhotoViewModelTests\UserId_Should.cs" />
+    <Compile Include="Visions.Web\Models\RegisterViewModelTests\Class_Should.cs" />
+    <Compile Include="Visions.Web\Models\RegisterViewModelTests\ConfirmPassword_Should.cs" />
+    <Compile Include="Visions.Web\Models\RegisterViewModelTests\Email_Should.cs" />
+    <Compile Include="Visions.Web\Models\RegisterViewModelTests\Password_Should.cs" />
     <Compile Include="Visoins.Auth\UserProviderTests\Constructor_Should.cs" />
     <Compile Include="Visoins.Auth\UserProviderTests\GetUserId_Should.cs" />
     <Compile Include="Visoins.Auth\UserProviderTests\GetUsername_Should.cs" />
