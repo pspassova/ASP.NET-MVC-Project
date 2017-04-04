@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Visions.Web.HttpModules
 {
-    public class CultureModule : IHttpModule
+    public class CultureModule : IHttpModule, IDisposable
     {
         public void Init(HttpApplication context)
         {

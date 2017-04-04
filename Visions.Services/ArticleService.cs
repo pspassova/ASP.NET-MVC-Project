@@ -44,7 +44,7 @@ namespace Visions.Services
             {
                 if (order == null || order == OrderBy.Ascending)
                 {
-                    return this.GetAll();
+                    return this.GetAll().OrderBy(x => x.CreatedOn);
                 }
                 else
                 {
@@ -55,7 +55,7 @@ namespace Visions.Services
             {
                 if (order == null || order == OrderBy.Ascending)
                 {
-                    return this.GetAll().Where(x => x.UserId == userId);
+                    return this.GetAll().Where(x => x.UserId == userId).OrderBy(x => x.CreatedOn);
                 }
                 else
                 {

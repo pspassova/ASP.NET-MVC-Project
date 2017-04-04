@@ -210,13 +210,19 @@
     <Compile Include="Visions.Models\UserTests\PinnedPhotos_Should.cs" />
     <Compile Include="Visions.Services\ArticleServiceTests\Constructor_Should.cs" />
     <Compile Include="Visions.Services\ArticleServiceTests\Create_Should.cs" />
+    <Compile Include="Visions.Services\ArticleServiceTests\GetAllOrderedByCreatedOn_Should.cs" />
+    <Compile Include="Visions.Services\ArticleServiceTests\GetAll_Should.cs" />
     <Compile Include="Visions.Services\DeleteServiceTests\Constructor_Should.cs" />
     <Compile Include="Visions.Services\DeleteServiceTests\Delete_Should.cs" />
     <Compile Include="Visions.Services\ModifyServiceTests\Constructor_Should.cs" />
     <Compile Include="Visions.Services\ModifyServiceTests\Edit_Should.cs" />
     <Compile Include="Visions.Services\PhotoServiceTests\Constructor_Should.cs" />
     <Compile Include="Visions.Services\PhotoServiceTests\Create_Should.cs" />
+    <Compile Include="Visions.Services\PhotoServiceTests\GetAllByUserId_Should.cs" />
+    <Compile Include="Visions.Services\PhotoServiceTests\GetAllOrderedByCreatedOn_Should.cs" />
+    <Compile Include="Visions.Services\PhotoServiceTests\GetAll_Should.cs" />
     <Compile Include="Visions.Services\PhotoServiceTests\GetById_Should.cs" />
+    <Compile Include="Visions.Services\PhotoServiceTests\SortByTag_Should.cs" />
     <Compile Include="Visions.Services\TagServiceTests\Create_Should.cs" />
     <Compile Include="Visions.Services\UploadServiceTests\Constructor_Should.cs" />
     <Compile Include="Visions.Services\UploadServiceTests\UploadManyToDatabase_Should.cs" />
@@ -251,6 +257,7 @@
     <Compile Include="Visions.Web\Controllers\HomeConrollerTests\Index_Should.cs" />
     <Compile Include="Visions.Web\Helpers\Account\ChallengeResultTests\Constructor_Should.cs" />
     <Compile Include="Visions.Web\Helpers\Account\ChallengeResultTests\Class_Should.cs" />
+    <Compile Include="Visions.Web\HttpModules\CultureModuleTests\Dispose_Should.cs" />
     <Compile Include="Visions.Web\Models\ArticleViewModelTests\Class_Should.cs" />
     <Compile Include="Visions.Web\Models\LoginViewModelTests\Class_Should.cs" />
     <Compile Include="Visions.Web\Models\LoginViewModelTests\Email_Should.cs" />

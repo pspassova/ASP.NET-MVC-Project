@@ -45,7 +45,7 @@ namespace Visions.Services
 
         public IQueryable<Photo> GetAllByUserId(string userId)
         {
-            if (userId == "")
+            if (userId == string.Empty)
             {
                 return this.dbSetWrapper.All;
             }
@@ -61,7 +61,7 @@ namespace Visions.Services
             {
                 if (order == null || order == OrderBy.Ascending)
                 {
-                    return this.dbSetWrapper.All;
+                    return this.dbSetWrapper.All.OrderBy(x => x.CreatedOn);
                 }
                 else
                 {
@@ -72,7 +72,7 @@ namespace Visions.Services
             {
                 if (order == null || order == OrderBy.Ascending)
                 {
-                    return this.dbSetWrapper.All.Where(x => x.UserId == userId);
+                    return this.dbSetWrapper.All.Where(x => x.UserId == userId).OrderBy(x => x.CreatedOn);
                 }
                 else
                 {
