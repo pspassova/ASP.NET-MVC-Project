@@ -174,17 +174,23 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationConstraints.cs" />
-    <Compile Include="Visions.Data\GenericRepositoryTests\Add_Should.cs" />
-    <Compile Include="Visions.Data\GenericRepositoryTests\Constructor_Should.cs" />
-    <Compile Include="Visions.Data\GenericRepositoryTests\Delete_Should.cs" />
-    <Compile Include="Visions.Data\GenericRepositoryTests\GetById_Should.cs" />
-    <Compile Include="Visions.Data\GenericRepositoryTests\Update_Should.cs" />
-    <Compile Include="Visions.Data\VisionsDbContextTests\Constructor_Should.cs" />
-    <Compile Include="Visions.Data\VisionsDbContextTests\Create_Should.cs" />
-    <Compile Include="Visions.Data\VisionsDbContextTests\Set_Should.cs" />
+    <Compile Include="Visions.Data\EfDbContextSaveChangesTests\Constructor_Should.cs" />
+    <Compile Include="Visions.Data\EfDbContextSaveChangesTests\SaveChanges_Should.cs" />
+    <Compile Include="Visions.Data\EfDbContextTests\Class_Should.cs" />
+    <Compile Include="Visions.Data\EfDbSetWrapperTests\AddMany_Should.cs" />
+    <Compile Include="Visions.Data\EfDbSetWrapperTests\Add_Should.cs" />
+    <Compile Include="Visions.Data\EfDbSetWrapperTests\AttachIfDetached_Should.cs" />
+    <Compile Include="Visions.Data\EfDbSetWrapperTests\Constructor_Should.cs" />
+    <Compile Include="Visions.Data\EfDbSetWrapperTests\Delete_Should.cs" />
+    <Compile Include="Visions.Data\EfDbSetWrapperTests\GetById_Should.cs" />
+    <Compile Include="Visions.Data\EfDbSetWrapperTests\Update_Should.cs" />
+    <Compile Include="Visions.Data\EfDbContextTests\Constructor_Should.cs" />
+    <Compile Include="Visions.Data\EfDbContextTests\Create_Should.cs" />
+    <Compile Include="Visions.Data\EfDbContextTests\Set_Should.cs" />
     <Compile Include="Visions.Helpers\PhotoHelperTests\UploadToFileSystem_Should.cs" />
     <Compile Include="Visions.Helpers\TagHelperTests\Constructor_Should.cs" />
     <Compile Include="Visions.Helpers\TagHelperTests\CreateTags_Should.cs" />
+    <Compile Include="Visions.Models\ArticleTests\Class_Should.cs" />
     <Compile Include="Visions.Models\ArticleTests\Content_Should.cs" />
     <Compile Include="Visions.Models\ArticleTests\CreatedOn_Should.cs" />
     <Compile Include="Visions.Models\ArticleTests\Id_Should.cs" />
@@ -193,6 +199,7 @@
     <Compile Include="Visions.Models\ArticleTests\Title_Should.cs" />
     <Compile Include="Visions.Models\ArticleTests\UserId_Should.cs" />
     <Compile Include="Visions.Models\ArticleTests\User_Should.cs" />
+    <Compile Include="Visions.Models\PhotoTests\Class_Should.cs" />
     <Compile Include="Visions.Models\PhotoTests\CreatedOn_Should.cs" />
     <Compile Include="Visions.Models\PhotoTests\Id_Should.cs" />
     <Compile Include="Visions.Models\PhotoTests\IsDeleted_Should.cs" />
@@ -201,9 +208,11 @@
     <Compile Include="Visions.Models\PhotoTests\Tags_Should.cs" />
     <Compile Include="Visions.Models\PhotoTests\UserId_Should.cs" />
     <Compile Include="Visions.Models\PhotoTests\User_Should.cs" />
+    <Compile Include="Visions.Models\TagTests\Class_Should.cs" />
     <Compile Include="Visions.Models\TagTests\Id_Should.cs" />
     <Compile Include="Visions.Models\TagTests\Text_Should.cs" />
     <Compile Include="Visions.Models\UserTests\AvatarPath_Should.cs" />
+    <Compile Include="Visions.Models\UserTests\Class_Should.cs" />
     <Compile Include="Visions.Models\UserTests\GenerateUserIdentityAsync_Should.cs" />
     <Compile Include="Visions.Models\UserTests\GenerateUserIdentity_Should.cs" />
     <Compile Include="Visions.Models\UserTests\PinnedArticles_Should.cs" />
@@ -305,9 +314,7 @@
       <Name>Visions.Web</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Visions.Data\Interceptors\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

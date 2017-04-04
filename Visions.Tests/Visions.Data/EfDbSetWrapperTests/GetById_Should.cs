@@ -19,10 +19,10 @@ namespace Visions.Tests.Visions.Data.GenericRepositoryTests
             var contextMock = new Mock<IEfDbContext>();
             contextMock.Setup(x => x.Set<User>()).Returns(dbSetMock.Object);
 
-            IEfDbSetWrapper<User> repository = new EfDbSetWrapper<User>(contextMock.Object);
+            IEfDbSetWrapper<User> dbSetWrapper = new EfDbSetWrapper<User>(contextMock.Object);
 
             // Act
-            var exception = Assert.Throws<ArgumentNullException>(() => repository.GetById(null));
+            var exception = Assert.Throws<ArgumentNullException>(() => dbSetWrapper.GetById(null));
 
             // Assert
             StringAssert.IsMatch("id", exception.ParamName);
@@ -38,11 +38,11 @@ namespace Visions.Tests.Visions.Data.GenericRepositoryTests
             var contextMock = new Mock<IEfDbContext>();
             contextMock.Setup(x => x.Set<User>()).Returns(dbSetMock.Object);
 
-            IEfDbSetWrapper<User> repository = new EfDbSetWrapper<User>(contextMock.Object);
+            IEfDbSetWrapper<User> dbSetWrapper = new EfDbSetWrapper<User>(contextMock.Object);
 
             // Act
             Guid validDataModelId = Guid.NewGuid();
-            var actualDataModel = repository.GetById(validDataModelId);
+            var actualDataModel = dbSetWrapper.GetById(validDataModelId);
 
             // Assert
             dbSetMock.Verify(x => x.Find(validDataModelId), Times.Once());

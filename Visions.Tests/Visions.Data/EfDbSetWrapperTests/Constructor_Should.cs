@@ -25,10 +25,10 @@ namespace Visions.Tests.Visions.Data.GenericRepositoryTests
         {
             // Arrange
             var contextMock = new Mock<EfDbContext>();
-            IEfDbSetWrapper<User> repository = new EfDbSetWrapper<User>(contextMock.Object);
+            IEfDbSetWrapper<User> dbSetWrapper = new EfDbSetWrapper<User>(contextMock.Object);
 
             // Act, Assert
-            Assert.IsInstanceOf<EfDbSetWrapper<User>>(repository);
+            Assert.IsInstanceOf<EfDbSetWrapper<User>>(dbSetWrapper);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Visions.Tests.Visions.Data.VisionsDbContextTests
         }
 
         [Test]
-        public void CreateAnInstanceOfVisionsDbContext()
+        public void CreateAnInstanceOfEfDbContext()
         {
             // Arrange
             IEfDbContext context = new EfDbContext();

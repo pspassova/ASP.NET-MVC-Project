@@ -9,7 +9,7 @@ using Visions.Models.Models;
 namespace Visions.Tests.Visions.Data.GenericRepositoryTests
 {
     [TestFixture]
-    public class Update_Should
+    public class Add_Should
     {
         [Test]
         public void ThrowArgumentNullException_WhenEntityIsNull()
@@ -19,10 +19,10 @@ namespace Visions.Tests.Visions.Data.GenericRepositoryTests
             var contextMock = new Mock<IEfDbContext>();
             contextMock.Setup(x => x.Set<User>()).Returns(dbSetMock.Object);
 
-            IEfDbSetWrapper<User> repository = new EfDbSetWrapper<User>(contextMock.Object);
+            IEfDbSetWrapper<User> dbSetWrapper = new EfDbSetWrapper<User>(contextMock.Object);
 
             // Act
-            var exception = Assert.Throws<ArgumentNullException>(() => repository.Update(null));
+            var exception = Assert.Throws<ArgumentNullException>(() => dbSetWrapper.Add(null));
 
             // Assert
             StringAssert.IsMatch("entity", exception.ParamName);

@@ -77,7 +77,7 @@ namespace Visions.Data
             }
         }
 
-        private DbEntityEntry AttachIfDetached(T entity)
+        public DbEntityEntry AttachIfDetached(T entity)
         {
             Guard.WhenArgument(entity, "entity").IsNull().Throw();
 

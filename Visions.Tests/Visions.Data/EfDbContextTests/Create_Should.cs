@@ -7,7 +7,7 @@ namespace Visions.Tests.Visions.Data.VisionsDbContextTests
     public class Create_Should
     {
         [Test]
-        public void CreateAnInstanceOfVisionsDbContext()
+        public void CreateAnInstanceOfEfDbContext()
         {
             // Arrange, Act
             var actualResult = EfDbContext.Create();

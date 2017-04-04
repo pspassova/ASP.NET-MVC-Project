@@ -13,6 +13,7 @@ namespace Visions.Data
 
             this.dbContext = dbContext;
         }
+
         public int SaveChanges()
         {
             return this.dbContext.SaveChanges();

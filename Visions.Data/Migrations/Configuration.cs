@@ -2,7 +2,7 @@ namespace Visions.Data.Migrations
 {
     using System.Data.Entity.Migrations;
 
-    public sealed class Configuration : DbMigrationsConfiguration<Visions.Data.EfDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<EfDbContext>
     {
         public Configuration()
         {
@@ -10,7 +10,7 @@ namespace Visions.Data.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(Visions.Data.EfDbContext context)
+        protected override void Seed(EfDbContext context)
         {
         }
     }

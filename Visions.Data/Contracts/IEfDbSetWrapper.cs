@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace Visions.Data.Contracts
@@ -8,10 +9,7 @@ namespace Visions.Data.Contracts
     {
         T GetById(object id);
 
-        IQueryable<T> All
-        {
-            get;
-        }
+        IQueryable<T> All { get; }
 
         void Add(T entity);
 
@@ -20,5 +18,7 @@ namespace Visions.Data.Contracts
         void Update(T entity);
 
         void Delete(T entity);
+
+        DbEntityEntry AttachIfDetached(T entity);
     }
 }
