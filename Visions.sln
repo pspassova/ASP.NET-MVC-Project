@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visions.Auth", "Visions.Aut
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visions.Helpers", "Visions.Helpers\Visions.Helpers.csproj", "{6AC8559E-3ACC-45F0-BFB5-538572986CEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visions.IntegrationTests", "Visions.IntegrationTests\Visions.IntegrationTests.csproj", "{AB10C47B-2653-4683-94AD-009B4C6C5911}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{6AC8559E-3ACC-45F0-BFB5-538572986CEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AC8559E-3ACC-45F0-BFB5-538572986CEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AC8559E-3ACC-45F0-BFB5-538572986CEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB10C47B-2653-4683-94AD-009B4C6C5911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB10C47B-2653-4683-94AD-009B4C6C5911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB10C47B-2653-4683-94AD-009B4C6C5911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB10C47B-2653-4683-94AD-009B4C6C5911}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

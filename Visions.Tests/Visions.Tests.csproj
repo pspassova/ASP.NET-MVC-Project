@@ -283,7 +283,6 @@
     <Compile Include="Visoins.Auth\EmailServiceTests\SendAsync_Should.cs" />
     <Compile Include="Visoins.Auth\SmsServiceTests\SendAsync_Should.cs" />
     <Compile Include="Visoins.Auth\UserProviderTests\Constructor_Should.cs" />
-    <Compile Include="Visoins.Auth\UserProviderTests\GetUserId_Should.cs" />
     <Compile Include="Visoins.Auth\UserProviderTests\GetUsername_Should.cs" />
   </ItemGroup>
   <ItemGroup>

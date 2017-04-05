@@ -34,8 +34,6 @@ namespace Visions.Web.App_Start
             this.Bind<IPhotoService>().To<PhotoService>();
             this.Bind<ITagService>().To<TagService>();
             this.Bind<IArticleService>().To<ArticleService>();
-
-            // Interceptors
             this.Bind(typeof(IUploadService<>)).To(typeof(UploadService<>));
             this.Bind(typeof(IModifyService<>)).To(typeof(ModifyService<>));
             this.Bind(typeof(IDeleteService<>)).To(typeof(DeleteService<>));
