@@ -40,18 +40,5 @@ namespace Visions.IntegrationTests.Visions.Services.ArticleServiceTests
             // Assert
             Assert.That(actualArticles.Count(), Is.EqualTo(expectedArticles.Count()));
         }
-
-        [Test]
-        public void ReturnAllTheArticlesFromDatabase()
-        {
-            // Arrange
-            IArticleService service = kernel.Get<IArticleService>();
-
-            // Act
-            IQueryable<Article> returnedArticles = service.GetAll();
-
-            // Assert
-            Assert.IsNotEmpty(returnedArticles);
-        }
     }
 }
