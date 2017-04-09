@@ -71,6 +71,7 @@
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
       <Private>True</Private>
@@ -99,6 +100,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\CustomHttpPostedFileBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Visions.Data\EfDbSetWrapperTests\AddMany_Should.cs" />
     <Compile Include="Visions.Data\EfDbSetWrapperTests\Add_Should.cs" />
@@ -106,9 +108,16 @@
     <Compile Include="Visions.Data\EfDbSetWrapperTests\Update_Should.cs" />
     <Compile Include="Visions.Services\ArticleServiceTests\GetAll_Should.cs" />
     <Compile Include="Visions.Services\PhotoServiceTests\SortByTag_Should.cs" />
+    <Compile Include="Visions.Web\App_Start\BundleConfigTests\RegisterBundles_Should.cs" />
+    <Compile Include="Visions.Web\App_Start\FilterConfigTests\RegisterGlobalFilters_Should.cs" />
+    <Compile Include="Visions.Web\App_Start\RouteConfigTests\RegisterRoutes_Should.cs" />
+    <Compile Include="Visions.Web\Areas\Admin\AdminAreaRegistrationTests\RegisterArea_Should.cs" />
+    <Compile Include="Visions.Web\Areas\User\UserAreaRegistrationTests\RegisterArea_Should.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

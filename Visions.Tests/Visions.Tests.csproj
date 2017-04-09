@@ -236,6 +236,8 @@
     <Compile Include="Visions.Services\UploadServiceTests\Constructor_Should.cs" />
     <Compile Include="Visions.Services\UploadServiceTests\UploadManyToDatabase_Should.cs" />
     <Compile Include="Visions.Services\UploadServiceTests\UploadToDatabase_Should.cs" />
+    <Compile Include="Visions.Web\App_Start\DatabaseConfigTests\InitializeDatabase_Should.cs" />
+    <Compile Include="Visions.Web\App_Start\NinjectWebCommonTests\NinjectWebCommon_Should.cs" />
     <Compile Include="Visions.Web\Areas\Admin\AdminAreaRegistrationTests\Class_Should.cs" />
     <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\Class_Should.cs" />
     <Compile Include="Visions.Web\Areas\Admin\Controllers\ProfileControllerTests\Constructor_Should.cs" />
