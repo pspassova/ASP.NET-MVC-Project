@@ -24,7 +24,6 @@ namespace Visions.Services
         {
             return new Article()
             {
-                Id = Guid.NewGuid(),
                 Title = title,
                 Content = content,
                 UserId = userId,

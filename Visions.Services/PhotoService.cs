@@ -24,7 +24,6 @@ namespace Visions.Services
         {
             return new Photo()
             {
-                Id = Guid.NewGuid(),
                 UserId = userId,
                 Path = path,
                 Likes = 0,

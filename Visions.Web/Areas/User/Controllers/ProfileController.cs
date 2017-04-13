@@ -61,7 +61,8 @@ namespace Visions.Web.Areas.User.Controllers
         {
             string userId = this.userProvider.GetUserId();
             IEnumerable<PhotoViewModel> photos = this.photoService.GetAllOrderedByCreatedOn(OrderBy.Descending, userId)
-                .Select(PhotoViewModel.FromPhoto);
+                .Select(PhotoViewModel.FromPhoto)
+                .ToList();
 
             IPagedList<PhotoViewModel> photosPagedList = this.pagingProvider.CreatePagedList(photos, page, pageSize);
 
@@ -69,6 +70,7 @@ namespace Visions.Web.Areas.User.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Dashboard(HttpPostedFileBase file, string tags)
         {
             if (file == null)
@@ -100,7 +102,8 @@ namespace Visions.Web.Areas.User.Controllers
             string userId = this.userProvider.GetUserId();
             IEnumerable<PhotoViewModel> photos = this.photoService.SortByTag(text, userId)
                            .AsQueryable()
-                           .Select(PhotoViewModel.FromPhoto);
+                           .Select(PhotoViewModel.FromPhoto)
+                           .ToList();
             IPagedList<PhotoViewModel> photosPagedList = this.pagingProvider.CreatePagedList(photos, page, pageSize);
 
             return this.View("Dashboard", photosPagedList);

@@ -14,7 +14,7 @@ namespace Visions.Models.Models
             this.photos = new HashSet<Photo>();
         }
 
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id
         {
             get; set;

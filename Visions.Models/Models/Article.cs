@@ -14,7 +14,7 @@ namespace Visions.Models.Models
             this.tags = new HashSet<Tag>();
         }
 
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id
         {
             get; set;

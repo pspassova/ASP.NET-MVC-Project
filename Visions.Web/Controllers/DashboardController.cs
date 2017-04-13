@@ -29,8 +29,9 @@ namespace Visions.Web.Controllers
             this.ViewBag.SelectedTag = text;
 
             IEnumerable<PhotoViewModel> photos = this.photoService.SortByTag(text)
+                .OrderByDescending(x => x.CreatedOn)
                 .Select(PhotoViewModel.FromPhoto)
-                .OrderByDescending(x => x.CreatedOn);
+                .ToList();
             IPagedList<PhotoViewModel> photosPagedList = this.pagingProvider.CreatePagedList(photos, page, pageSize);
 
             return this.View(photosPagedList);
@@ -41,8 +42,8 @@ namespace Visions.Web.Controllers
         public ActionResult Search(string query, int page, int pageSize)
         {
             IEnumerable<PhotoViewModel> photos = this.photoService.SortByTag(query)
-                .AsQueryable()
-                .Select(PhotoViewModel.FromPhoto);
+                .Select(PhotoViewModel.FromPhoto)
+                .ToList();
             IPagedList<PhotoViewModel> photosPagedList = this.pagingProvider.CreatePagedList(photos, page, pageSize);
 
             return this.View("Shared", photosPagedList);

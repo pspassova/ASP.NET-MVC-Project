@@ -59,7 +59,8 @@ namespace Visions.Web.Areas.Admin.Controllers
         public ActionResult Manage()
         {
             IEnumerable<PhotoViewModel> photos = this.photoService.GetAllOrderedByCreatedOn(OrderBy.Descending)
-                .Select(PhotoViewModel.FromPhoto);
+                .Select(PhotoViewModel.FromPhoto)
+                .ToList();
 
             return this.View(photos);
         }

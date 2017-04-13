@@ -16,6 +16,8 @@ namespace Visions.Web.Controllers
         private readonly IArticleService articleService;
         private readonly IUserProvider userProvider;
 
+        private const int MinuteInSeconds = 60;
+
         public HomeController(
             IUploadService<Article> uploadArticleService,
             IArticleService articleService,
@@ -33,13 +35,10 @@ namespace Visions.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            IEnumerable<ArticleViewModel> articles = this.articleService.GetAllOrderedByCreatedOn(OrderBy.Descending)
-                .Select(ArticleViewModel.FromArticle);
-
-            return this.View(articles);
+            return this.View();
         }
 
-        [HttpPost, Authorize, ValidateInput(false)]
+        [HttpPost, Authorize, ValidateAntiForgeryToken, ValidateInput(false)]
         public ActionResult Index(string articleTitle, string articleContent)
         {
             string userId = this.userProvider.GetUserId();
@@ -54,6 +53,17 @@ namespace Visions.Web.Controllers
         public ActionResult About()
         {
             return this.View();
+        }
+
+        [ChildActionOnly]
+        [OutputCache(Duration = 5 * MinuteInSeconds)]
+        public ActionResult AllArticles()
+        {
+            IEnumerable<ArticleViewModel> articles = this.articleService.GetAllOrderedByCreatedOn(OrderBy.Descending)
+                 .Select(ArticleViewModel.FromArticle)
+                 .ToList();
+
+            return this.PartialView("_AllArticles", articles);
         }
     }
 }

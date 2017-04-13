@@ -19,6 +19,8 @@
     </div>
 
     <form id="uploadPhotoForm" action="" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+
         <div class="form-group col-sm-offset-1 col-sm-1">
             <label for="file">
                 <img src="~/Content/img/upload.png" alt="@GlobalResources.ChoosePhotoAltMessage" class="img-responsive" role="button" />

@@ -18,6 +18,8 @@
                 <form id="createArticleForm" action="" method="post" enctype="multipart/form-data">
                     <div class="form-horizontal">
                         <div class="form-group">
+                            @Html.AntiForgeryToken()
+
                             <input id="articleTitle" type="text" name="articleTitle" class="form-control article-field" placeholder="@GlobalResources.ArticleTitlePlaceholderMessage"
                                     pattern="(.*?){2,50}" autofocus required title="must be from 2 to 50 symbols"/>
                         </div>
@@ -33,7 +35,7 @@
                     </div>
                 </form>
 
-                @Html.Partial("_AllArticles", this.Model)
+                @Html.Action("AllArticles", this.Model)
             }
             else
             {

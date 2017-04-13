@@ -10,7 +10,6 @@ namespace Visions.Services
         {
             return new Tag()
             {
-                Id = Guid.NewGuid(),
                 Text = text
             };
         }
