@@ -1,6 +1,5 @@
 ﻿@using Visions.Web.App_GlobalResources
 
-@model IEnumerable<ArticleViewModel>
 @{
     ViewBag.Title = GlobalResources.HomepageGetStartedButtonText;
 }
@@ -35,7 +34,7 @@
                     </div>
                 </form>
 
-                @Html.Action("AllArticles", this.Model)
+                @Html.Action("AllArticles")
             }
             else
             {
