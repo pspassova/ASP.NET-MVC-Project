@@ -261,11 +261,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GlobalResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\test.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>test.resx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DatabaseConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -448,10 +443,6 @@
     <Content Include="App_GlobalResources\GlobalResources.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>GlobalResources.Designer.cs</LastGenOutput>
-    </Content>
-    <Content Include="App_GlobalResources\test.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>test.Designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
