@@ -1,4 +1,5 @@
 ﻿using Bytes2you.Validation;
+using Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,6 @@ using Visions.Helpers.Contracts;
 using Visions.Models.Models;
 using Visions.Services.Contracts;
 using Visions.Services.Enumerations;
-using Visions.Web.App_GlobalResources;
 using Visions.Web.Common.Contracts;
 using Visions.Web.Models;
 
