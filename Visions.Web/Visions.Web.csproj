@@ -440,16 +440,16 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\GlobalResources.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
+    <EmbeddedResource Include="App_GlobalResources\GlobalResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>GlobalResources.Designer.cs</LastGenOutput>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\GlobalResources.bg.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
+    <EmbeddedResource Include="App_GlobalResources\GlobalResources.bg.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>GlobalResources.bg.Designer.cs</LastGenOutput>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
